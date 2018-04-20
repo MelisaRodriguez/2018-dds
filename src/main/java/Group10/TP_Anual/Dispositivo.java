@@ -11,7 +11,7 @@ public class Dispositivo {
 	{
 		this.nombreGenerico = nombre;
 		this.kWxHora = kW;
-		this.encendido = false; // POR DEFECTO un dispositivo est√° apagado
+		this.encendido = false; // POR DEFECTO un dispositivo esta° apagado
 	}
 	
 	// GETTERS PEDIDOS EN ENTREGA 0
