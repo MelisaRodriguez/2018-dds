@@ -17,7 +17,7 @@ public class Administrador {
 			this.fechaDeAlta = fechaDeAlta;
 		}
 
-		public int getMeses() {
-			return fechaDeAlta.compareTo(LocalDate.now());
+		public int getMesesComoAdmin() {
+			return ((LocalDate.now().getYear() - fechaDeAlta.getYear()) * 12) + (LocalDate.now().getMonthValue() - fechaDeAlta.getMonthValue()); 
 		};
 }
