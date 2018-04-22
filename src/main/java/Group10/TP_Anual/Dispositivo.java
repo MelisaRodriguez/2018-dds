@@ -27,4 +27,10 @@ public class Dispositivo {
 	{
 		return encendido;
 	}
+	public boolean estaEncendido() {
+		return encendido == true;
+	}
+	public boolean estaApagado() {
+		return encendido == false;
+	}
 }
