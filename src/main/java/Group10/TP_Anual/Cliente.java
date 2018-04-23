@@ -1,13 +1,15 @@
 package Group10.TP_Anual;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
+import Group10.TP_Anual.TipoDocumento;
 
 public class Cliente {
 	private String nombre;
 	private String apellido;
-	// private TipoDocumento documento;
+	private TipoDocumento documento;
 	private int nroDocumento;
 	private int telefono;
 	private String domicilioServicio;
@@ -15,17 +17,17 @@ public class Cliente {
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos = new ArrayList<>();
 	
-	public Cliente(String nombre, String apellido, /*TipoDocumento documento, */ int nroDocumento, int telefono, String domicilioServicio, LocalDate fechaDeAltaServicio, Categoria categoria, List<Dispositivo> dispositivos ) 
+	public Cliente(String nombre, String apellido, TipoDocumento documento,  int nroDocumento, int telefono, String domicilioServicio, LocalDate fechaDeAltaServicio, List<Dispositivo> dispositivos ) 
 	{
 		this.nombre = nombre;
 		this.apellido = apellido;
-		// this.documento = documento;
+		this.documento = documento;
 		this.nroDocumento = nroDocumento;
 		this.telefono = telefono;
 		this.domicilioServicio = domicilioServicio;
 		this.fechaDeAltaServicio = fechaDeAltaServicio;
-		this.categoria = categoria;
 		this.dispositivos = dispositivos;
+		this.categoria = RepoCategorias.solicitarCategoria(dispositivos.stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum());
 	}
 	
 	public boolean existeDispositivoEncendido() {
