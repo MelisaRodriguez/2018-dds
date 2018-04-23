@@ -27,7 +27,15 @@ public class Cliente {
 		this.domicilioServicio = domicilioServicio;
 		this.fechaDeAltaServicio = fechaDeAltaServicio;
 		this.dispositivos = dispositivos;
-		this.categoria = RepoCategorias.solicitarCategoria(dispositivos.stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum());
+		this.categoria = RepoCategorias.solicitarCategoria(this.consumoTotal());
+	}
+	
+	public void recategorizar() {
+		this.categoria = RepoCategorias.solicitarCategoria(this.consumoTotal());
+	}
+	
+	private double consumoTotal() {
+		return dispositivos.stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum();
 	}
 	
 	public boolean existeDispositivoEncendido() {
