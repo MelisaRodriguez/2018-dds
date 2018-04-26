@@ -1,0 +1,72 @@
+{
+  "clientes":
+  [
+	{
+	"nombre":"Facundo",
+	"apellido":"Fraguaga",
+	"tipoDocumento":"LE",
+	"nroDocumento":12345678,
+	"telefono":44876741,
+	"domicilioServicio":"La loma del congo, a la vuelta",
+	"fechaDeAltaServicio":{
+							"dia":1,
+							"mes":1,
+							"anio":2018
+	                      },
+	"categoria":{
+		    "nombre":"R1",
+			"cargoFijo":18.76,
+			"cargoVariable":0.644,
+ 			"limiteInferior":0,
+			"limiteSuperior":150
+		    },
+	"dispositivos":[       {
+				"nombreGenerico":"Plancha",
+				"kWxHora":10.0,
+				"encendido":false
+	                       },
+	
+						   {
+				"nombreGenerico":"modem",
+				"kWxHora":5.0,
+				"encendido":false
+						   },
+
+						   {
+				"nombreGenerico":"Heladera",
+				"kWxHora":30.0,
+				"encendido":false
+						   }
+
+                    ]
+    },
+    {
+    "nombre":"Gonzalo",
+	"apellido":"Bertinat",
+	"tipoDocumento":"DNI",
+	"nroDocumento":41264644,
+	"telefono":42422000,
+	"domicilioServicio":"Un lugar llamado Campus - CABA",
+	"fechaDeAltaServicio":{
+						    "dia":26,
+						    "mes":5,
+						    "anio":2015
+					      },
+	"categoria":{
+			"nombre":"R1",
+			"cargoFijo":18.76,
+			"cargoVariable":0.644,
+ 			"limiteInferior":0,
+			"limiteSuperior":150
+		    },
+	"dispositivos":[
+				{
+				"nombreGenerico":"Heladera",
+				"kWxHora":30.0,
+				"encendido":false
+				}
+                   ]
+    }
+
+   ]
+ }

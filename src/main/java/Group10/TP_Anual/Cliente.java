@@ -1,27 +1,46 @@
 package Group10.TP_Anual;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.time.LocalDate;
-import Group10.TP_Anual.TipoDocumento;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Cliente {
+
+	@SerializedName("nombre")
+	@Expose
 	private String nombre;
+	@SerializedName("apellido")
+	@Expose
 	private String apellido;
-	private TipoDocumento documento;
+	@SerializedName("tipoDocumento")
+	@Expose
+	private TipoDocumento tipoDocumento;
+	@SerializedName("nroDocumento")
+	@Expose
 	private int nroDocumento;
+	@SerializedName("telefono")
+	@Expose
 	private int telefono;
+	@SerializedName("domicilioServicio")
+	@Expose
 	private String domicilioServicio;
-	private LocalDate fechaDeAltaServicio;
+	@SerializedName("fechaDeAltaServicio")
+	@Expose
+	private Fecha fechaDeAltaServicio;
+	@SerializedName("categoria")
+	@Expose
 	private Categoria categoria;
-	private List<Dispositivo> dispositivos = new ArrayList<>();
-	
-	public Cliente(String nombre, String apellido, TipoDocumento documento,  int nroDocumento, int telefono, String domicilioServicio, LocalDate fechaDeAltaServicio, List<Dispositivo> dispositivos ) 
+	@SerializedName("dispositivos")
+	@Expose
+	private List<Dispositivo> dispositivos;
+
+	public Cliente(String nombre, String apellido, TipoDocumento documento,  int nroDocumento, int telefono, String domicilioServicio, Fecha fechaDeAltaServicio, List<Dispositivo> dispositivos) 
 	{
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.documento = documento;
+		this.tipoDocumento = documento;
 		this.nroDocumento = nroDocumento;
 		this.telefono = telefono;
 		this.domicilioServicio = domicilioServicio;
@@ -51,14 +70,32 @@ public class Cliente {
 	}
 	
 	public List<Dispositivo> dispositivosEncendidos() {
-		return dispositivos.stream().filter(dispositivo -> dispositivo.encendido()).collect(Collectors.toList());
+		return dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).collect(Collectors.toList());
 	}
 	
 	public List<Dispositivo> dispositivosApagados() {
-		return dispositivos.stream().filter(dispositivo -> dispositivo.estaApagado()).collect(Collectors.toList());
+		return dispositivos.stream().filter(dispositivo -> !(dispositivo.estaEncendido())).collect(Collectors.toList());
 	}
 	
 	public int cantDispositivos() {
 		return dispositivos.size();
 	}
+	public String toString() // NO REQUERIDO, CREADO PARA TESTEAR EL JSON
+	{
+		return ("Nombre: " + nombre + " | " + "Apellido: " + apellido + " | " +
+	            "Tipo de Documento: " + tipoDocumento + " | " + "Número de documento: " +
+				nroDocumento + " | " + "Telefono: " + telefono + " | " + 
+	            "Domicilio de Servicio: " + domicilioServicio + " | " + 
+				"Fecha de alta de servicio: " + fechaDeAltaServicio.toString()
+	            + " | " + categoria.toString());
+	}
+
+	public List<Dispositivo> getDispositivos() {
+		return dispositivos;
+	}
+
+	public void setDispositivos(List<Dispositivo> dispositivos) {
+		this.dispositivos = dispositivos;
+	}
+
 }

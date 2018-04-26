@@ -1,8 +1,14 @@
 package Group10.TP_Anual;
 
 public enum TipoDocumento {
-	DNI,
-	CI,
-	LC,
-	LE,
+	DNI("DNI"),
+	CI("CI"),
+	LC("LC"),
+	LE("LE");
+	
+	private String tipo;
+	private TipoDocumento(String tipo)
+	{
+		this.tipo = tipo;
+	}
 }
