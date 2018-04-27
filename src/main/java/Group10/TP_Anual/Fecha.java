@@ -17,6 +17,8 @@ public class Fecha {
 	{
 		return dia+"/"+mes+"/"+anio;
 	}
+<<<<<<< HEAD
+=======
 	public int getDia() {
 		return dia;
 	}
@@ -29,4 +31,5 @@ public class Fecha {
 		return anio;
 	}
 	
+>>>>>>> 2ee481694f44a5c37d915a7aae91f871f6d6e748
 }
