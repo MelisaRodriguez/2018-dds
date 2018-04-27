@@ -3,7 +3,7 @@
   [
 	{
 	"nombre":"Juan",
-	"apellido":"Perez",
+	"apellido":"Pérez",
 	"tipoDocumento":"DNI",
 	"nroDocumento":12345678,
 	"telefono":42424242,
@@ -62,7 +62,7 @@
 	"dispositivos":[
 				{
 				"nombreGenerico":"Smart TV",
-				"kWxHora":53.7,
+				"kWxHora":53.0,
 				"encendido":false
 				}
                    ]
