@@ -18,7 +18,21 @@ public class Administrador {
 			this.fechaDeAlta = fechaDeAlta;
 		}
 
-    //  public int getMesesComoAdmin() { //<-- CORREGIR ESTE METODO
-	//		return ((LocalDate.now().getYear() - fechaDeAlta.getYear()) * 12) + (LocalDate.now().getMonthValue() - fechaDeAlta.getMonthValue()); 
-	//	};
+      public int getMesesComoAdmin() { 
+			return  considerarAnio() +considerarMes() + considerarDia(); 
+		};
+		
+	private int considerarAnio () {
+		return ((LocalDate.now().getYear() - fechaDeAlta.getAnio()) * 12);
+	};
+	
+	private int considerarMes() {
+		return LocalDate.now().getMonthValue() - fechaDeAlta.getMes() ;
+	};
+	
+	private int considerarDia () {
+		if(LocalDate.now().getDayOfMonth() >= fechaDeAlta.getDia()) 
+		{return 0;} else {return -1;}
+	};
+	
 }
