@@ -1,5 +1,6 @@
 package Group10.TP_Anual;
 
+
 public class Fecha {
 
 	private int dia;
@@ -17,19 +18,19 @@ public class Fecha {
 	{
 		return dia+"/"+mes+"/"+anio;
 	}
-<<<<<<< HEAD
-=======
-	public int getDia() {
+	
+	public int getDia() 
+	{
 		return dia;
 	}
 	
-	public int getMes() {
+	public int getMes() 
+	{
 		return mes;
 	}
 	
-	public int getAnio() {
+	public int getAnio() 
+	{
 		return anio;
 	}
-	
->>>>>>> 2ee481694f44a5c37d915a7aae91f871f6d6e748
 }

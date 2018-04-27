@@ -53,11 +53,11 @@ public class Cliente {
 		this.categoria = RepoCategorias.solicitarCategoria(this.consumoTotal());
 	}
 	
-	private double consumoTotal() {
+	public double consumoTotal() {
 		return dispositivos.stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum();
 	}
 	
-	public boolean existeDispositivoEncendido() {
+	public boolean tieneDispositivoEncendido() {
 		return dispositivos.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
 	}
 	
@@ -96,6 +96,10 @@ public class Cliente {
 
 	public void setDispositivos(List<Dispositivo> dispositivos) {
 		this.dispositivos = dispositivos;
+	}
+	public Categoria getCategoria()
+	{
+		return this.categoria;
 	}
 
 }

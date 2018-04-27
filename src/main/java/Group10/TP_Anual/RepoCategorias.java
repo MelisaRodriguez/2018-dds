@@ -2,6 +2,7 @@ package Group10.TP_Anual;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class RepoCategorias {
 	private static List<Categoria> categ = new ArrayList<>();
@@ -22,5 +23,9 @@ public final class RepoCategorias {
 	public static Categoria solicitarCategoria(double kwPorHora)
 	{
 		return categ.stream().filter(categoria -> categoria.estaEnLimites(kwPorHora)).findFirst().get();
+	}
+	public static List<Categoria> getCategorias()
+	{
+		return categ;
 	}
 }
