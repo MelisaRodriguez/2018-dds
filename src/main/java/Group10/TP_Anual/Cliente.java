@@ -1,6 +1,7 @@
 package Group10.TP_Anual;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.google.gson.annotations.Expose;
@@ -46,7 +47,7 @@ public class Cliente {
 		this.domicilioServicio = domicilioServicio;
 		this.fechaDeAltaServicio = fechaDeAltaServicio;
 		this.dispositivos = dispositivos;
-		this.categoria = RepoCategorias.solicitarCategoria(this.consumoTotal());
+		this.recategorizar();
 	}
 	
 	public void recategorizar() {
@@ -58,7 +59,7 @@ public class Cliente {
 	}
 	
 	public boolean tieneDispositivoEncendido() {
-		return dispositivos.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
+		return this.cantDispositivosEncendidos() > 0;
 	}
 	
 	public int cantDispositivosEncendidos() {
@@ -66,15 +67,19 @@ public class Cliente {
 	}
 	
 	public int cantDispositivosApagados() {
-		return this.dispositivosApagados().size();
+		return this.cantDispositivos() - this.cantDispositivosEncendidos();
 	}
 	
 	public List<Dispositivo> dispositivosEncendidos() {
-		return dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).collect(Collectors.toList());
+		return this.filtrarDispositivos(dispositivo -> dispositivo.estaEncendido());
 	}
 	
 	public List<Dispositivo> dispositivosApagados() {
-		return dispositivos.stream().filter(dispositivo -> !(dispositivo.estaEncendido())).collect(Collectors.toList());
+		return this.filtrarDispositivos(dispositivo -> !(dispositivo.estaEncendido()));
+	}
+
+	private List<Dispositivo> filtrarDispositivos (Predicate<Dispositivo> unaCondicion) {
+		return dispositivos.stream().filter(unaCondicion).collect(Collectors.toList());
 	}
 	
 	public int cantDispositivos() {
@@ -83,7 +88,7 @@ public class Cliente {
 	public String toString() // NO REQUERIDO, CREADO PARA TESTEAR EL JSON
 	{
 		return ("Nombre: " + nombre + " | " + "Apellido: " + apellido + " | " +
-	            "Tipo de Documento: " + tipoDocumento + " | " + "Número de documento: " +
+	            "Tipo de Documento: " + tipoDocumento + " | " + "Nï¿½mero de documento: " +
 				nroDocumento + " | " + "Telefono: " + telefono + " | " + 
 	            "Domicilio de Servicio: " + domicilioServicio + " | " + 
 				"Fecha de alta de servicio: " + fechaDeAltaServicio.toString()
