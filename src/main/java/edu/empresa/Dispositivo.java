@@ -1,28 +1,26 @@
-package Group10.TP_Anual;
+package edu.empresa;
 
 public class Dispositivo {
 
 	private String nombreGenerico;
 	private double kWxHora;
 	private boolean encendido;
-	
-	public Dispositivo(String nombre, double kW)
-	{
+
+	public Dispositivo(String nombre, double kW) {
 		this.nombreGenerico = nombre;
 		this.kWxHora = kW;
 		this.encendido = false; // POR DEFECTO un dispositivo esta apagado
 	}
-	
-	public String nombreGenerico()
-	{
+
+	public String nombreGenerico() {
 		return nombreGenerico;
 	}
-	public double kwConsumoxHora()
-	{
+
+	public double kwConsumoxHora() {
 		return kWxHora;
 	}
-	public boolean estaEncendido()
-	{
+
+	public boolean estaEncendido() {
 		return encendido;
 	}
 }
