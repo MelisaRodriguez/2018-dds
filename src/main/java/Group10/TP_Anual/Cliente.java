@@ -80,7 +80,7 @@ public class Cliente {
 
 	private List<Dispositivo> filtrarDispositivos (Predicate<Dispositivo> unaCondicion) {
 		return dispositivos.stream().filter(unaCondicion).collect(Collectors.toList());
-	} //
+	}
 	
 	public int cantDispositivos() {
 		return dispositivos.size();
