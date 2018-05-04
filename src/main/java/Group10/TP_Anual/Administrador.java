@@ -1,5 +1,6 @@
 package Group10.TP_Anual;
 import java.time.LocalDate; 
+import java.time.temporal.ChronoUnit;
 
 public class Administrador {
 	
@@ -7,9 +8,9 @@ public class Administrador {
 		private String apellido;
 		private String domicilio;
 		private int nroIdentificacion;
-		private Fecha fechaDeAlta;
+		private LocalDate fechaDeAlta;
 		
-		public Administrador(String nombre, String apellido, String domicilio, int nroIdentificacion, Fecha fechaDeAlta) 
+		public Administrador(String nombre, String apellido, String domicilio, int nroIdentificacion, LocalDate fechaDeAlta) 
 		{
 			this.nombre = nombre;
 			this.apellido = apellido;
@@ -17,31 +18,10 @@ public class Administrador {
 			this.nroIdentificacion = nroIdentificacion;
 			this.fechaDeAlta = fechaDeAlta;
 		}
-
-		public int getMesesComoAdmin() 
-		{ 
-			return  considerarAnio() +considerarMes() + considerarDia(); 
-		}
 		
-		private int considerarAnio ()
+		public long getMesesComoAdmin()
 		{
-			return ((LocalDate.now().getYear() - fechaDeAlta.getAnio()) * 12);
+			return  fechaDeAlta.until(LocalDate.now(), ChronoUnit.MONTHS );			 
 		}
+}
 	
-		private int considerarMes() 
-		{
-			return LocalDate.now().getMonthValue() - fechaDeAlta.getMes() ;
-		}
-	
-		private int considerarDia ()
-		{
-			if(LocalDate.now().getDayOfMonth() >= fechaDeAlta.getDia()) 
-			{
-				return 0;
-			} 
-			else 
-			{ 
-				return -1;
-			}
-		}
-	}
