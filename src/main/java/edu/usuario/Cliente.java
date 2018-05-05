@@ -67,11 +67,7 @@ public class Cliente {
 	private List<Dispositivo> filtrarDispositivos(Predicate<Dispositivo> unaCondicion) {
 		return dispositivos.stream().filter(unaCondicion).collect(Collectors.toList());
 	}
-<<<<<<< HEAD:src/main/java/edu/usuario/Cliente.java
-
-=======
 	
->>>>>>> f59c22edccf91683ad5820f5ff0848fe0023adbf:src/main/java/Group10/TP_Anual/Cliente.java
 	public int cantDispositivos() {
 		return dispositivos.size();
 	}
