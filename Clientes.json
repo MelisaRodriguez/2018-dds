@@ -1,17 +1,15 @@
-{
-  "clientes":
-  [
+[
 	{
 	"nombre":"Juan",
-	"apellido":"Pérez",
+	"apellido":"PÃ©rez",
 	"tipoDocumento":"DNI",
-	"nroDocumento":12345678,
-	"telefono":42424242,
+	"nroDocumento":"12345678",
+	"telefono":"4242-4242",
 	"domicilioServicio":"Av. 9 de Julio 1300 - CABA",
 	"fechaDeAltaServicio":{
-							"dia":1,
-							"mes":1,
-							"anio":2015
+							"day":1,
+							"month":1,
+							"year":2015
 	                      },
 	"categoria":{
 		    "nombre":"R3",
@@ -42,15 +40,15 @@
     },
     {
     "nombre":"Manuel",
-	"apellido":"Rodríguez",
+	"apellido":"RodrÃ­guez",
 	"tipoDocumento":"DNI",
-	"nroDocumento":25432124,
-	"telefono":42026666,
+	"nroDocumento":"25432124",
+	"telefono":"4202-6666",
 	"domicilioServicio":"Medrano 700 - CABA",
 	"fechaDeAltaServicio":{
-						    "dia":15,
-						    "mes":7,
-						    "anio":2017
+						    "day":15,
+						    "month":7,
+						    "year":2017
 					      },
 	"categoria":{
 			"nombre":"R1",
@@ -69,4 +67,3 @@
     }
 
    ]
- }
