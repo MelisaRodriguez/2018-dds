@@ -1,5 +1,4 @@
 # 2018-vn-group-10
-# tp-2018-1c--0
 ## Estructura del repositorio y forma de trabajar en él
 
 | BRANCHS       | ¿PARA QUE SIRVE?|
