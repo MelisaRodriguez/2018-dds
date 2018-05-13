@@ -1,6 +1,6 @@
 package edu.empresa;
 
-public class Dispositivo {
+public abstract class Dispositivo {
 
 	private String nombreGenerico;
 	private double kWxHora;
@@ -23,4 +23,6 @@ public class Dispositivo {
 	public boolean estaEncendido() {
 		return encendido;
 	}
+
+	public abstract double consumo(int horas);
 }

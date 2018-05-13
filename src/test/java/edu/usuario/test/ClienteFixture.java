@@ -8,15 +8,14 @@ import edu.usuario.RepoClientes;
 
 public class ClienteFixture {
 	protected List<Cliente> clientes;
-	
+
 	@Before
-	public void fixture() //algun dia manejar errores
+	public void fixture() // algun dia manejar errores
 	{
 		try {
-		clientes = RepoClientes.getInstanceOfSingleton().getInfo();
+			clientes = RepoClientes.getInstanceOfSingleton().getInfo();
+		} catch (Exception x) {
 		}
-		catch(Exception x)
-		{}
 	}
-	
+
 }
