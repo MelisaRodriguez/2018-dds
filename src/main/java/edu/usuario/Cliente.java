@@ -50,9 +50,7 @@ public class Cliente {
 	
 	private List<Dispositivo> dispositivosTotales()
 	{
-		List<Dispositivo> total = new ArrayList<Dispositivo>(this.dispositivosEstandar);
-		total.addAll(this.dispositivosInteligentes);
-		return total;
+		return Stream.concat(dispositivosInteligentes.stream(), dispositivosEstandar.stream()).collect(Collectors.toList());
 	}
 
 	public double consumoTotal() {
