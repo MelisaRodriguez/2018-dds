@@ -6,11 +6,10 @@ public class DispositivoEstandar extends Dispositivo {
 		super(nombre, kW);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public double consumo(int horas) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public DispositivoInteligente adaptar()
+	{
+		return new DispositivoInteligente(this.nombreGenerico, this.kWxHora);
 	}
 
 }

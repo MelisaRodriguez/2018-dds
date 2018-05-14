@@ -11,16 +11,6 @@ public class DispositivoInteligente extends Dispositivo {
 		super(nombre, kW);
 		this.estado = new estadoApagado(this); 
 	}
-
-	@Override
-	public double consumo(int horas) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	public double energiaConsumidaEnHoras (int horas) {
-		return kWxHora * horas;
-	}
 	
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
 		return inicio.until(fin, ChronoUnit.HOURS) * kWxHora;
@@ -41,7 +31,7 @@ public class DispositivoInteligente extends Dispositivo {
 		this.estado = estado;
 	}
 	
-	public boolean estaEncendido () {
+	public boolean estaEncendido() {
 		return estado.estaEncendido();
 	}
 
