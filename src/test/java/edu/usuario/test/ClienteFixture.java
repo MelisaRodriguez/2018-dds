@@ -12,10 +12,7 @@ public class ClienteFixture {
 	@Before
 	public void fixture() // algun dia manejar errores
 	{
-		try {
-			clientes = RepoClientes.getInstanceOfSingleton().getInfo();
-		} catch (Exception x) {
-		}
+		clientes = RepoClientes.getInstanceOfSingleton().getInfo();
 	}
 
 }

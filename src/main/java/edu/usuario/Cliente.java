@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -26,10 +27,10 @@ public class Cliente {
 	private List<DispositivoInteligente> dispositivosInteligentes;
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private long puntos;
-	
 
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
-			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI, List<DispositivoEstandar> dispositivosEstandar) {
+			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
+			List<DispositivoEstandar> dispositivosEstandar) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -38,7 +39,7 @@ public class Cliente {
 		this.domicilioServicio = domicilioServicio;
 		this.fechaDeAltaServicio = fechaDeAltaServicio;
 		this.dispositivosInteligentes = dispositivosI;
-		this.puntos = this.dispositivosInteligentes.size()*15;
+		this.puntos = this.dispositivosInteligentes.size() * 15;
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 	}
@@ -47,10 +48,15 @@ public class Cliente {
 		this.categoria = RepoCategorias.getSingletonInstance()
 				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
 	}
-	
-	private List<Dispositivo> dispositivosTotales()
-	{
-		return Stream.concat(dispositivosInteligentes.stream(), dispositivosEstandar.stream()).collect(Collectors.toList());
+
+	private List<Dispositivo> dispositivosTotales() {
+		return Stream.concat(dispositivosInteligentes.stream(), dispositivosEstandar.stream())
+				.collect(Collectors.toList());
+	}
+
+	public void AgregarDispositivo(DispositivoInteligente unDispositivo) {
+		this.dispositivosInteligentes.add(unDispositivo);
+		puntos += 15;
 	}
 
 	public double consumoTotal() {
@@ -80,7 +86,7 @@ public class Cliente {
 	private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
 		return dispositivosInteligentes.stream().filter(unaCondicion).collect(Collectors.toList());
 	}
-	
+
 	public int cantDispositivos() {
 		return dispositivosTotales().size();
 	}
@@ -88,9 +94,8 @@ public class Cliente {
 	public Categoria getCategoria() {
 		return this.categoria;
 	}
-	
-	public void convertirDispositivo(int indice)
-	{
+
+	public void convertirDispositivo(int indice) {
 		this.dispositivosInteligentes.add(this.dispositivosEstandar.get(indice).adaptar());
 		this.puntos += 10;
 	}

@@ -23,10 +23,14 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 	}
 
 	public static RepoClientes getInstanceOfSingleton()
-			throws JsonIOException, JsonSyntaxException, FileNotFoundException // Algun dia manejar errores
 	{
 		if (repo == null)
-			repo = new RepoClientes();
+			try {
+				repo = new RepoClientes();
+			} catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return repo;
 	}
 }
