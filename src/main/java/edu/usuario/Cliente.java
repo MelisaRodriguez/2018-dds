@@ -1,6 +1,7 @@
 package edu.usuario;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -9,6 +10,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import edu.empresa.Dispositivo;
+import edu.empresa.DispositivoEstandar;
+import edu.empresa.DispositivoInteligente;
 
 public class Cliente {
 
@@ -20,10 +23,13 @@ public class Cliente {
 	private String domicilioServicio;
 	private LocalDate fechaDeAltaServicio;
 	private Categoria categoria;
-	private List<Dispositivo> dispositivos;
+	private List<DispositivoInteligente> dispositivosInteligentes;
+	private List<DispositivoEstandar> dispositivosEstandar;
+	private long puntos;
+	
 
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
-			String domicilioServicio, LocalDate fechaDeAltaServicio, List<Dispositivo> dispositivos) {
+			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI, List<DispositivoEstandar> dispositivosEstandar) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -31,7 +37,9 @@ public class Cliente {
 		this.telefono = telefono;
 		this.domicilioServicio = domicilioServicio;
 		this.fechaDeAltaServicio = fechaDeAltaServicio;
-		this.dispositivos = dispositivos;
+		this.dispositivosInteligentes = dispositivosI;
+		this.puntos = this.dispositivosInteligentes.size()*15;
+		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 	}
 
@@ -39,9 +47,14 @@ public class Cliente {
 		this.categoria = RepoCategorias.getSingletonInstance()
 				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
 	}
+	
+	private List<Dispositivo> dispositivosTotales()
+	{
+		return Stream.concat(dispositivosInteligentes.stream(), dispositivosEstandar.stream()).collect(Collectors.toList());
+	}
 
 	public double consumoTotal() {
-		return dispositivos.stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum();
+		return this.dispositivosTotales().stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum();
 	}
 
 	public boolean tieneDispositivoEncendido() {
@@ -56,32 +69,30 @@ public class Cliente {
 		return this.cantDispositivos() - this.cantDispositivosEncendidos();
 	}
 
-	public List<Dispositivo> dispositivosEncendidos() {
+	public List<DispositivoInteligente> dispositivosEncendidos() {
 		return this.filtrarDispositivos(dispositivo -> dispositivo.estaEncendido());
 	}
 
-	public List<Dispositivo> dispositivosApagados() {
+	public List<DispositivoInteligente> dispositivosApagados() {
 		return this.filtrarDispositivos(dispositivo -> !(dispositivo.estaEncendido()));
 	}
 
-	private List<Dispositivo> filtrarDispositivos(Predicate<Dispositivo> unaCondicion) {
-		return dispositivos.stream().filter(unaCondicion).collect(Collectors.toList());
+	private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
+		return dispositivosInteligentes.stream().filter(unaCondicion).collect(Collectors.toList());
 	}
 	
 	public int cantDispositivos() {
-		return dispositivos.size();
-	}
-
-	public List<Dispositivo> getDispositivos() {
-		return dispositivos;
-	}
-
-	public void setDispositivos(List<Dispositivo> dispositivos) {
-		this.dispositivos = dispositivos;
+		return dispositivosTotales().size();
 	}
 
 	public Categoria getCategoria() {
 		return this.categoria;
+	}
+	
+	public void convertirDispositivo(int indice)
+	{
+		this.dispositivosInteligentes.add(this.dispositivosEstandar.get(indice).adaptar());
+		this.puntos += 10;
 	}
 
 }

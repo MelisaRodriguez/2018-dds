@@ -1,15 +1,15 @@
 package edu.empresa;
 
-public abstract class Dispositivo {
+public class Dispositivo {
 
-	private String nombreGenerico;
-	private double kWxHora;
-	private boolean encendido;
+	protected String nombreGenerico;
+	protected double kWxHora;
+
 
 	public Dispositivo(String nombre, double kW) {
 		this.nombreGenerico = nombre;
 		this.kWxHora = kW;
-		this.encendido = false; // POR DEFECTO un dispositivo esta apagado
+
 	}
 
 	public String nombreGenerico() {
@@ -20,9 +20,8 @@ public abstract class Dispositivo {
 		return kWxHora;
 	}
 
-	public boolean estaEncendido() {
-		return encendido;
+	public double consumo (int horas) {
+		return kWxHora * horas;
 	}
-
-	public abstract double consumo(int horas);
+	
 }
