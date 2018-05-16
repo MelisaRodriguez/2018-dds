@@ -9,7 +9,7 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	public DispositivoInteligente(String nombre, double kW) {
 		super(nombre, kW);
-		this.estado = new estadoApagado(this); 
+		this.estado = new estadoApagado(); 
 	}
 	
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
@@ -17,14 +17,14 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 	
 	public void apagarse () {
-		estado.apagarse();
+		estado.apagarse(this);
 	}
 	public void encenderse () {
-		estado.encenderse();
+		estado.encenderse(this);
 	}
 	
 	public void modoAhorroEnergia() {
-		estado.modoAhorroDeEnergia();
+		estado.modoAhorroDeEnergia(this);
 	}
 	
 	public void setEstado(estadoDispositivo estado) {

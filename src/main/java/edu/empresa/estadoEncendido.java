@@ -1,21 +1,16 @@
 package edu.empresa;
 
 public class estadoEncendido implements estadoDispositivo {
+
 	
-	private DispositivoInteligente dispositivo;
-	
-	public estadoEncendido(DispositivoInteligente dispositivo) {
-		this.dispositivo = dispositivo;
+	public void apagarse (DispositivoInteligente dispositivo) {
+		dispositivo.setEstado(new estadoApagado());
 	}
 	
-	public void apagarse () {
-		dispositivo.setEstado(new estadoApagado(dispositivo));
-	}
+	public void encenderse (DispositivoInteligente dispositivo) {}
 	
-	public void encenderse () {}
-	
-	public void modoAhorroDeEnergia () {
-		dispositivo.setEstado(new estadoAhorroEnergia(dispositivo));
+	public void modoAhorroDeEnergia (DispositivoInteligente dispositivo) {
+		dispositivo.setEstado(new estadoAhorroEnergia());
 	}
 	
 	public boolean estaEncendido() {
