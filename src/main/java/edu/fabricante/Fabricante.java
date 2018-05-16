@@ -2,14 +2,14 @@ package edu.fabricante;
 
 public class Fabricante {
 	private String nombre;
-	private TipoDeEnvioInformacion formaDeEnvio;
+	private AccionesSegunFabricante formaDeEnvio;
 	
-	public Fabricante(String nombre,TipoDeEnvioInformacion formaDeEnvio) {
+	public Fabricante(String nombre,AccionesSegunFabricante formaDeEnvio) {
 		this.nombre=nombre;
 		this.formaDeEnvio=formaDeEnvio;
 	}
 	
-	public TipoDeEnvioInformacion getFormaDeEnvio() {
+	public AccionesSegunFabricante getFormaDeEnvio() {
 		return formaDeEnvio;
 	}
 }
