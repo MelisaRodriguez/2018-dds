@@ -3,19 +3,19 @@ package edu.empresa;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class DispositivoInteligente extends Dispositivo {
+import edu.fabricante.Fabricante;
 
+public class DispositivoInteligente extends Dispositivo {
+	
 	protected estadoDispositivo estado;
 	
-	public DispositivoInteligente(String nombre, double kW) {
-		super(nombre, kW);
+	public DispositivoInteligente(String nombre, double kW,Fabricante fabricante) {
+		super(nombre, kW,fabricante);
 		this.estado = new estadoApagado(); 
 	}
-	
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
 		return inicio.until(fin, ChronoUnit.HOURS) * kWxHora;
 	}
-	
 	public void apagarse () {
 		estado.apagarse(this);
 	}
@@ -30,9 +30,7 @@ public class DispositivoInteligente extends Dispositivo {
 	public void setEstado(estadoDispositivo estado) {
 		this.estado = estado;
 	}
-	
 	public boolean estaEncendido() {
 		return estado.estaEncendido();
 	}
-
 }
