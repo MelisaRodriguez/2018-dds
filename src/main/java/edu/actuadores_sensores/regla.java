@@ -4,23 +4,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class regla {
+public class Regla {
 	
-	private List<sensor> listaSensores;
-	private List<actuador> listaActuadores;
+	private List<Sensor> sensores;
+	private List<Actuador> actuadores;
 	
 	public boolean revisarSensores() {
-		return true; // este return es por que no me gusta la x roja! >=(
-		
-		// aca hay que hacer que revise si todos los sensores estan en true
-		// y si lo estan, llamar a ocurrio evento, si los nombres de los methodos no les copan, los pueden cambiar
+
+		List<boolean> resultados = sensores.stream().map(sensor -> sensor.medicionCumpleCondicion()).collect(Collectors.toList());
+		return resultados.stream().allMatch(resultado -> resultado == true);
 	}
 	
 	public void ocurrioEvento () {
-		if (revisarSensores())
+		
+		if (this.revisarSensores())
 		{
-			
+			actuadores.stream().forEach(actuador -> actuador.enviarAccion());
 		}
 	}
 	
 }
+

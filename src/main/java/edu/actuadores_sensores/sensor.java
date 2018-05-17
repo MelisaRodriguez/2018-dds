@@ -2,17 +2,21 @@ package edu.actuadores_sensores;
 
 import java.util.function.Function;
 
-public class sensor {
+public class Sensor {
 	
-	public int valor;
-	public Function<Integer,Boolean> condicion;
+	public double medida;
+	public Function<Double,Boolean> condicion;
 
-	public sensor(int valor, Function<Integer, Boolean> condicion) {
-		this.valor = valor;
+	public Sensor(Function<Double, Boolean> condicion) {
 		this.condicion = condicion;
 	}
 
-	public boolean seCumplio () {
-		return condicion.apply(valor);
+	public tomarMedicion(double medida)
+	{
+		this.medida = medida;
+	}
+
+	public boolean medicionCumpleCondicion () {
+		return condicion.apply(medida);
 	}
 }
