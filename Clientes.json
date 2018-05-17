@@ -2,7 +2,7 @@
 	{
 	"nombre":"Juan",
 	"apellido":"Pérez",
-	"tipoDocumento":"DNI",
+	"documento":"DNI",
 	"nroDocumento":"12345678",
 	"telefono":"4242-4242",
 	"domicilioServicio":"Av. 9 de Julio 1300 - CABA",
@@ -11,37 +11,53 @@
 							"month":1,
 							"year":2015
 	                      },
-	"categoria":{
-		    "nombre":"R3",
-			"cargoFijo":60.71,
-			"cargoVariable":0.681,
- 			"limiteInferior":326,
-			"limiteSuperior":400
-		    },
-	"dispositivos":[       {
-				"nombreGenerico":"Plancha",
-				"kWxHora":10.0,
-				"encendido":false
-	                       },
-	
-						   {
-				"nombreGenerico":"Decodificador de TV",
-				"kWxHora":32.0,
-				"encendido":true
-						   },
-
-						   {
-				"nombreGenerico":"Heladera",
-				"kWxHora":120.0,
-				"encendido":false
-						   }
-
-                    ]
+	"categoria":    {
+		   			"nombre":"R3",
+					"cargoFijo":60.71,
+					"cargoVariable":0.681,
+ 					"limiteInferior":326,
+					"limiteSuperior":400
+		            },
+	"dispositivosI":  [             {
+									"nombre":"Aire Acondicionado",
+									"kW":100.0,
+									"fabricante":{
+													"nombre": "Philips",
+													"formaDeEnvio": // acá como instanciar ?
+									             }
+	                                },
+	                                {
+				                    "nombre":"Decodificador de TV",
+									"kW":32.0,
+									"fabricante":{
+													"nombre": "Samsung",
+													"formaDeEnvio": // acá como instanciar ?
+									             }
+						   			},
+						   			{
+									"nombre":"Heladera",
+									"kW":120.0,
+									"fabricante":{
+													"nombre": "Drean",
+													"formaDeEnvio": // acá como instanciar ?
+									             }
+									}
+					  ],
+	"dispositivosEstandar":       [ {
+									"nombre":"Microondas",
+									"kW":15.0,
+									"fabricante":{
+													"nombre": "Philips",
+													"formaDeEnvio": // acá como instanciar ?
+									             }
+	                                }
+								  ]
     },
+    
     {
     "nombre":"Manuel",
 	"apellido":"Rodríguez",
-	"tipoDocumento":"DNI",
+	"documento":"DNI",
 	"nroDocumento":"25432124",
 	"telefono":"4202-6666",
 	"domicilioServicio":"Medrano 700 - CABA",
@@ -50,20 +66,41 @@
 						    "month":7,
 						    "year":2017
 					      },
-	"categoria":{
-			"nombre":"R1",
-			"cargoFijo":18.76,
-			"cargoVariable":0.644,
- 			"limiteInferior":0,
-			"limiteSuperior":150
-		    },
-	"dispositivos":[
-				{
-				"nombreGenerico":"Smart TV",
-				"kWxHora":53.0,
-				"encendido":false
-				}
-                   ]
+	"categoria":	{
+					"nombre":"R1",
+					"cargoFijo":18.76,
+					"cargoVariable":0.644,
+ 					"limiteInferior":0,
+					"limiteSuperior":150
+				    },
+	"dispositivosI":[
+						{
+							"nombre":"Smart TV",
+							"kW":53.0,
+							"fabricante":{
+											"nombre": "LG",
+											"formaDeEnvio": // acá como instanciar ?
+							             }
+						}
+                    ],
+	"dispositivosEstandar" :[{	
+								"nombre": "Cafetera",
+								"kW":10.0,
+								"fabricante":{
+												"nombre": "Nespresso",
+												"formaDeEnvio": // acá como instanciar ?
+									         }
+							},
+							{
+								"nombre": "Extractor",
+								"kW":50.0,
+								"fabricante":{
+												"nombre": "Llanos",
+												"formaDeEnvio": // acá como instanciar ?
+									         }
+
+							}
+						   ]
     }
 
    ]
