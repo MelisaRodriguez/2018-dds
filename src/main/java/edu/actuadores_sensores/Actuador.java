@@ -1,5 +1,7 @@
 package edu.actuadores_sensores;
 
+import edu.empresa.DispositivoInteligente;
+
 public class Actuador {
 
 	private DispositivoInteligente dispositivo;

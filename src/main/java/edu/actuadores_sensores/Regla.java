@@ -2,7 +2,6 @@ package edu.actuadores_sensores;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Regla {
 	
@@ -11,7 +10,7 @@ public class Regla {
 	
 	public boolean revisarSensores() {
 
-		List<boolean> resultados = sensores.stream().map(sensor -> sensor.medicionCumpleCondicion()).collect(Collectors.toList());
+		List<Boolean> resultados = sensores.stream().map(sensor -> sensor.medicionCumpleCondicion()).collect(Collectors.toList());
 		return resultados.stream().allMatch(resultado -> resultado == true);
 	}
 	

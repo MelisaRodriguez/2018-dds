@@ -11,7 +11,7 @@ public class Sensor {
 		this.condicion = condicion;
 	}
 
-	public tomarMedicion(double medida)
+	public void tomarMedicion(double medida)
 	{
 		this.medida = medida;
 	}
