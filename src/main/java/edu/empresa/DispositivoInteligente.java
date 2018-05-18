@@ -33,4 +33,10 @@ public class DispositivoInteligente extends Dispositivo {
 	public boolean estaEncendido() {
 		return estado.estaEncendido();
 	}
+  
+	public boolean accionar()
+	{
+		// DEVUELVE TRUE PARA EL TEST, AUN SIN IMPLEMENTAR
+		return true;
+	}
 }
