@@ -4,10 +4,9 @@ import java.lang.reflect.Type;
 
 public class estadoEncendido extends EstadoDispositivo {
 
-	private final String className;
 	
 	public estadoEncendido() {
-        this.className = getClass().getName();
+        super();
 	}
 	
 	public void apagarse (DispositivoInteligente dispositivo) {

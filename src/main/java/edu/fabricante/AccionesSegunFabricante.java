@@ -2,8 +2,14 @@ package edu.fabricante;
 
 import edu.empresa.DispositivoInteligente;
 
-public interface AccionesSegunFabricante {
-	public void apagar(DispositivoInteligente dispositivo);
+public abstract class AccionesSegunFabricante {
+	protected final String className;
 	
-	public void encender(DispositivoInteligente dispositivo);
+	public AccionesSegunFabricante() {
+		this.className = getClass().getName();
+	}	
+	
+	public abstract void apagar(DispositivoInteligente dispositivo);
+	
+	public abstract void encender(DispositivoInteligente dispositivo);
 }

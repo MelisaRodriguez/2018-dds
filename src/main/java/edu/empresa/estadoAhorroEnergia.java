@@ -4,10 +4,9 @@ import java.lang.reflect.Type;
 
 public class estadoAhorroEnergia extends EstadoDispositivo {
 	
-	private final String className;
 	
 	public estadoAhorroEnergia() {
-        this.className = getClass().getName();
+       super();
 	}
 	
 	public void apagarse (DispositivoInteligente dispositivo) {
