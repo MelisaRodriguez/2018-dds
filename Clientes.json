@@ -75,13 +75,21 @@
 				    },
 	"dispositivosI":[
 						{
-							"nombre":"Smart TV",
-							"kW":53.0,
-							"fabricante":{
-											"nombre": "LG",
-											"formaDeEnvio": // acá como instanciar ?
-							             }
-						}
+							"nombre":"Aire Acondicionado",
+									"kW":100.0,
+									"fabricante":{
+													"nombre": "Philips",
+													"formaDeEnvio": // acá como instanciar ?
+									             }
+	                                },
+							        {	
+							        	"nombre":"Smart TV",
+										"kW":53.0,
+										"fabricante":{
+														"nombre": "LG",
+														"formaDeEnvio": // acá como instanciar ?
+							             			 }
+						            }
                     ],
 	"dispositivosEstandar" :[{	
 								"nombre": "Cafetera",
