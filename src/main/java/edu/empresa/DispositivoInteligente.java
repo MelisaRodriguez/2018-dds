@@ -40,7 +40,7 @@ public class DispositivoInteligente extends Dispositivo {
   
 	public boolean accionar()
 	{
-		// DEVUELVE TRUE PARA EL TEST, A�N SIN IMPLEMENTAR
+		// DEVUELVE TRUE PARA EL TEST, AUN SIN IMPLEMENTAR
 		return true;
 	}
 
