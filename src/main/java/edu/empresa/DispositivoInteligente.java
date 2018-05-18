@@ -40,7 +40,7 @@ public class DispositivoInteligente extends Dispositivo {
 	public boolean accionar()
 	{
 		// DEVUELVE TRUE PARA EL TEST, AUN SIN IMPLEMENTAR
-		this.accionoAlgunaVez = true;
+		this.accionoAlgunaVez = true; // lo agrego para el test
 		return true;
 	}
 	
