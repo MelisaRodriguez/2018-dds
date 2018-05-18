@@ -15,7 +15,7 @@
 		"kWxHora":22.0,
 		"fabricante":{
 			"nombre":"Sammsung",
-			"formaDeEnvio": { "className" : "edu.fabricante.MensajeObjetos"}
+			"formaDeEnvio": { "className" : "edu.fabricante.EjemploAccion"}
 			}
 		}
 			],
@@ -25,7 +25,7 @@
 		"kWxHora":45.0,
 		"fabricante":{
 			"nombre":"Sammsung",
-			"formaDeEnvio": { "className" : "edu.fabricante.MensajeObjetos"}
+			"formaDeEnvio": { "className" : "edu.fabricante.EjemploAccion"}
 			}
 		}
 			],

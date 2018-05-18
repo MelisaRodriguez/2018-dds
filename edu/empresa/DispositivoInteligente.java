@@ -7,7 +7,7 @@ import edu.fabricante.Fabricante;
 
 public class DispositivoInteligente extends Dispositivo {
 	
-	protected EstadoDispositivo estado;
+	public EstadoDispositivo estado;
 	
 	public DispositivoInteligente(String nombre, double kW,Fabricante fabricante) {
 		super(nombre, kW,fabricante);
@@ -32,19 +32,5 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 	public boolean estaEncendido() {
 		return estado.estaEncendido();
-	}
-
-	
-	public String info() {
-		return "\n\tNOMBRE: " + this.nombreGenerico() +
-				"\n\tFABRICANTE: " + this.fabricante.getNombre() +
-				"\n\tESTADO: " + this.estado.getClass().getName();
-
-  
-	public boolean accionar()
-	{
-		// DEVUELVE TRUE PARA EL TEST, AUN SIN IMPLEMENTAR
-		return true;
-
 	}
 }

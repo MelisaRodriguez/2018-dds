@@ -14,5 +14,4 @@ public class ClienteFixture {
 	{
 		clientes = RepoClientes.getInstanceOfSingleton().getInfo();
 	}
-
 }

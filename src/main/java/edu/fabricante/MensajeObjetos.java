@@ -2,8 +2,12 @@ package edu.fabricante;
 
 import edu.empresa.DispositivoInteligente;
 
-public class MensajeObjetos implements AccionesSegunFabricante {
-
+public class MensajeObjetos extends AccionesSegunFabricante {
+	
+	public MensajeObjetos() {
+		super();
+	}
+	
 	@Override
 	public void apagar(DispositivoInteligente dispositivo) {
 		dispositivo.apagarse();

@@ -1,7 +1,13 @@
 package edu.empresa;
 
-public class estadoEncendido implements estadoDispositivo {
+import java.lang.reflect.Type;
 
+public class estadoEncendido extends EstadoDispositivo {
+
+	
+	public estadoEncendido() {
+        super();
+	}
 	
 	public void apagarse (DispositivoInteligente dispositivo) {
 		dispositivo.setEstado(new estadoApagado());
