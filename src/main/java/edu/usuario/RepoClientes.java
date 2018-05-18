@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,6 +35,12 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		info = gson.fromJson(new FileReader("Clientes.json"), auxTipo);
 	}
 
+	@Override
+	public List<Cliente> getInfo() {
+		((List<Cliente>)info).forEach(x->x.recategorizar());
+		return info;
+	}
+	
 	public static RepoClientes getInstanceOfSingleton()
 	{
 		if (repo == null)

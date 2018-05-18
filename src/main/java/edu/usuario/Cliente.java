@@ -29,6 +29,7 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private long puntos;
 
+	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
 			List<DispositivoEstandar> dispositivosEstandar) {
@@ -44,7 +45,7 @@ public class Cliente {
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 	}
-
+	
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()
 				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
@@ -100,20 +101,5 @@ public class Cliente {
 		this.dispositivosInteligentes.add(this.dispositivosEstandar.get(indice).adaptar());
 		this.puntos += 10;
 	}
-	
-	public String infoCliente() {
-		return "NOMBRE: " + this.nombre +
-				"\nAPELLIDO: " + this.apellido +
-				"\nINFO DISPOSITIVOS:" + this.infoDispositivos();
-				
-	}
-	
-	private String infoDispositivos() {
-		 String r = "";
-		 for (DispositivoInteligente d : this.dispositivosInteligentes)
-			 r+= d.info();
-		return r;
-	}
-
 	
 }

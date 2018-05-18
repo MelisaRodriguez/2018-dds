@@ -1,4 +1,4 @@
-package edu.actuadores_sensores;
+package edu.actuadoresSensores;
 
 import edu.empresa.DispositivoInteligente;
 

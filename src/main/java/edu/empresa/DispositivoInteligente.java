@@ -35,10 +35,7 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 
 	
-	public String info() {
-		return "\n\tNOMBRE: " + this.nombreGenerico() +
-				"\n\tFABRICANTE: " + this.fabricante.getNombre() +
-				"\n\tESTADO: " + this.estado.getClass().getName();
+
 
   
 	public boolean accionar()

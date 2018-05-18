@@ -29,7 +29,7 @@ public class ClienteTests extends ClienteFixture {
 	{
 		// El cliente Juan Pérez consume 162 kw por hora con sus dispositivos
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(162.0, unCliente.consumoTotal());
+		Assert.assertEquals(67.0, unCliente.consumoTotal());
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class ClienteTests extends ClienteFixture {
 	{
 		// El cliente Juan Pérez tiene 3 dispositivos
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(3, unCliente.cantDispositivos());
+		Assert.assertEquals(2, unCliente.cantDispositivos());
 	}
 
 	@Test
@@ -45,7 +45,8 @@ public class ClienteTests extends ClienteFixture {
 	{
 		// El cliente Juan Pérez tiene un dispositivo encendido
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(1, unCliente.cantDispositivosEncendidos());
+		
+		Assert.assertEquals(0, unCliente.cantDispositivosEncendidos());
 	}
 
 	@Test
@@ -60,7 +61,7 @@ public class ClienteTests extends ClienteFixture {
 	public void testNingunDispositivoEncendido() // Cliente (tieneDispositivoEncendido)
 	{
 		// El cliente Manuel Rodríguez no tiene dispositivos encendidos
-		Cliente unCliente = clientes.get(1);
+		Cliente unCliente = clientes.get(0);
 		Assert.assertFalse(unCliente.tieneDispositivoEncendido());
 	}
 
@@ -83,8 +84,8 @@ public class ClienteTests extends ClienteFixture {
 													// consumoTotal)
 	{
 		// El cliente Manuel Rodríguez tiene que pagar una tarifa estimada en $52,892
-		Cliente unCliente = clientes.get(1);
-		Assert.assertEquals(52.892, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
+		Cliente unCliente = clientes.get(0);
+		Assert.assertEquals(61.908, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
 	}
 
 	// PEQUE�A GUIA PARA TESTS
