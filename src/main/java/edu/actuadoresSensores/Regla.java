@@ -8,6 +8,11 @@ public class Regla {
 	private List<Sensor> sensores;
 	private List<Actuador> actuadores;
 	
+	public Regla(List<Sensor> sensores, List<Actuador> actuadores) {
+		this.sensores = sensores;
+		this.actuadores = actuadores;
+	}
+	
 	public boolean revisarSensores() {
 
 		List<Boolean> resultados = sensores.stream().map(sensor -> sensor.medicionCumpleCondicion()).collect(Collectors.toList());

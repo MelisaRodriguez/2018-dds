@@ -60,6 +60,10 @@ public class Cliente {
 		this.dispositivosInteligentes.add(unDispositivo);
 		puntos += 15;
 	}
+	
+	public void agregarDispositivo(DispositivoEstandar unDispositivo) {
+		this.dispositivosEstandar.add(unDispositivo);
+	}
 
 	public double consumoTotal() {
 		return this.dispositivosTotales().stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum();
@@ -105,4 +109,5 @@ public class Cliente {
 	public long getPuntos() {
 		return this.puntos;
 	}
+	
 }
