@@ -12,4 +12,8 @@ public class Fabricante {
 	public AccionesSegunFabricante getFormaDeEnvio() {
 		return formaDeEnvio;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 }

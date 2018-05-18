@@ -1,6 +1,14 @@
 package edu.empresa;
 
-public class estadoAhorroEnergia implements estadoDispositivo {
+import java.lang.reflect.Type;
+
+public class estadoAhorroEnergia extends EstadoDispositivo {
+	
+	private final String className;
+	
+	public estadoAhorroEnergia() {
+        this.className = getClass().getName();
+	}
 	
 	public void apagarse (DispositivoInteligente dispositivo) {
 		dispositivo.setEstado(new estadoApagado());

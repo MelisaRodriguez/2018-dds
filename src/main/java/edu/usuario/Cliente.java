@@ -14,6 +14,7 @@ import edu.empresa.Dispositivo;
 import edu.empresa.DispositivoEstandar;
 import edu.empresa.DispositivoInteligente;
 
+
 public class Cliente {
 
 	private String nombre;
@@ -99,5 +100,20 @@ public class Cliente {
 		this.dispositivosInteligentes.add(this.dispositivosEstandar.get(indice).adaptar());
 		this.puntos += 10;
 	}
+	
+	public String infoCliente() {
+		return "NOMBRE: " + this.nombre +
+				"\nAPELLIDO: " + this.apellido +
+				"\nINFO DISPOSITIVOS:" + this.infoDispositivos();
+				
+	}
+	
+	private String infoDispositivos() {
+		 String r = "";
+		 for (DispositivoInteligente d : this.dispositivosInteligentes)
+			 r+= d.info();
+		return r;
+	}
 
+	
 }
