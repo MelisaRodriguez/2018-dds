@@ -1,4 +1,4 @@
-package edu.usuario.test;
+package edu.empresa.test;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package edu.usuario.test;
+package edu.empresa.test;
 import java.time.LocalDate;
 
 import org.junit.Before;
