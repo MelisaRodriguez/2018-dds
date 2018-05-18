@@ -56,7 +56,7 @@ public class Cliente {
 				.collect(Collectors.toList());
 	}
 
-	public void AgregarDispositivo(DispositivoInteligente unDispositivo) {
+	public void agregarDispositivo(DispositivoInteligente unDispositivo) {
 		this.dispositivosInteligentes.add(unDispositivo);
 		puntos += 15;
 	}
@@ -102,4 +102,7 @@ public class Cliente {
 		this.puntos += 10;
 	}
 	
+	public long getPuntos() {
+		return this.puntos;
+	}
 }

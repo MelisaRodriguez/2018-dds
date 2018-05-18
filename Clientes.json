@@ -4,7 +4,7 @@
 	"nombre":"Brashan",
 	"apellido":"Ferrari",
 	"tipoDocumento":"DNI",
-	"nroDocumento":"36892014",
+	"nroDocumento":"36892010",
 	"telefono":"42172304",
 	"domicilioServicio":"Av EverViva 254",
 
@@ -30,6 +30,52 @@
 		}
 			],
 	"puntos":15
+	
+	},
+	{
+	"nombre":"Lucas",
+	"apellido":"Perez",
+	"tipoDocumento":"DNI",
+	"nroDocumento":"36892011",
+	"telefono":"42172304",
+	"domicilioServicio":"Av EverViva 254",
+
+	"dispositivosInteligentes":[
+			],
+	"dispositivosEstandar":[
+		{
+		"nombreGenerico":"celular",
+		"kWxHora":45.0,
+		"fabricante":{
+			"nombre":"Sammsung",
+			"formaDeEnvio": { "className" : "edu.fabricante.MensajeObjetos"}
+			}
+		}
+			],
+	"puntos":0
+	
+	},
+	{
+	"nombre":"Sandro",
+	"apellido":"Lopez",
+	"tipoDocumento":"DNI",
+	"nroDocumento":"36892012",
+	"telefono":"42172304",
+	"domicilioServicio":"Av EverViva 254",
+
+	"dispositivosInteligentes":[
+			],
+	"dispositivosEstandar":[
+		{
+		"nombreGenerico":"heladera",
+		"kWxHora":45.0,
+		"fabricante":{
+			"nombre":"Sammsung",
+			"formaDeEnvio": { "className" : "edu.fabricante.MensajeObjetos"}
+			}
+		}
+			],
+	"puntos":0
 	
 	}
 	

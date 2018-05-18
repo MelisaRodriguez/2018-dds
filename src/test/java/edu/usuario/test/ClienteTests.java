@@ -8,12 +8,13 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.empresa.DispositivoEstandar;
-import edu.empresa.DispositivoInteligente;
+
 import edu.usuario.Cliente;
 import edu.usuario.RepoCategorias;
 import edu.usuario.TipoDocumento;
 import junit.framework.Assert;
+
+
 
 public class ClienteTests extends ClienteFixture {
 	@Test
@@ -21,7 +22,7 @@ public class ClienteTests extends ClienteFixture {
 		// El archivo Json arma una lista de clientes con longitud 2 (para el actual
 		// .json)
 		//System.out.println(clientes.size());
-		Assert.assertEquals(1, clientes.size());
+		Assert.assertEquals(3, clientes.size());
 	}
 
 	@Test
@@ -72,7 +73,7 @@ public class ClienteTests extends ClienteFixture {
 		// El cliente Juan Pérez se recategoriza a Categoría R2
 		Cliente unCliente = clientes.get(0);
 		unCliente.recategorizar();
-		Assert.assertEquals(RepoCategorias.getSingletonInstance().getInfo().get(1), unCliente.getCategoria());
+		Assert.assertEquals(RepoCategorias.getSingletonInstance().getInfo().get(0), unCliente.getCategoria());
 		// No se puede poner en el valor esperado new Categoría(parámetros) porque
 		// tendría una categoria
 		// con los mismos parámetros pero en otra dirección de memoria, es decir, no
@@ -86,6 +87,23 @@ public class ClienteTests extends ClienteFixture {
 		// El cliente Manuel Rodríguez tiene que pagar una tarifa estimada en $52,892
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(61.908, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
+	}
+	
+	
+	@Test
+	public void testRegistrarDispositivo()
+	{
+		Cliente unCliente = clientes.get(1);
+		unCliente.agregarDispositivo(dispositivoInteligente);
+		Assert.assertEquals(15, unCliente.getPuntos());
+	}	
+	
+	@Test
+	public void testPuntosEnConvetirDispositivoEstandarInteligente()
+	{
+		Cliente unCliente = clientes.get(2);
+		unCliente.convertirDispositivo(0);
+		Assert.assertEquals(10, unCliente.getPuntos());
 	}
 
 	// PEQUE�A GUIA PARA TESTS
