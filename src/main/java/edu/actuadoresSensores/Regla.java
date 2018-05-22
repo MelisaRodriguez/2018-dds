@@ -5,26 +5,24 @@ import java.util.stream.Collectors;
 
 public class Regla {
 	
-	private List<Sensor> sensores;
+	private List<Condicion> condiciones;
 	private List<Actuador> actuadores;
 	
-	public Regla(List<Sensor> sensores, List<Actuador> actuadores) {
-		this.sensores = sensores;
+	public Regla(List<Condicion> condiciones, List<Actuador> actuadores) {
+		this.condiciones = condiciones;
 		this.actuadores = actuadores;
 	}
 	
-	public boolean revisarSensores() {
-
-		List<Boolean> resultados = sensores.stream().map(sensor -> sensor.medicionCumpleCondicion()).collect(Collectors.toList());
-		return resultados.stream().allMatch(resultado -> resultado == true);
-	}
+	/*public boolean revisarSensores() {
+		return sensores.stream().allMatch(it -> it.medicionCumpleCondicion());
+	}*/
 	
-	public void ocurrioEvento () {
+	public void ejecutar() {
 		
-		if (this.revisarSensores())
+		/*if (this.revisarSensores())
 		{
 			actuadores.stream().forEach(actuador -> actuador.enviarAccion());
-		}
+		}*/
 	}
 	
 }

@@ -8,7 +8,7 @@ public class MensajeObjetos extends AccionesSegunFabricante {
 		super();
 	}
 	
-	@Override
+	/*@Override
 	public void apagar(DispositivoInteligente dispositivo) {
 		dispositivo.apagarse();
 	}
@@ -16,6 +16,6 @@ public class MensajeObjetos extends AccionesSegunFabricante {
 	@Override
 	public void encender(DispositivoInteligente dispositivo) {
 		dispositivo.encenderse();
-	}
+	}*/
 
 }

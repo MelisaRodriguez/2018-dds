@@ -69,29 +69,29 @@ public class Cliente {
 		return this.dispositivosTotales().stream().mapToDouble(dispositivo -> dispositivo.kwConsumoxHora()).sum();
 	}
 
-	public boolean tieneDispositivoEncendido() {
+	/*public boolean tieneDispositivoEncendido() {
 		return this.cantDispositivosEncendidos() > 0;
-	}
+	}*/
 
-	public int cantDispositivosEncendidos() {
+	/*public int cantDispositivosEncendidos() {
 		return this.dispositivosEncendidos().size();
-	}
+	}*/
 
-	public int cantDispositivosApagados() {
+	/*public int cantDispositivosApagados() {
 		return this.cantDispositivos() - this.cantDispositivosEncendidos();
-	}
+	}*/
 
-	public List<DispositivoInteligente> dispositivosEncendidos() {
+	/*public List<DispositivoInteligente> dispositivosEncendidos() {
 		return this.filtrarDispositivos(dispositivo -> dispositivo.estaEncendido());
-	}
+	}*/
 
-	public List<DispositivoInteligente> dispositivosApagados() {
+	/*public List<DispositivoInteligente> dispositivosApagados() {
 		return this.filtrarDispositivos(dispositivo -> !(dispositivo.estaEncendido()));
-	}
+	}*/
 
-	private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
+	/*private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
 		return dispositivosInteligentes.stream().filter(unaCondicion).collect(Collectors.toList());
-	}
+	}*/
 
 	public int cantDispositivos() {
 		return dispositivosTotales().size();

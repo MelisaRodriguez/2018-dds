@@ -9,7 +9,7 @@ public abstract class AccionesSegunFabricante {
 		this.className = getClass().getName();
 	}	
 	
-	public abstract void apagar(DispositivoInteligente dispositivo);
+	//public abstract void apagar(DispositivoInteligente dispositivo);
 	
-	public abstract void encender(DispositivoInteligente dispositivo);
+	//public abstract void encender(DispositivoInteligente dispositivo);
 }

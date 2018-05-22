@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenericoRepos<T> {
-	protected List<T> info = new ArrayList<>();
+	protected List<T> entidades = new ArrayList<>();
 
-	public List<T> getInfo() {
-		return info;
+	public List<T> getEntidades() {
+		return entidades;
 	}
 }

@@ -12,10 +12,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import edu.empresa.EstadoDispositivo;
-import edu.empresa.estadoAhorroEnergia;
-import edu.empresa.estadoApagado;
-import edu.empresa.estadoEncendido;
+
 import edu.fabricante.AccionesSegunFabricante;
 import edu.empresa.Deserializable;
 
@@ -29,16 +26,16 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		}.getType();
 		
 		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(EstadoDispositivo.class, new Deserializable<EstadoDispositivo>());
+		//builder.registerTypeAdapter(EstadoDispositivo.class, new Deserializable<EstadoDispositivo>());
 		builder.registerTypeAdapter(AccionesSegunFabricante.class, new Deserializable<AccionesSegunFabricante>());
 		Gson gson = builder.create();
-		info = gson.fromJson(new FileReader("Clientes.json"), auxTipo);
+		entidades = gson.fromJson(new FileReader("Clientes.json"), auxTipo);
 	}
 
 	@Override
-	public List<Cliente> getInfo() {
-		((List<Cliente>)info).forEach(x->x.recategorizar());
-		return info;
+	public List<Cliente> getEntidades() {
+		((List<Cliente>)entidades).forEach(x->x.recategorizar());
+		return entidades;
 	}
 	
 	public static RepoClientes getInstanceOfSingleton()
