@@ -1,4 +1,4 @@
-package edu.usuario;
+package edu.dominio.usuario;
 
 public class Categoria {
 

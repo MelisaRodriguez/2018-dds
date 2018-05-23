@@ -1,4 +1,4 @@
-package edu.actuadoresSensores;
+package edu.dominio.actuadoresSensores;
 
 import java.util.function.Function;
 

@@ -1,6 +1,6 @@
-package edu.actuadoresSensores;
+package edu.dominio.actuadoresSensores;
 
-import edu.empresa.DispositivoInteligente;
+import edu.dominio.empresa.DispositivoInteligente;
 
 public class Actuador {
 
@@ -13,7 +13,7 @@ public class Actuador {
 
 	public void enviarAccion()
 	{
-		dispositivo.accionar();
+	//	dispositivo.accionar();
 	}
 
 }

@@ -1,10 +1,8 @@
-package edu.empresa;
+package edu.json;
 
 import java.lang.reflect.Type;
 
 import com.google.gson.*;
-
-import edu.empresa.EstadoDispositivo;
 
 public class Deserializable<T> implements JsonDeserializer<T> {
 

@@ -1,6 +1,6 @@
-package edu.fabricante;
+package edu.dominio.fabricante;
 
-import edu.empresa.DispositivoInteligente;
+import edu.dominio.empresa.DispositivoInteligente;
 
 public abstract class AccionesSegunFabricante {
 	protected final String className;

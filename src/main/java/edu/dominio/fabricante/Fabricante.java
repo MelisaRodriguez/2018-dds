@@ -1,4 +1,4 @@
-package edu.fabricante;
+package edu.dominio.fabricante;
 
 public class Fabricante {
 	private String nombre;
