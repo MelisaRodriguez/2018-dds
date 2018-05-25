@@ -22,7 +22,7 @@ public class Regla {
 		if (this.revisarCondiciones())
 		{
 			actuadores.stream().forEach(actuador -> actuador.enviarAccion());
-		}
+		} //kdjfk
 	}
 }
 
