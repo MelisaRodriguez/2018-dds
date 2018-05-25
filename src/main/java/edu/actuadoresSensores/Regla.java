@@ -13,17 +13,16 @@ public class Regla {
 		this.actuadores = actuadores;
 	}
 	
-	/*public boolean revisarSensores() {
-		return sensores.stream().allMatch(it -> it.medicionCumpleCondicion());
-	}*/
+	public boolean revisarCondiciones() {
+		return condiciones.stream().allMatch(it -> it.medicionCumpleCondicion());
+	}
 	
 	public void ejecutar() {
 		
-		/*if (this.revisarSensores())
+		if (this.revisarCondiciones())
 		{
 			actuadores.stream().forEach(actuador -> actuador.enviarAccion());
-		}*/
+		}
 	}
-	
 }
 
