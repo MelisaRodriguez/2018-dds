@@ -6,19 +6,35 @@ public class DispositivoEstandar implements Dispositivo {
 
 	private String nombre;
 	private double kWxHora;
+	private double horasUsoxDiaSegunUsuario;
+	private Fabricante fabricante;
 
-	public DispositivoEstandar(String nombre, double kWxHora) {
+	public DispositivoEstandar(String nombre, double kWxHora, double horasUso, Fabricante fabricante) {
 		this.nombre = nombre;
 		this.kWxHora = kWxHora;
+		this.horasUsoxDiaSegunUsuario = horasUso;
+		this.fabricante = fabricante;
 	}
 	
-	public double consumo(double horas)  // Estas horas las especifica el cliente y hace un calculo aproximado.
+	public void actualizarHorasUso(double horas)
 	{
-		return horas*kWxHora;
+		this.horasUsoxDiaSegunUsuario = horas;
+	}
+
+	public double calcularConsumo()
+	{
+		return horasUsoxDiaSegunUsuario*kWxHora;
 	}
 	
 	public DispositivoInteligente convertirAInteligente()
 	{
-		return new DispositivoInteligente(this.nombre, LocalDate.now());
+		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante, []);
 	}
+
+	// Métodos vacíos
+	public void apagarse(){};
+	public void encenderse(){};
+	public void modoAhorroDeEnergia(){};
+	public void estaEncendido(){};
+	public void estaApagado(){};
 }

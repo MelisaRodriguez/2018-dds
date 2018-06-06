@@ -66,9 +66,9 @@ public class Cliente {
 		this.dispositivosEstandar.add(unDispositivo);
 	}
 
-	//public double consumoTotal() {
-		//return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.consumo()).sum();
-	//}
+	public double consumoTotal() {
+		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
+	}
 
 	private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
 		return dispositivosInteligentes.stream().filter(unaCondicion).collect(Collectors.toList());

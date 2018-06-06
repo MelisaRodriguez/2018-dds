@@ -7,33 +7,45 @@ public class DispositivoInteligente implements Dispositivo {
 	
 	private String nombre;
 	private LocalDate fechaDeRegistro;
-	//private Fabricante fabricante;
-	private List<Double> registrosConsumo;
+	private Fabricante fabricante; // Adapter
+	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
 
 	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro) {
 		this.nombre = nombre;
 	}
-	public double consumo(double horas)
+
+	public double calcularConsumo()
 	{
-		// las horas las obtiene segun lo que disponga su fabricante y todavía no se como implementarlo
+		// a implementar
+	}
+
+	// Este método se ejecutaría automáticamente con un cron programado cuando se acabe la memoria del dispositivo.
+	public void agregarNuevoRegistroDeConsumo()
+	{
+		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo))
 	}
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
-		// tomar de la lista de registros los comprendidos en este periodo, va a ser un filter, luego map y por ultimo sum.
+		if (inicio.isAfter(registrosConsumo.get(0).fecha()))
+		{
+			//A implementar
+		}
 	}
+
+	// estos métodos se los delega al fabricante que se comunica con el dispositivo físico.
 	public void apagarse () {
-		// a implementar
+		Fabricante.apagarDispositivo();
 	}
 	public void encenderse () {
-		// a implementar
+		Fabricante.encenderDispositivo();
 	}
 	public void modoAhorroEnergia() {
-		// a implementar
+		Fabricante.activarAhorroDeEnergiaDispositivo()
 	}
 	public boolean estaEncendido() {
-		// a implementar
+		Fabricante.estaEncendidoDispositivo()
 	}
 	public boolean estaApagado() {
-		// a implementar
+		Fabricante.estaApagadoDispositivo()
 	}
 
 }

@@ -2,5 +2,10 @@ package edu.dominio.empresa;
 
 public interface Dispositivo
 {
-	public double consumo(double horas);
+	public double calcularConsumo();
+	public void apagarse();
+	public void encenderse();
+	public void modoAhorroDeEnergia();
+	public void estaEncendido();
+	public void estaApagado();
 }
