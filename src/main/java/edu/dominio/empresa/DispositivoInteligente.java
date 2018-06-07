@@ -1,7 +1,10 @@
 package edu.dominio.empresa;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import edu.dominio.fabricante.Fabricante;
 
 public class DispositivoInteligente implements Dispositivo {
 	
@@ -10,42 +13,48 @@ public class DispositivoInteligente implements Dispositivo {
 	private Fabricante fabricante; // Adapter
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
 
-	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro) {
+	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante) {
 		this.nombre = nombre;
+		this.fechaDeRegistro = fechaDeRegistro;
+		this.fabricante = fabricante;
+		this.registrosConsumo = new ArrayList<RegistroMedicion>();
 	}
 
 	public double calcularConsumo()
 	{
-		// a implementar
+		fabricante.cuantoConsumeDispositivo()
 	}
 
-	// Este método se ejecutaría automáticamente con un cron programado cuando se acabe la memoria del dispositivo.
+	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
 	public void agregarNuevoRegistroDeConsumo()
 	{
-		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo))
-	}
-	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
-		if (inicio.isAfter(registrosConsumo.get(0).fecha()))
-		{
-			//A implementar
-		}
+		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo()));
 	}
 
-	// estos métodos se los delega al fabricante que se comunica con el dispositivo físico.
-	public void apagarse () {
-		Fabricante.apagarDispositivo();
+	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
+		// se asume, y se van a guardar de manera ordenada los registros
+		return 	registrosConsumo.stream()
+				.filter(registro -> registro.estaEntreFechas(registrosConsumo.get(0).fecha(), registrosConsumo.get(registrosConsumo.size()-1).fecha()))
+				.mapToDouble(registro -> registro.kwConsumidos())
+				.sum();
 	}
-	public void encenderse () {
-		Fabricante.encenderDispositivo();
+
+	// estos metodos se los delega al fabricante que se comunica con el dispositivo fisico.
+	
+	public void apagarse() {
+		fabricante.apagarDispositivo();
+	}
+	public void encenderse() {
+		fabricante.encenderDispositivo();
 	}
 	public void modoAhorroEnergia() {
-		Fabricante.activarAhorroDeEnergiaDispositivo()
+		fabricante.activarAhorroDeEnergiaDispositivo();
 	}
 	public boolean estaEncendido() {
-		Fabricante.estaEncendidoDispositivo()
+		return fabricante.estaEncendidoDispositivo();
 	}
 	public boolean estaApagado() {
-		Fabricante.estaApagadoDispositivo()
+		return fabricante.estaApagadoDispositivo();
 	}
 
 }

@@ -1,14 +1,10 @@
 package edu.dominio.usuario;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
@@ -68,7 +64,7 @@ public class Cliente {
 
 	public double consumoTotal() {
 		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
-	}
+	}	
 
 	private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
 		return dispositivosInteligentes.stream().filter(unaCondicion).collect(Collectors.toList());

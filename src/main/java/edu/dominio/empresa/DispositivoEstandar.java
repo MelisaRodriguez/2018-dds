@@ -2,6 +2,8 @@ package edu.dominio.empresa;
 
 import java.time.LocalDate;
 
+import edu.dominio.fabricante.Fabricante;
+
 public class DispositivoEstandar implements Dispositivo {
 
 	private String nombre;
@@ -28,13 +30,13 @@ public class DispositivoEstandar implements Dispositivo {
 	
 	public DispositivoInteligente convertirAInteligente()
 	{
-		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante, []);
+		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante);
 	}
 
-	// Métodos vacíos
+	// Metodos vacios
 	public void apagarse(){};
 	public void encenderse(){};
-	public void modoAhorroDeEnergia(){};
+	public void modoAhorroEnergia(){};
 	public void estaEncendido(){};
 	public void estaApagado(){};
 }

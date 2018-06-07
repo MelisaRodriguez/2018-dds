@@ -5,7 +5,7 @@ public interface Dispositivo
 	public double calcularConsumo();
 	public void apagarse();
 	public void encenderse();
-	public void modoAhorroDeEnergia();
+	public void modoAhorroEnergia();
 	public void estaEncendido();
 	public void estaApagado();
 }
