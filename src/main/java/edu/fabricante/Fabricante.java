@@ -1,19 +1,11 @@
 package edu.fabricante;
 
-public class Fabricante {
-	private String nombre;
-	private AccionesSegunFabricante formaDeEnvio;
+
+
+public interface  Fabricante {
+
 	
-	public Fabricante(String nombre,AccionesSegunFabricante formaDeEnvio) {
-		this.nombre=nombre;
-		this.formaDeEnvio=formaDeEnvio;
-	}
+	public abstract void apagar();
 	
-	public AccionesSegunFabricante getFormaDeEnvio() {
-		return formaDeEnvio;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
+	public abstract void encender();
 }

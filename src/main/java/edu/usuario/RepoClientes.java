@@ -16,7 +16,7 @@ import edu.empresa.EstadoDispositivo;
 import edu.empresa.estadoAhorroEnergia;
 import edu.empresa.estadoApagado;
 import edu.empresa.estadoEncendido;
-import edu.fabricante.AccionesSegunFabricante;
+import edu.fabricante.Fabricante;
 import edu.empresa.Deserializable;
 
 public class RepoClientes extends GenericoRepos<Cliente> {
@@ -30,7 +30,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(EstadoDispositivo.class, new Deserializable<EstadoDispositivo>());
-		builder.registerTypeAdapter(AccionesSegunFabricante.class, new Deserializable<AccionesSegunFabricante>());
+		builder.registerTypeAdapter(Fabricante.class, new Deserializable<Fabricante>());
 		Gson gson = builder.create();
 		info = gson.fromJson(new FileReader("Clientes.json"), auxTipo);
 	}
