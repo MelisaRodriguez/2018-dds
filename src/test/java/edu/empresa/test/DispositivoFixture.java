@@ -9,9 +9,9 @@ import java.util.List;
 
 //import edu.empresa.DispositivoEstandar;
 import edu.empresa.DispositivoInteligente;
-import edu.fabricante.MensajeObjetos;
 import edu.fabricante.Fabricante;
 import edu.actuadoresSensores.*;
+import edu.dominio.fabricante.MensajeObjetos;
 
 //import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,7 @@
 package edu.dominio.fabricante;
 
 import edu.dominio.empresa.DispositivoInteligente;
+import edu.dominio.fabricante.AccionesSegunFabricante;
 
 public class MensajeObjetos extends AccionesSegunFabricante {
 	

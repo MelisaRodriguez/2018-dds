@@ -3,10 +3,10 @@ package edu.usuario.test;
 import java.util.List;
 import org.junit.Before;
 
+import edu.dominio.fabricante.MensajeObjetos;
 import edu.empresa.DispositivoEstandar;
 import edu.empresa.DispositivoInteligente;
 import edu.fabricante.Fabricante;
-import edu.fabricante.MensajeObjetos;
 import edu.usuario.Cliente;
 import edu.usuario.RepoClientes;
 
