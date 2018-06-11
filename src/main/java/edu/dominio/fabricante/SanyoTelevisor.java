@@ -1,22 +1,22 @@
 package edu.dominio.fabricante;
 
-import edu.dominio.empresa.DispositivoInteligente;
-import edu.dominio.fabricante.AccionesSegunFabricante;
 
-public class MensajeObjetos extends AccionesSegunFabricante {
+public class SanyoTelevisor implements Fabricante {
 	
-	public MensajeObjetos() {
+	public SanyoTelevisor() {
 		super();
 	}
 	
 	@Override
-	public void apagar(DispositivoInteligente dispositivo) {
-		dispositivo.apagarse();
+	public void apagar() {
+		//dispositivo.apagarse();
+		//MOCK
 	}
 
 	@Override
-	public void encender(DispositivoInteligente dispositivo) {
-		dispositivo.encenderse();
+	public void encender() {
+		//dispositivo.encenderse();
+		//MOCK
 	}
 
 }

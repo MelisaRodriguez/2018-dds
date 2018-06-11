@@ -1,3 +1,4 @@
+
 package edu.repositorios;
 
 import java.io.FileNotFoundException;
@@ -13,8 +14,9 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import edu.dominio.empresa.Deserializable;
-import edu.dominio.fabricante.AccionesSegunFabricante;
+import edu.dominio.fabricante.Fabricante;
 import edu.dominio.usuario.Cliente;
+import edu.empresa.EstadoDispositivo;
 
 public class RepoClientes extends GenericoRepos<Cliente> {
 
@@ -27,7 +29,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(EstadoDispositivo.class, new Deserializable<EstadoDispositivo>());
-		builder.registerTypeAdapter(AccionesSegunFabricante.class, new Deserializable<AccionesSegunFabricante>());
+		builder.registerTypeAdapter(Fabricante.class, new Deserializable<Fabricante>());
 		Gson gson = builder.create();
 		entidades = gson.fromJson(new FileReader("Clientes.json"), auxTipo);
 	}
