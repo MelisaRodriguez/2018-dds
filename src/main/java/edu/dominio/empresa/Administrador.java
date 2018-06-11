@@ -1,4 +1,4 @@
-package edu.empresa;
+package edu.dominio.empresa;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

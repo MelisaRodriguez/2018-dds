@@ -1,4 +1,4 @@
-package edu.actuadoresSensores;
+package edu.dominio.usuario;
 
 import java.util.function.Function;
 
@@ -16,4 +16,3 @@ public class Condicion {
 	}
 	
 }
-
