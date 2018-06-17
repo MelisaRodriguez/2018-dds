@@ -17,10 +17,12 @@ class RegistroMedicion
 	{
 		return inicio.isBefore(fecha) && fin.isAfter(fecha);
 	}
+	
 	public LocalDate fecha()
 	{
 		return fecha;
 	}
+
 	public double kwConsumidos()
 	{
 		return kwConsumidos;

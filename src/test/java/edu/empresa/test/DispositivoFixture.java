@@ -7,22 +7,20 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-//import edu.empresa.DispositivoEstandar;
-import edu.empresa.DispositivoInteligente;
-import edu.fabricante.Fabricante;
-import edu.actuadoresSensores.*;
-import edu.dominio.fabricante.MensajeObjetos;
+import edu.dominio.empresa.DispositivoInteligente;
+import edu.dominio.fabricante.SanyoTelevisor;
+import edu.dominio.usuario.Actuador;
+import edu.dominio.usuario.Sensor;
+import edu.dominio.usuario.Regla;
+import edu.dominio.usuario.Condicion;
 
-//import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Arrays;
-//import java.util.List;
-import java.util.function.Function;
 
 public class DispositivoFixture {
 	protected DispositivoInteligente dispositivoInteligente;
 	protected DispositivoInteligente dispositivoInteligenteNoAcciona;
-	protected Fabricante fabricante;
-	protected MensajeObjetos formaDeEnvio;
+	protected SanyoTelevisor televisor;
 	protected Regla reglaCumpleMedicion;
 	protected Regla reglaNoCumpleMedicion;
 	protected Sensor sensorCumpleMedicion ;
@@ -30,35 +28,40 @@ public class DispositivoFixture {
 	protected List<Sensor> sensoresCumpleMedicion;
 	protected List<Sensor> sensoresNoCumpleMedicion;
 	protected List<Actuador> actuadores;
+	protected List<Condicion> condicionesCumpleMedicion;
+	protected List<Condicion> condicionesNoCumpleMedicion;
 	protected Actuador actuador;
-	protected double valor;
-	protected Function<Double, Boolean> condicionSensorCumpleMedicion;
-	protected Function<Double, Boolean> condicionSensorNoCumpleMedicion;
+	protected double medicion;
+	//protected Function<Double, Boolean> condicionSensorCumpleMedicion;
+	protected Condicion condicionSensorCumpleMedicion;
+	//protected Function<Double, Boolean> condicionSensorNoCumpleMedicion;
+	protected Condicion condicionSensorNoCumpleMedicion;
 	
 	
 	@Before
 	public void fixture() {
-		formaDeEnvio = new MensajeObjetos();
-		fabricante = new Fabricante("GAMA", formaDeEnvio);
-		dispositivoInteligente = new DispositivoInteligente("Heladera", 10, fabricante);
-		valor = 10;
+		televisor = new SanyoTelevisor();
+		dispositivoInteligente = new DispositivoInteligente("Heladera", LocalDate.of(2017, 3, 28), televisor);
+		medicion = 10;
 
 		actuador = new Actuador(dispositivoInteligente);
 		actuadores = Arrays.asList(actuador);
 		
 		// creo la regla en donde todos los sensores cumplan la medicion
-		condicionSensorCumpleMedicion = (Double valor) -> {return valor < 20;};
-		sensorCumpleMedicion = new Sensor(condicionSensorCumpleMedicion);
-		sensoresCumpleMedicion = Arrays.asList(sensorCumpleMedicion);
-		
-		reglaCumpleMedicion = new Regla(sensoresCumpleMedicion, actuadores);
+		//condicionSensorCumpleMedicion = (Double valor) -> {return valor < 20;};
+		//sensorCumpleMedicion = new Sensor(condicionSensorCumpleMedicion);
+		sensorCumpleMedicion = new Sensor();
+		condicionSensorCumpleMedicion = new Condicion(sensorCumpleMedicion, (Double valor) -> {return valor < 20;});
+		condicionesCumpleMedicion = Arrays.asList(condicionSensorCumpleMedicion);
+		reglaCumpleMedicion = new Regla(condicionesCumpleMedicion, actuadores);
 		
 		// creo la regla en donde haya un sensor de los sensores que NO cumpla la medicion
-		condicionSensorNoCumpleMedicion = (Double valor) -> {return valor > 20;};
-		sensorNoCumpleMedicion = new Sensor(condicionSensorNoCumpleMedicion);
+		//condicionSensorNoCumpleMedicion = (Double valor) -> {return valor > 20;};
+		condicionSensorNoCumpleMedicion = new Condicion(sensorCumpleMedicion, (Double valor) -> {return valor < 20;});
+		sensorNoCumpleMedicion = new Sensor();
 		sensoresNoCumpleMedicion = Arrays.asList(sensorNoCumpleMedicion);
-		
-		reglaNoCumpleMedicion = new Regla(sensoresNoCumpleMedicion, actuadores);
+		condicionesNoCumpleMedicion = Arrays.asList(condicionSensorNoCumpleMedicion);
+		reglaNoCumpleMedicion = new Regla(condicionesNoCumpleMedicion, actuadores);
 		
 	}
 }

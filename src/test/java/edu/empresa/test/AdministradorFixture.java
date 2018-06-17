@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import org.junit.Before;
 
-import edu.empresa.Administrador;
+import edu.dominio.empresa.Administrador;
 
 public class AdministradorFixture {
 

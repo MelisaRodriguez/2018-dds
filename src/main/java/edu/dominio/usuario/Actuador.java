@@ -4,16 +4,16 @@ import edu.dominio.empresa.DispositivoInteligente;
 
 public class Actuador {
 
-	private DispositivoInteligente dispositivo;
+	private DispositivoInteligente dispositivoInteligente;
 
 	public Actuador(DispositivoInteligente dispositivo)
 	{
-		this.dispositivo = dispositivo;
+		this.dispositivoInteligente = dispositivo;
 	}
 
 	public void enviarAccion()
 	{
-		dispositivo.accionar();
+		dispositivoInteligente.accionar();
 	}
 
 }

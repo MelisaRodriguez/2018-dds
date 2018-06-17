@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
-import edu.usuario.Cliente;
-import edu.usuario.RepoCategorias;
-import edu.usuario.TipoDocumento;
+import edu.dominio.usuario.Cliente;
+import edu.repositorios.RepoCategorias;
+import edu.dominio.usuario.TipoDocumento;
 import junit.framework.Assert;
 
 
@@ -19,7 +19,7 @@ import junit.framework.Assert;
 public class ClienteTests extends ClienteFixture {
 	@Test
 	public void testLeerJson() {
-		// El archivo Json arma una lista de clientes con longitud 2 (para el actual
+		// El archivo Json arma una lista de clientes con longitud 3 (para el actual
 		// .json)
 		//System.out.println(clientes.size());
 		Assert.assertEquals(3, clientes.size());
@@ -28,7 +28,6 @@ public class ClienteTests extends ClienteFixture {
 	@Test
 	public void testClienteCuantosKwConsume() // Cliente (consumoTotal)
 	{
-		// El cliente Juan Pérez consume 162 kw por hora con sus dispositivos
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(67.0, unCliente.consumoTotal());
 	}
@@ -36,15 +35,13 @@ public class ClienteTests extends ClienteFixture {
 	@Test
 	public void testCuantosDispositivosTieneCliente() // Cliente(cantDispositivos)
 	{
-		// El cliente Juan Pérez tiene 3 dispositivos
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(2, unCliente.cantDispositivos());
+		Assert.assertEquals(2, unCliente.cantDispositivosEnTotal());
 	}
 
 	@Test
 	public void testCantidadDispositivosEncendidos() // Cliente (cantDispositivosEncendidos)
 	{
-		// El cliente Juan Pérez tiene un dispositivo encendido
 		Cliente unCliente = clientes.get(0);
 		
 		Assert.assertEquals(0, unCliente.cantDispositivosEncendidos());
@@ -53,7 +50,6 @@ public class ClienteTests extends ClienteFixture {
 	@Test
 	public void testCantidadDispositivosApagados() // Cliente (cantDispositivosApagados)
 	{
-		// El cliente Juan Pérez tiene dos dispositivos apagados
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(2, unCliente.cantDispositivosApagados());
 	}
@@ -61,7 +57,6 @@ public class ClienteTests extends ClienteFixture {
 	@Test
 	public void testNingunDispositivoEncendido() // Cliente (tieneDispositivoEncendido)
 	{
-		// El cliente Manuel Rodríguez no tiene dispositivos encendidos
 		Cliente unCliente = clientes.get(0);
 		Assert.assertFalse(unCliente.tieneDispositivoEncendido());
 	}
@@ -70,10 +65,9 @@ public class ClienteTests extends ClienteFixture {
 	public void testRecategorizarCliente() // Cliente (recategorizar, getCategoria), RepoCategorias (solicitarCategoria,
 											// getCategorias), Categoria (estaEnLimites)
 	{
-		// El cliente Juan Pérez se recategoriza a Categoría R2
 		Cliente unCliente = clientes.get(0);
 		unCliente.recategorizar();
-		Assert.assertEquals(RepoCategorias.getSingletonInstance().getInfo().get(0), unCliente.getCategoria());
+		Assert.assertEquals(RepoCategorias.getSingletonInstance().getEntidades().get(0), unCliente.getCategoria());
 		// No se puede poner en el valor esperado new Categoría(parámetros) porque
 		// tendría una categoria
 		// con los mismos parámetros pero en otra dirección de memoria, es decir, no
@@ -84,7 +78,6 @@ public class ClienteTests extends ClienteFixture {
 	public void testCalculaTarifaEstimadaCliente() // Categoria (calcularTarifaEstimada) , Cliente (getCategoria,
 													// consumoTotal)
 	{
-		// El cliente Manuel Rodríguez tiene que pagar una tarifa estimada en $52,892
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(61.908, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
 	}

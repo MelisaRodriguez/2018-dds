@@ -33,10 +33,6 @@ public class DispositivoEstandar implements Dispositivo {
 		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante);
 	}
 
-	// Metodos vacios
-	public void apagarse(){};
-	public void encenderse(){};
-	public void modoAhorroEnergia(){};
-	public void estaEncendido(){};
-	public void estaApagado(){};
+
+	
 }

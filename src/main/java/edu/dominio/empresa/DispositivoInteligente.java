@@ -20,9 +20,10 @@ public class DispositivoInteligente implements Dispositivo {
 		this.registrosConsumo = new ArrayList<RegistroMedicion>();
 	}
 
-	public double calcularConsumo()
+	public double calcularConsumo() 
 	{
-		fabricante.cuantoConsumeDispositivo();
+		//return fabricante.cuantoConsumeDispositivo();
+		return 10; // sacar 
 	}
 
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
@@ -51,10 +52,14 @@ public class DispositivoInteligente implements Dispositivo {
 		fabricante.activarAhorroDeEnergiaDispositivo();
 	}
 	public boolean estaEncendido() {
-		return fabricante.estaEncendidoDispositivo();
+		//return fabricante.estaEncendidoDispositivo();
+		return true;
 	}
 	public boolean estaApagado() {
-		return fabricante.estaApagadoDispositivo();
+		//return fabricante.estaApagadoDispositivo();
+		return true;
 	}
+	
+	public void accionar() {}
 
 }
