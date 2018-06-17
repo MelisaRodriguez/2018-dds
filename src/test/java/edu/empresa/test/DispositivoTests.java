@@ -7,31 +7,22 @@ import org.junit.Test;
 import junit.framework.Assert;
 public class DispositivoTests extends DispositivoFixture{
 	@Test
-	public void testConsumoEnNHoras() 
+	public void testConsumoEstandar() 
+	{
+		Assert.assertEquals(50.0, dispositivoEstandar.calcularConsumo());	
+	}
+	
+	/* // esta comentado porque todavía falta fabricante, y para hacer el consumo usa el fabricante
+	@Test
+	public void testConsumoInteligente() 
 	{
 		Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	
 	}
+	// calcular consumo para los dos??
+	*/
 	
-	@Test
-	public void testDebeAccionar()
-	{
-		/*
-		sensorCumpleMedicion.tomarMedicion(medicion);
-		reglaCumpleMedicion.ocurrioEvento();
-		Assert.assertTrue(dispositivoInteligente.getAccionoAlgunaVez());
-		*/
-	}
 	
-	@Test
-	public void testNoDebeAccionar()
-	{
-		/*
-		sensorNoCumpleMedicion.tomarMedicion(medicion);
-		reglaNoCumpleMedicion.ocurrioEvento();
-		Assert.assertFalse(dispositivoInteligente.getAccionoAlgunaVez());
-		*/
-	}
-	
+	// con fabricante hacer que apague/encienda un dispositivo?? No lo prueba porque todavía falta el fabricante 
 	
 	// PEQUEÑA GUIA PARA TESTS
 	// Assert.assertTrue(metodo que devuelva un true)

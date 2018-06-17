@@ -11,7 +11,6 @@ import java.util.List;
 
 import edu.dominio.usuario.Cliente;
 import edu.repositorios.RepoCategorias;
-import edu.dominio.usuario.TipoDocumento;
 import junit.framework.Assert;
 
 
