@@ -18,23 +18,34 @@ public class SanyoTelevisor implements Fabricante {
 		//dispositivo.encenderse();
 		//MOCK
 	}
+
+	@Override
+	public void activarAhorroDeEnergia() {
+		//dispositivo.encenderse();
+		//MOCK
+	}
 	
-	// solo lo agrego para que compile, ver despues
 	@Override
-	public void apagarDispositivo() {
-		//dispositivo.apagarse();
+	public double cuantoConsume() {
+		return 1.0;
 		//MOCK
 	}
-
+	
 	@Override
-	public void encenderDispositivo() {
-		//dispositivo.encenderse();
+	public boolean estaEncendido() {
+		return true;
 		//MOCK
 	}
-
+	
 	@Override
-	public void activarAhorroDeEnergiaDispositivo() {
-		//dispositivo.encenderse();
+	public boolean estaApagado() {
+		return true;
+		//MOCK
+	}
+	
+	@Override
+	public boolean estaModoAhorroEnergia() {
+		return true;
 		//MOCK
 	}
 	

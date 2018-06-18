@@ -3,15 +3,13 @@ package edu.dominio.fabricante;
 
 
 public interface  Fabricante {
-
 	
 	public abstract void apagar();
-	
 	public abstract void encender();
+	public abstract void activarAhorroDeEnergia();	
+	public abstract double cuantoConsume();
+	public abstract boolean estaEncendido();	
+	public abstract boolean estaApagado();
+	public abstract boolean estaModoAhorroEnergia();
 	
-	// solo lo agrego para que compile, ver después
-	//public abstract double cuantoConsumeDispositivo();
-	public abstract void apagarDispositivo();
-	public abstract void encenderDispositivo();
-	public abstract void activarAhorroDeEnergiaDispositivo();
 }

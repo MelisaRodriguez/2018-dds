@@ -15,21 +15,33 @@ public class MockFabricante implements Fabricante {
 
 	// solo lo agrego para que compile, ver despues
 	@Override
-	public void apagarDispositivo() {
-		// dispositivo.apagarse();
-		// MOCK
+	public void activarAhorroDeEnergia() {
+		//dispositivo.encenderse();
+		//MOCK
 	}
-
+	
 	@Override
-	public void encenderDispositivo() {
-		// dispositivo.encenderse();
-		// MOCK
+	public double cuantoConsume() {
+		return 1.0;
+		//MOCK
 	}
-
+	
 	@Override
-	public void activarAhorroDeEnergiaDispositivo() {
-		// dispositivo.encenderse();
-		// MOCK
+	public boolean estaEncendido() {
+		return true;
+		//MOCK
+	}
+	
+	@Override
+	public boolean estaApagado() {
+		return true;
+		//MOCK
+	}
+	
+	@Override
+	public boolean estaModoAhorroEnergia() {
+		return true;
+		//MOCK
 	}
 
 }

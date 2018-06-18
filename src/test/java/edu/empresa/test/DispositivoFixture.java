@@ -3,9 +3,6 @@ package edu.empresa.test;
 import org.junit.Before;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-
 
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.DispositivoEstandar;
@@ -25,6 +22,5 @@ public class DispositivoFixture {
 		televisor = mock(SanyoTelevisor.class);
 		dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), televisor);
 		dispositivoEstandar = new DispositivoEstandar("Televisor", 10, 5, televisor);
-		
 	}
 }

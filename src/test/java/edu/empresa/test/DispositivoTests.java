@@ -1,6 +1,9 @@
 package edu.empresa.test;
 import java.time.LocalDate;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,17 +15,46 @@ public class DispositivoTests extends DispositivoFixture{
 		Assert.assertEquals(50.0, dispositivoEstandar.calcularConsumo());	
 	}
 	
-	/* // esta comentado porque todavía falta fabricante, y para hacer el consumo usa el fabricante
 	@Test
 	public void testConsumoInteligente() 
 	{
+		when(televisor.cuantoConsume()).thenReturn(10.0);
+		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); // algo estoy haciendo mal, creo que no deberia llamar yo a esta funcion
+		
+		//Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	// anda bien este test
 		Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	
+		//Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo());	
 	}
-	// calcular consumo para los dos??
-	*/
 	
+	@Test
+	public void apagarDispositivoInteligente() 
+	{
+		dispositivoInteligente.apagarse();
+		when(televisor.estaApagado()).thenReturn(true);
+		
+		Assert.assertTrue(dispositivoInteligente.estaApagado());	
+		verify(televisor).apagar();
+	}
 	
-	// con fabricante hacer que apague/encienda un dispositivo?? No lo prueba porque todavía falta el fabricante 
+	@Test
+	public void encenderDispositivoInteligente() 
+	{
+		dispositivoInteligente.encenderse();
+		when(televisor.estaEncendido()).thenReturn(true);
+		
+		Assert.assertTrue(dispositivoInteligente.estaEncendido());	
+		verify(televisor).encender();
+	}
+	
+	@Test
+	public void activarAhorroDeEnergiaDispositivoInteligente() 
+	{
+		dispositivoInteligente.modoAhorroEnergia();
+		when(televisor.estaModoAhorroEnergia()).thenReturn(true);
+		
+		Assert.assertTrue(dispositivoInteligente.estaModoAhorroEnergia());	
+		verify(televisor).activarAhorroDeEnergia();
+	}
 	
 	// PEQUEÑA GUIA PARA TESTS
 	// Assert.assertTrue(metodo que devuelva un true)

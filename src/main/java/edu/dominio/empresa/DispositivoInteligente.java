@@ -22,8 +22,7 @@ public class DispositivoInteligente implements Dispositivo {
 
 	public double calcularConsumo() 
 	{
-		//return fabricante.cuantoConsumeDispositivo();
-		return 10; // sacar 
+		return fabricante.cuantoConsume();
 	}
 
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
@@ -32,7 +31,7 @@ public class DispositivoInteligente implements Dispositivo {
 		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo()));
 	}
 
-	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) {
+	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
 		return 	registrosConsumo.stream()
 				.filter(registro -> registro.estaEntreFechas(registrosConsumo.get(0).fecha(), registrosConsumo.get(registrosConsumo.size()-1).fecha()))
@@ -43,21 +42,27 @@ public class DispositivoInteligente implements Dispositivo {
 	// estos metodos se los delega al fabricante que se comunica con el dispositivo fisico.
 	
 	public void apagarse() {
-		fabricante.apagarDispositivo();
+		fabricante.apagar();
 	}
+	
 	public void encenderse() {
-		fabricante.encenderDispositivo();
+		fabricante.encender();
 	}
+	
 	public void modoAhorroEnergia() {
-		fabricante.activarAhorroDeEnergiaDispositivo();
+		fabricante.activarAhorroDeEnergia();
 	}
+	
 	public boolean estaEncendido() {
-		//return fabricante.estaEncendidoDispositivo();
-		return true;
+		return fabricante.estaEncendido();
 	}
+	
 	public boolean estaApagado() {
-		//return fabricante.estaApagadoDispositivo();
-		return true;
+		return fabricante.estaApagado();
+	}
+	
+	public boolean estaModoAhorroEnergia() {
+		return fabricante.estaModoAhorroEnergia();
 	}
 	
 	public void accionar() {}
