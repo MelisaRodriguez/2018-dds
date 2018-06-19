@@ -19,7 +19,7 @@ public class DispositivoTests extends DispositivoFixture{
 	public void testConsumoInteligente() 
 	{
 		when(televisor.cuantoConsume()).thenReturn(10.0);
-		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); // algo estoy haciendo mal, creo que no deberia llamar yo a esta funcion
+		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); 
 		
 		//Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	// anda bien este test
 		Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	

@@ -34,7 +34,7 @@ public class DispositivoInteligente implements Dispositivo {
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
 		return 	registrosConsumo.stream()
-				.filter(registro -> registro.estaEntreFechas(registrosConsumo.get(0).fecha(), registrosConsumo.get(registrosConsumo.size()-1).fecha()))
+				.filter(registro -> registro.estaEntreFechas(inicio, fin))
 				.mapToDouble(registro -> registro.kwConsumidos())
 				.sum();
 	}
@@ -65,6 +65,7 @@ public class DispositivoInteligente implements Dispositivo {
 		return fabricante.estaModoAhorroEnergia();
 	}
 	
-	public void accionar() {}
+	public void accionar() { // se desconoce implementación, al menos hasta entrega 1.
+	}
 
 }
