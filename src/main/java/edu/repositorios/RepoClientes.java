@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.dominio.empresa.Deserializable;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.usuario.Cliente;
-import edu.empresa.EstadoDispositivo;
+//import edu.empresa.EstadoDispositivo;
 
 public class RepoClientes extends GenericoRepos<Cliente> {
 
@@ -28,7 +28,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		}.getType();
 		
 		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(EstadoDispositivo.class, new Deserializable<EstadoDispositivo>());
+		//builder.registerTypeAdapter(EstadoDispositivo.class, new Deserializable<EstadoDispositivo>());
 		builder.registerTypeAdapter(Fabricante.class, new Deserializable<Fabricante>());
 		Gson gson = builder.create();
 		entidades = gson.fromJson(new FileReader("Clientes.json"), auxTipo);

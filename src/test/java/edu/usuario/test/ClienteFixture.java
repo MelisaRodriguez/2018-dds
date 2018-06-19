@@ -1,6 +1,5 @@
 package edu.usuario.test;
 
-import java.time.LocalDate;
 import java.util.List;
 import org.junit.Before;
 
@@ -22,8 +21,6 @@ public class ClienteFixture {
 	public void fixture() // algun dia manejar errores
 	{
 		clientes = RepoClientes.getInstanceOfSingleton().getEntidades();
-		//televisor = new SanyoTelevisor();
-		//dispositivoInteligente = new DispositivoInteligente("Heladera", LocalDate.of(2017, 3, 28), televisor);
 		dispositivoInteligente = mock(DispositivoInteligente.class);
 	}
 }

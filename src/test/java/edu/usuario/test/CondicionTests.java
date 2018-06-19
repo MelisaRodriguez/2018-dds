@@ -1,26 +1,15 @@
 package edu.usuario.test;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import edu.dominio.usuario.Condicion;
-import edu.dominio.usuario.Sensor;
 import junit.framework.Assert;
 
 
-public class CondicionTests {
-	private Condicion condicion;
-	private Sensor sensor;
+public class CondicionTests extends CondicionFixture {
 	
-	@Before
-	public void Setup(){
-		sensor = mock(Sensor.class);
-		condicion = new Condicion(sensor, (Double valor) -> {return valor > 20;});
-	}
 	
 	@Test
 	public void cumpleCondicion(){
