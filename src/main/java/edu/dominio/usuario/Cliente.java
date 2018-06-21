@@ -1,5 +1,6 @@
 package edu.dominio.usuario;
 
+import java.awt.geom.Point2D;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,11 +26,13 @@ public class Cliente {
 	private List<DispositivoInteligente> dispositivosInteligentes;
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
+	private Point2D ubicacion;
+	//private Transformador miTransformador;
 
 	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar) {
+			List<DispositivoEstandar> dispositivosEstandar, Point2D ubicacion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -41,6 +44,8 @@ public class Cliente {
 		this.puntos = this.dispositivosInteligentes.size() * 15;
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
+		this.ubicacion = ubicacion;
+		//this.miTransformador = solicitarTransformador(ubicacion);
 	}
 	
 	public void recategorizar() {
