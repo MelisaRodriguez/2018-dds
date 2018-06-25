@@ -1,22 +1,30 @@
 package edu.dominio.empresa;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.dominio.usuario.Cliente;
+import edu.repositorios.RepoZonaGeografica;
 
 public class Transformador {
-	
-	private long consumo;
 	private Point2D lugar;
+	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
-	public Transformador(long consumo, Point2D lugar)
+	public Transformador(Point2D lugar)
 	{
-		this.consumo = consumo;
 		this.lugar = lugar;
-		//agregarTransformador(this, lugar)
+		RepoZonaGeografica.getSingletonInstance().agregarTransformador(this, lugar);
 	}
 	
-	public long getConsumo()
+	public void agregarCliente(Cliente unCliente)
 	{
-		return this.consumo;
+		this.clientes.add(unCliente);
+	}
+	
+	public double calcularConsumo()
+	{
+		return this.clientes.stream().mapToDouble(c->c.consumoTotal()).sum();
 	}
 	
 	public Point2D getLugar()

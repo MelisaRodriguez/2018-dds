@@ -11,6 +11,7 @@ import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.repositorios.RepoCategorias;
+import edu.repositorios.RepoZonaGeografica;
 
 
 public class Cliente {
@@ -45,7 +46,7 @@ public class Cliente {
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 		this.ubicacion = ubicacion;
-		//this.miTransformador = solicitarTransformador(ubicacion);
+		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
 	}
 	
 	public void recategorizar() {

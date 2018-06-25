@@ -2,9 +2,11 @@ package edu.dominio.empresa;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.geotools.referencing.GeodeticCalculator;
+import edu.dominio.usuario.Cliente;
 
 public class ZonaGeografica {
 
@@ -30,22 +32,32 @@ public class ZonaGeografica {
 		transformadores.add(nuevoTransformador);
 	}
 	
+	private double calcularDistancia(Point2D p1, Point2D p2)
+	{
+		GeodeticCalculator calc = new GeodeticCalculator();
+		calc.setStartingGeographicPoint(p1);
+		calc.setDestinationGeographicPoint(p2);
+		return calc.getOrthodromicDistance();
+	}
+	
+	public void agregarCliente(Cliente unCliente, Point2D lugar)
+	{
+		transformadores.stream().min(Comparator.comparing(t->calcularDistancia(t.getLugar(), lugar))).get().agregarCliente(unCliente);
+	}
+	
 	public void agregarTransformadores(List<Transformador> nuevosTransformadores)
 	{
 		this.transformadores.addAll(nuevosTransformadores);
 	}
 	
-	public long verConsumo()
+	public double verConsumo()
 	{
-		return this.transformadores.stream().mapToLong(transf->transf.getConsumo()).sum();
+		return this.transformadores.stream().mapToDouble(transf->transf.calcularConsumo()).sum();
 	}
 	
-	public boolean puedeAgregarTransformador(Point2D unPunto)
+	public boolean estaEnRango(Point2D unPunto)
 	{
-		GeodeticCalculator calc = new GeodeticCalculator();
-		calc.setStartingGeographicPoint(centro);
-		calc.setDestinationGeographicPoint(unPunto);
-		return radio > calc.getOrthodromicDistance();
+		return radio > this.calcularDistancia(unPunto, centro);
 	}
 	
 }
