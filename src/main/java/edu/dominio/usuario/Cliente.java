@@ -25,11 +25,12 @@ public class Cliente {
 	private List<DispositivoInteligente> dispositivosInteligentes;
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
+	private boolean ahorroAutomatico;
 
 	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -41,8 +42,14 @@ public class Cliente {
 		this.puntos = this.dispositivosInteligentes.size() * 15;
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
+		this.ahorroAutomatico = ahorroAutomatico;
 	}
 	
+	public double solicitarRecomendacion()
+	{
+		return LlamarSimplex.generarRecomendacion(this);
+	} // POR AHORA SOLO DEVUELVE Z.
+
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()
 				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
@@ -106,6 +113,15 @@ public class Cliente {
 	
 	public int getPuntos() {
 		return this.puntos;
+	}
+
+	public void setAhorroAutomatico(boolean ahorro)
+	{
+		this.ahorroAutomatico = ahorro;
+	}
+	public boolean getAhorroAutomatico()
+	{
+		return this.ahorroAutomatico;
 	}
 	
 }

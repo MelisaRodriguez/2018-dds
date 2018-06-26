@@ -12,8 +12,6 @@ public class DispositivoInteligente implements Dispositivo {
 	private LocalDate fechaDeRegistro;
 	private Fabricante fabricante; // Adapter
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
-	private Restriccion restriccionMaxConsumo; (TAMBIEN LO TIENE EL DISPOSITIVO ESTANDAR)
-	private Restriccion restriccionMinConsumo; (TAMBIEN LO TIENE EL DISPOSITIVO ESTANDAR)
 
 	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante) {
 		this.nombre = nombre;

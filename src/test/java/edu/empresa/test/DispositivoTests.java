@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 public class DispositivoTests extends DispositivoFixture{
-	
 	@Test
 	public void testConsumoEstandar() 
 	{
@@ -20,7 +19,11 @@ public class DispositivoTests extends DispositivoFixture{
 	public void testConsumoInteligente() 
 	{
 		when(televisor.cuantoConsume()).thenReturn(10.0);
-		Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	
+		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); 
+		
+		//Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	// anda bien este test
+		Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	
+		//Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo());	
 	}
 	
 	@Test
@@ -53,13 +56,6 @@ public class DispositivoTests extends DispositivoFixture{
 		verify(televisor).activarAhorroDeEnergia();
 	}
 	
-	@Test
-	public void calcularConsumoTotalEnPeriodo()
-	{
-		when(televisor.cuantoConsume()).thenReturn(10.0);
-		dispositivoInteligente.agregarNuevoRegistroDeConsumo();
-		Assert.assertEquals(dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018,6,18),LocalDate.of(2018,6,20)),10.0);
-	}
 	// PEQUEÑA GUIA PARA TESTS
 	// Assert.assertTrue(metodo que devuelva un true)
 	// Assert.assertFalse(metodo que devuelva false)
