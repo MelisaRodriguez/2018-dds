@@ -3,6 +3,7 @@ package edu.dominio.empresa;
 import java.time.LocalDate;
 
 import edu.dominio.fabricante.Fabricante;
+import edu.dominio.usuario.RestriccionConsumo;
 
 public class DispositivoEstandar implements Dispositivo {
 
@@ -10,6 +11,8 @@ public class DispositivoEstandar implements Dispositivo {
 	private double kWxHora;
 	private double horasUsoxDiaSegunUsuario;
 	private Fabricante fabricante;
+	private RestriccionConsumo minima;
+	private RestriccionConsumo maxima;
 
 	public DispositivoEstandar(String nombre, double kWxHora, double horasUso, Fabricante fabricante) {
 		this.nombre = nombre;
@@ -33,6 +36,14 @@ public class DispositivoEstandar implements Dispositivo {
 		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante);
 	}
 
-
+	public RestriccionConsumo getMinima()
+	{
+		return this.minima;
+	}
+	
+	public RestriccionConsumo getMaxima()
+	{
+		return this.maxima;
+	}
 	
 }

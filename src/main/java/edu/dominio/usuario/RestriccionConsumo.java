@@ -1,7 +1,15 @@
 package edu.dominio.usuario;
 
-class RestriccionConsumo
+public class RestriccionConsumo
 {
 	String tipoRestriccion;  //("<=", ">=", "==")
 	double valor;
+	
+	public String getTipoRestriccion() {
+		return this.tipoRestriccion;
+	}
+	
+	public double getValor() {
+		return this.valor;
+	}
 }
