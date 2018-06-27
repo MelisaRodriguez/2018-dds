@@ -10,12 +10,10 @@
 
 	"dispositivosInteligentes":[
 		{
-		"estado":{ "className" : "edu.empresa.estadoApagado" },
 		"nombreGenerico":"plancha",
 		"kWxHora":22.0,
 		"fabricante":{
-			"nombre":"Sammsung",
-			"formaDeEnvio": { "className" : "edu.fabricante.MensajeObjetos"}
+				
 			}
 		}
 			],
@@ -80,4 +78,27 @@
 	}
 	
 	
+]
+
+
+
+
+
+
+
+
+[
+	{"nombre":"Heladera",
+	"fechaDeRegistro":
+		{
+			"year":2018,
+			"month":5,
+			"day":18
+		},
+	"fabricante":
+	{
+			"type":"SanyoTelevisor"
+	},
+	"registrosConsumo":[]
+	}
 ]

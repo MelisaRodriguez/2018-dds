@@ -6,7 +6,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 import org.junit.Before;
 
-import com.google.common.reflect.TypeToken;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -33,7 +35,9 @@ public class ClienteFixture {
 	{
 		RuntimeTypeAdapterFactory<Fabricante> adapterFactory = RuntimeTypeAdapterFactory.of(Fabricante.class, "type")
 				.registerSubtype(SanyoTelevisor.class); // Repetir ultimo punto por cada nueva implementacion adapter
+		
 		Gson leer = new GsonBuilder().registerTypeAdapterFactory(adapterFactory).create();
+		
 		Type auxTipo = new TypeToken<List<Cliente>>(){}.getType();
 		try {
 			RepoClientes.cargarClientes(leer.fromJson(new FileReader("Clientes.json"), auxTipo));
@@ -41,6 +45,9 @@ public class ClienteFixture {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
 		clientes = RepoClientes.getInstanceOfSingleton().getEntidades();
 		dispositivoInteligente = mock(DispositivoInteligente.class);
 	}
