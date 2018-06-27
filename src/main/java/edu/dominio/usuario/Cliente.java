@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
+import edu.dominio.empresa.LlamarSimplex;
 import edu.repositorios.RepoCategorias;
 
 
@@ -26,11 +27,12 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
+	private LlamarSimplex llamarSimplex;
 
 	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, LlamarSimplex llamarSimplex) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -43,11 +45,12 @@ public class Cliente {
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 		this.ahorroAutomatico = ahorroAutomatico;
+		this.llamarSimplex = llamarSimplex;
 	}
 	
 	public double solicitarRecomendacion()
 	{
-		return LlamarSimplex.generarRecomendacion(this);
+		return this.llamarSimplex.generarRecomendacion(this);
 	} // POR AHORA SOLO DEVUELVE Z.
 
 	public void recategorizar() {
@@ -55,7 +58,7 @@ public class Cliente {
 				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
 	}
 
-	private List<Dispositivo> todosSusDispositivos() {
+	public List<Dispositivo> todosSusDispositivos() {
 		return Stream.concat(dispositivosInteligentes.stream(), dispositivosEstandar.stream())
 				.collect(Collectors.toList());
 	}

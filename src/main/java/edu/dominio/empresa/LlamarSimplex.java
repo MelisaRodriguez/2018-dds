@@ -18,8 +18,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class LlamarSimplex {
 	private RestriccionConsumo maxima;
+	
+	public LlamarSimplex(RestriccionConsumo maxima) {
+		this.maxima = maxima;
+	}
 	
 	public double generarRecomendacion(Cliente cliente) {
 		this.CrearSCV(realizarCalculos(cliente));
@@ -57,7 +62,7 @@ public class LlamarSimplex {
 		// Se calcula las variables para el simplex
 		int cantDispositivos = cliente.cantDispositivosEnTotal();
 				
-		int cantRestricciones = 1 + cantDispositivos * 2; // el no negatividad no lo hago no? porque el menor y mayor ya me dan el limite
+		int cantRestricciones = 1 + cantDispositivos * 2; 
 				
 		List<String> coefDispositivos = new ArrayList<String>();
 		List<Dispositivo> dispositivos = cliente.todosSusDispositivos();
@@ -65,7 +70,7 @@ public class LlamarSimplex {
 		
 		List<String> bools = new ArrayList<String>();	
 		coefDispositivos.forEach(coefDispositivo -> {
-			if(Double.parseDouble(coefDispositivo) >= 0)
+			if(Double.parseDouble(coefDispositivo) >= 0.0)
 				bools.add("true");
 			else
 				bools.add("false");
