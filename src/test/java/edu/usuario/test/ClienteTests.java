@@ -42,7 +42,6 @@ public class ClienteTests extends ClienteFixture {
 	public void testCantidadDispositivosEncendidos() // Cliente (cantDispositivosEncendidos)
 	{
 		Cliente unCliente = clientes.get(0);
-		
 		Assert.assertEquals(0, unCliente.cantDispositivosEncendidos());
 	}
 

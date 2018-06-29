@@ -12,6 +12,6 @@ public class AdministradorFixture {
 
 	@Before
 	public void fixture() {
-		admin = new Administrador("Gastón", "Prieto", "Mozart 1800 - CABA", 101, LocalDate.of(2017, 3, 28));
+		admin = new Administrador("Gastón", "Prieto", "Mozart 1800 - CABA", 101, LocalDate.of(2017, 4, 28));
 	}
 }

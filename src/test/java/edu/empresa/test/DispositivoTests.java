@@ -15,16 +15,6 @@ public class DispositivoTests extends DispositivoFixture{
 		Assert.assertEquals(50.0, dispositivoEstandar.calcularConsumo());	
 	}
 	
-	@Test
-	public void testConsumoInteligente() 
-	{
-		when(televisor.cuantoConsume()).thenReturn(10.0);
-		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); 
-		
-		//Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	// anda bien este test
-		Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	
-		//Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo());	
-	}
 	
 	@Test
 	public void apagarDispositivoInteligente() 
@@ -34,6 +24,17 @@ public class DispositivoTests extends DispositivoFixture{
 		
 		Assert.assertTrue(dispositivoInteligente.estaApagado());	
 		verify(televisor).apagar();
+	}
+	
+	@Test
+	public void testConsumoInteligente() 
+	{
+		when(televisor.cuantoConsume()).thenReturn(10.0);
+		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); 
+		
+		//Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	// anda bien este test
+		Assert.assertEquals( 0.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	
+		//Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo());	
 	}
 	
 	@Test
