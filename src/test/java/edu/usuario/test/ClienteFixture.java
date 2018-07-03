@@ -1,5 +1,6 @@
 package edu.usuario.test;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
@@ -22,11 +23,13 @@ import edu.dominio.usuario.Cliente;
 import edu.repositorios.RuntimeTypeAdapterFactory;
 
 public class ClienteFixture {
-	protected List<Cliente> clientes;
+	//protected List<Cliente> clientes;
 	protected DispositivoEstandar dispositivoEstandar;
 	protected DispositivoInteligente dispositivoInteligente;
 	protected SanyoTelevisor televisor;
-
+	
+	public List<Cliente> clientes;
+	
 	@Before
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
@@ -34,25 +37,34 @@ public class ClienteFixture {
                 .of(Fabricante.class, "type")
                 .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1
                 //.registerSubtype(FabricanteY.class);
-        
+        /*
         final RuntimeTypeAdapterFactory<Dispositivo> typeDispositivo = RuntimeTypeAdapterFactory
                 .of(Dispositivo.class, "type")
                 .registerSubtype(DispositivoInteligente.class)//AGREGAR 1 X 1
                 .registerSubtype(DispositivoEstandar.class);
-        
+        */
         final Gson gson = new GsonBuilder()
         		.registerTypeAdapterFactory(typeFabricante)
-        		.registerTypeAdapterFactory(typeDispositivo)
+        		//.registerTypeAdapterFactory(typeDispositivo)
         		.create();
         
         final TypeToken<List<Cliente>> clienteListType 
     	= new TypeToken<List<Cliente>>() {};
+    	
+    	BufferedReader br = null;
     	try {
-    		List<Cliente> clientes = gson.fromJson( new FileReader("Clientes.json"), clienteListType.getType());
-    	}
-    	catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
+			br = new BufferedReader( new FileReader("Clientes.json") );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	dispositivoInteligente = mock(DispositivoInteligente.class);
+    	clientes = gson.fromJson( br, clienteListType.getType());
 	}
+
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+	
+	
 }
