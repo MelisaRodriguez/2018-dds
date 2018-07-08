@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.dominio.fabricante.Fabricante;
-import edu.dominio.usuario.RestriccionConsumo;
 
 public class DispositivoInteligente implements Dispositivo {
 	
@@ -13,8 +12,8 @@ public class DispositivoInteligente implements Dispositivo {
 	private LocalDate fechaDeRegistro;
 	private Fabricante fabricante; // Adapter
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
-	private RestriccionConsumo minima;
-	private RestriccionConsumo maxima;
+	private double restriccionMinima;
+	private double restriccionMaxima;
 	
 	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante) {
 		this.nombre = nombre;
@@ -68,17 +67,23 @@ public class DispositivoInteligente implements Dispositivo {
 		return fabricante.estaModoAhorroEnergia();
 	}
 	
+	public double getPotencia()
+	{
+		return fabricante.getPotencia();
+	}
+	
 	public void accionar() { // se desconoce implementación, al menos hasta entrega 1.
 	}
 	
-	public RestriccionConsumo getMinima()
+	public double getRestriccionMinima()
 	{
-		return this.minima;
+		return this.restriccionMinima;
 	}
 	
-	public RestriccionConsumo getMaxima()
+	public double getRestriccionMaxima()
 	{
-		return this.maxima;
+		return this.restriccionMaxima;
 	}
+
 
 }

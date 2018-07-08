@@ -25,26 +25,9 @@ public class LlamarSimplexFixture {
 	
 	protected Cliente cliente;
 	protected LlamarSimplex llamarSimplex;
-	protected RestriccionConsumo llamarSimplexMaxima;
 	
 	protected ArrayList<Dispositivo> dispositivos;
-	
-	protected RestriccionConsumo aireAcondicionadoMinima;
-	protected RestriccionConsumo aireAcondicionadoMaxima;
-	protected RestriccionConsumo lamparaMinima;
-	protected RestriccionConsumo lamparaMaxima;
-	protected RestriccionConsumo televisorMinima;
-	protected RestriccionConsumo televisorMaxima;
-	protected RestriccionConsumo pcMinima;
-	protected RestriccionConsumo pcMaxima;
-	protected RestriccionConsumo lavarropasMinima;
-	protected RestriccionConsumo lavarropasMaxima;
-	protected RestriccionConsumo microondasMinima;
-	protected RestriccionConsumo microondasMaxima;
-	protected RestriccionConsumo planchaMinima;
-	protected RestriccionConsumo planchaMaxima;
-	protected RestriccionConsumo ventiladorMinima;
-	protected RestriccionConsumo ventiladorMaxima;
+
 	
 	@Before
 	public void fixture() {
@@ -58,8 +41,6 @@ public class LlamarSimplexFixture {
 		ventilador = mock(DispositivoInteligente.class);
 		
 		cliente = mock(Cliente.class);
-		llamarSimplexMaxima = mock(RestriccionConsumo.class);
-		llamarSimplex = new LlamarSimplex(llamarSimplexMaxima);
 		
 		dispositivos = new ArrayList<Dispositivo>();
 		dispositivos.add(aireAcondicionado);
@@ -70,37 +51,5 @@ public class LlamarSimplexFixture {
 		dispositivos.add(microondas);
 		dispositivos.add(plancha);
 		dispositivos.add(ventilador);
-		
-		aireAcondicionadoMinima = mock(RestriccionConsumo.class);
-		aireAcondicionadoMaxima = mock(RestriccionConsumo.class);
-		lamparaMinima = mock(RestriccionConsumo.class);
-		lamparaMaxima = mock(RestriccionConsumo.class);
-		televisorMinima = mock(RestriccionConsumo.class);
-		televisorMaxima = mock(RestriccionConsumo.class);
-		pcMinima = mock(RestriccionConsumo.class);
-		pcMaxima = mock(RestriccionConsumo.class);
-		lavarropasMinima = mock(RestriccionConsumo.class);
-		lavarropasMaxima = mock(RestriccionConsumo.class);
-		microondasMinima = mock(RestriccionConsumo.class);
-		microondasMaxima = mock(RestriccionConsumo.class);
-		planchaMinima = mock(RestriccionConsumo.class);
-		planchaMaxima = mock(RestriccionConsumo.class);
-		ventiladorMinima = mock(RestriccionConsumo.class);
-		ventiladorMaxima = mock(RestriccionConsumo.class);
 	}
 }
-
-/*
- * public class DispositivoFixture {
-	protected DispositivoInteligente dispositivoInteligente;
-	protected DispositivoEstandar dispositivoEstandar;
-	protected SanyoTelevisor televisor;
-	
-	@Before
-	public void fixture() {
-		televisor = mock(SanyoTelevisor.class);
-		dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), televisor);
-		dispositivoEstandar = new DispositivoEstandar("Televisor", 10, 5, televisor);
-	}
-}*/
- */

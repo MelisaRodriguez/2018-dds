@@ -11,8 +11,8 @@ public class DispositivoEstandar implements Dispositivo {
 	private double kWxHora;
 	private double horasUsoxDiaSegunUsuario;
 	private Fabricante fabricante;
-	private RestriccionConsumo minima;
-	private RestriccionConsumo maxima;
+	private double restriccionMinima;
+	private double restriccionMaxima;
 
 	public DispositivoEstandar(String nombre, double kWxHora, double horasUso, Fabricante fabricante) {
 		this.nombre = nombre;
@@ -36,14 +36,19 @@ public class DispositivoEstandar implements Dispositivo {
 		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante);
 	}
 
-	public RestriccionConsumo getMinima()
+	public double getRestriccionMinima()
 	{
-		return this.minima;
+		return this.restriccionMinima;
 	}
 	
-	public RestriccionConsumo getMaxima()
+	public double getRestriccionMaxima()
 	{
-		return this.maxima;
+		return this.restriccionMaxima;
+	}
+	
+	public double getPotencia()
+	{ 
+		return this.kWxHora;
 	}
 	
 }
