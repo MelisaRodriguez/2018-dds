@@ -15,9 +15,14 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 				repo = new RepoClientes();
 		return repo;
 	}
-	
-	public static void cargarClientes(List<Cliente> clientes)
-	{
-		repo.entidades = clientes;
+
+	public static void cargarClientes(Object fromJson) {
+		
+		
+		
+		// TODO Auto-generated method stub
+		
 	}
+
+
 }
