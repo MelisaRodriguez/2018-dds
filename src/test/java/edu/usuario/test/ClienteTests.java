@@ -2,8 +2,6 @@ package edu.usuario.test;
 
 import org.junit.Test;
 
-import com.google.gson.Gson;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;

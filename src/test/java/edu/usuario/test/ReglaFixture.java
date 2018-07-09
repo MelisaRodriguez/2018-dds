@@ -1,7 +1,5 @@
 package edu.usuario.test;
 
-import static org.mockito.Mockito.mock;
-
 import java.util.Arrays;
 
 import org.junit.Before;

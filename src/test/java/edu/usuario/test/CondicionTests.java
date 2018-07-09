@@ -1,8 +1,5 @@
 package edu.usuario.test;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import org.junit.Test;
 
 import junit.framework.Assert;

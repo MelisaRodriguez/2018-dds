@@ -1,17 +1,16 @@
 package edu.empresa.test;
 
-import static org.mockito.Mockito.mock;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import org.junit.Before;
 
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.LlamarSimplex;
 import edu.dominio.usuario.Cliente;
-import edu.dominio.usuario.RestriccionConsumo;
 
 public class LlamarSimplexFixture {
 	protected DispositivoInteligente aireAcondicionado;

@@ -22,6 +22,7 @@ public class DispositivoInteligente implements Dispositivo {
 		this.registrosConsumo = new ArrayList<RegistroMedicion>();
 	}
 
+	@Override
 	public double calcularConsumo() 
 	{
 		return fabricante.cuantoConsume();
@@ -67,6 +68,7 @@ public class DispositivoInteligente implements Dispositivo {
 		return fabricante.estaModoAhorroEnergia();
 	}
 	
+	@Override
 	public double getPotencia()
 	{
 		return fabricante.getPotencia();
@@ -75,11 +77,13 @@ public class DispositivoInteligente implements Dispositivo {
 	public void accionar() { // se desconoce implementación, al menos hasta entrega 1.
 	}
 	
+	@Override
 	public double getRestriccionMinima()
 	{
 		return this.restriccionMinima;
 	}
 	
+	@Override
 	public double getRestriccionMaxima()
 	{
 		return this.restriccionMaxima;

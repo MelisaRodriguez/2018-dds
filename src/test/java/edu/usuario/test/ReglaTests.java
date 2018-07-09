@@ -2,8 +2,6 @@ package edu.usuario.test;
 
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
-
 public class ReglaTests extends ReglaFixture{
 	
 	@Test

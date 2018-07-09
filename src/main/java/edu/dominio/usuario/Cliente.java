@@ -48,10 +48,10 @@ public class Cliente {
 		this.llamarSimplex = llamarSimplex;
 	}
 	
-	public double solicitarRecomendacion()
+	public void solicitarRecomendacion()
 	{
-		return this.llamarSimplex.generarRecomendacion(this);
-	} // POR AHORA SOLO DEVUELVE Z.
+		this.llamarSimplex.generarRecomendacion(this);
+	} 
 
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()

@@ -1,9 +1,8 @@
 package edu.empresa.test;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import java.time.LocalDate;
+
+import org.junit.Test;
 
 public final class LlamarSimplexTests extends LlamarSimplexFixture{
 	@Test
@@ -44,7 +43,7 @@ public final class LlamarSimplexTests extends LlamarSimplexFixture{
 
 }
 
-	// PEQUEÑA GUIA PARA TESTS
+	// PEQUEï¿½A GUIA PARA TESTS
 	// Assert.assertTrue(metodo que devuelva un true)
 	// Assert.assertFalse(metodo que devuelva false)
 	// Assert.assertEquals(metodo que devuelva valor, metodo que devuelva valor)

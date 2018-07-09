@@ -6,14 +6,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 import org.junit.Before;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
-
-import static org.mockito.Mockito.mock;
-
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.Fabricante;
