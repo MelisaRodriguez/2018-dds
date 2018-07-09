@@ -2,22 +2,7 @@ package edu.usuario.test;
 
 import org.junit.Test;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
-import edu.dominio.fabricante.Fabricante;
-import edu.dominio.fabricante.SanyoTelevisor;
 import edu.dominio.usuario.Cliente;
-import edu.repositorios.RepoCategorias;
-import edu.repositorios.RuntimeTypeAdapterFactory;
 import junit.framework.Assert;
 
 public class ClienteTests extends ClienteFixture {
