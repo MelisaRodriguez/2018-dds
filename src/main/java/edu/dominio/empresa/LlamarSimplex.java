@@ -46,7 +46,7 @@ public class LlamarSimplex {
 		
 		List<LinearConstraint> restricciones = new ArrayList<LinearConstraint()>; 
 		
-		new LinealConstaint(dispositivos.mapToDouble(dispositivo -> dispositivo.getPotencia()).toArray(), Relationship.LEQ, this.maxima);
+		restricciones.add(new LinealConstaint(dispositivos.mapToDouble(dispositivo -> dispositivo.getPotencia()).toArray(), Relationship.LEQ, this.maxima));
 	
 		int dispositivoActual = 0;
 		dispositivos.forEach(dispositivo -> {
