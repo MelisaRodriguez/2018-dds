@@ -5,7 +5,7 @@ import org.junit.Before;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.fabricante.SanyoTelevisor;
-
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 

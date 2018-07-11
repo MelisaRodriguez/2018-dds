@@ -54,4 +54,9 @@ public class DispositivoEstandar implements Dispositivo {
 		return this.kW;
 	}
 	
+	@Override
+	public String getNombre()
+	{
+		return nombre;
+	}
 }

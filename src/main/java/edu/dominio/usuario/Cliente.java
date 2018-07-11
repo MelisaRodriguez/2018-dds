@@ -27,12 +27,11 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
-	private LlamarSimplex llamarSimplex;
 
 	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, LlamarSimplex llamarSimplex) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -45,12 +44,11 @@ public class Cliente {
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 		this.ahorroAutomatico = ahorroAutomatico;
-		this.llamarSimplex = llamarSimplex;
 	}
 	
-	public void solicitarRecomendacion()
+	public void solicitarRecomendacion(double restriccionMaxima)
 	{
-		this.llamarSimplex.generarRecomendacion(this);
+		new LlamarSimplex(restriccionMaxima).generarRecomendacion(this);
 	} 
 
 	public void recategorizar() {

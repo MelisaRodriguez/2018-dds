@@ -1,10 +1,11 @@
 package edu.empresa.test;
 import java.time.LocalDate;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
+import static org.mockito.Mockito.*;
+
 public class DispositivoTests extends DispositivoFixture{
 	@Test
 	public void testConsumoEstandar() 
@@ -17,10 +18,8 @@ public class DispositivoTests extends DispositivoFixture{
 	{
 		when(televisor.cuantoConsume()).thenReturn(10.0);
 		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); 
-		
-		//Assert.assertEquals(10.0, dispositivoInteligente.calcularConsumo());	// anda bien este test
-		Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2017, 3, 28), LocalDate.of(2017, 3, 29)));	
-		//Assert.assertEquals(240.0, dispositivoInteligente.consumoTotalEnPeriodo());	
+	
+		Assert.assertEquals(10.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018, 7, 9), LocalDate.of(2018, 7, 11)));		
 	}
 	
 	@Test

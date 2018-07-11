@@ -6,4 +6,5 @@ public interface Dispositivo
 	public double getRestriccionMinima();
 	public double getRestriccionMaxima();
 	public double getPotencia();
+	public String getNombre();
 }

@@ -2,13 +2,19 @@ package edu.empresa.test;
 
 import java.time.LocalDate;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+
+import static org.mockito.Mockito.*;
 
 public final class LlamarSimplexTests extends LlamarSimplexFixture{
 	@Test
 	public void gererarRecomndacion() {
 		when(cliente.cantDispositivosEnTotal()).thenReturn(8);
 		when(cliente.todosSusDispositivos()).thenReturn(dispositivos);
+		when(cliente.dispositivosInteligentes()).thenReturn(inteligentes);
+		when(cliente.getAhorroAutomatico()).thenReturn(true);
 		
 		// Coeficientes  
 		when(aireAcondicionado.getPotencia()).thenReturn(1.013);
@@ -19,6 +25,16 @@ public final class LlamarSimplexTests extends LlamarSimplexFixture{
 		when(microondas.getPotencia()).thenReturn(0.64);
 		when(plancha.getPotencia()).thenReturn(0.75);
 		when(ventilador.getPotencia()).thenReturn(0.06);
+		
+		// Nombres:
+		when(aireAcondicionado.getNombre()).thenReturn("Aire acondicionado");
+		when(lampara.getNombre()).thenReturn("Lámpara");
+		when(televisor .getNombre()).thenReturn("Televisor");
+		when(pc.getNombre()).thenReturn("PC");
+		when(lavarropas.getNombre()).thenReturn("Lavarropas");
+		when(microondas.getNombre()).thenReturn("Microondas");
+		when(plancha.getNombre()).thenReturn("Plancha");
+		when(ventilador.getNombre()).thenReturn("Ventilador");
 		
 		// Restricciones
 		when(aireAcondicionado.getRestriccionMinima()).thenReturn(90.0);
@@ -38,7 +54,12 @@ public final class LlamarSimplexTests extends LlamarSimplexFixture{
 		when(ventilador.getRestriccionMinima()).thenReturn(120.0);
 		when(ventilador.getRestriccionMaxima()).thenReturn(360.0);
 		
-		Assert.assertEquals(0.0, llamarSimplex.generarRecomendacion(cliente)); //TODO
+		when(aireAcondicionado.horasTotalesEnPeriodo(LocalDate.of(2018, 7, 1), LocalDate.now())).thenReturn(500.0);
+		
+		llamarSimplex.generarRecomendacion(cliente);
+		verify(aireAcondicionado).apagarse();
+		Assert.assertTrue(true);
+	
 	}
 
 }

@@ -28,7 +28,17 @@ public class LlamarSimplex {
 	public void generarRecomendacion(Cliente cliente) {
 	
 		PointValuePair resultado = ejecutarSimplex(cliente);
-		// PRINTS <-- Okey... :( se encarga Gonzalo :/
+		
+		double [] arrayResultados = resultado.getPoint();
+		double z = resultado.getValue(); 
+		List<Dispositivo> dispositivos = cliente.todosSusDispositivos();
+		int posicion = 0;
+		for (Dispositivo d : dispositivos)
+		{
+			System.out.println("Horas máximas posibles de uso para " + d.getNombre() + " son " + arrayResultados[posicion]);
+			posicion++;
+		}
+		System.out.println("Sumatoria de horas máximas posibles de consumo de todos los dispositivos: " + z);
 		
 		if (cliente.getAhorroAutomatico()) {
 			this.mejorarEficienciaHogar(cliente,resultado);
@@ -83,7 +93,7 @@ public class LlamarSimplex {
 	}
 	
 	private double[] coeficientesUno(int cantDispositivos){
-		double [] lista = {};
+		double [] lista = new double [cantDispositivos];
 		for(int i = 0; i < cantDispositivos; i++) {
 			lista[i] = (1.0);
 		}
@@ -91,7 +101,7 @@ public class LlamarSimplex {
 	}
 	
 	private double[] listaRestriccion(int dispositivoActual, int cantDispositivos){
-		double [] lista = {};
+		double [] lista = new double [cantDispositivos];
 		for(int i = 0; i < cantDispositivos; i++) {
 			if(dispositivoActual == i)
 				lista[i] = (1.0);

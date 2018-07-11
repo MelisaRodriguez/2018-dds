@@ -11,6 +11,7 @@ import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.LlamarSimplex;
 import edu.dominio.usuario.Cliente;
+import static org.mockito.Mockito.*;
 
 public class LlamarSimplexFixture {
 	protected DispositivoInteligente aireAcondicionado;
@@ -26,7 +27,7 @@ public class LlamarSimplexFixture {
 	protected LlamarSimplex llamarSimplex;
 	
 	protected ArrayList<Dispositivo> dispositivos;
-
+	protected ArrayList<DispositivoInteligente> inteligentes;
 	
 	@Before
 	public void fixture() {
@@ -50,5 +51,14 @@ public class LlamarSimplexFixture {
 		dispositivos.add(microondas);
 		dispositivos.add(plancha);
 		dispositivos.add(ventilador);
+		
+		inteligentes = new ArrayList<DispositivoInteligente>();
+		inteligentes.add(aireAcondicionado);
+		inteligentes.add(lampara);
+		inteligentes.add(televisor);
+		inteligentes.add(pc);
+		inteligentes.add(ventilador);
+		
+		llamarSimplex = new LlamarSimplex(612);
 	}
 }

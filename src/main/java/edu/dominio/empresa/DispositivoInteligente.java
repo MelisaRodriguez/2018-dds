@@ -101,6 +101,12 @@ public class DispositivoInteligente implements Dispositivo {
 	{
 		return fabricante.getHorasEncendido();
 	}
+	
+	@Override
+	public String getNombre()
+	{
+		return nombre;
+	}
 
 
 }
