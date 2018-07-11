@@ -40,29 +40,22 @@ public class LlamarSimplex {
 		
 		double [] arrayResultados = resultado.getPoint(); 
 		
-		// cliente.todosSusDispositivos me da una lista con dispositivos inteligentes y estandares, los entandares nos dan problemas
 		int posicion = 0;
-		for (Dispositivo dispositivo : cliente.todosSusDispositivos())
+		for (DispositivoInteligente dispositivo : cliente.dispositivosInteligentes() )
 		{
 			this.revisarEficienciaDispositivo(dispositivo,arrayResultados[posicion]);
 			posicion++;
 		}
 		
-		
 	}
 	
-	private LocalDate primeriDiaDelMes(LocalDate fechaActual) {
+	private LocalDate primerDiaDelMes(LocalDate fechaActual) {
 		return LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 1) ;
-		// es por que la consigna me pide que revise las horas de uso del dispositivo desde principio de mes hasta la fecha actual
 	}
 	
 	private void revisarEficienciaDispositivo(DispositivoInteligente dispositivo, double horasConsumoOptimas) {
-		//no tengo forma de saber en un dispositivo estandar cuanto consumo lleva en lo que va del mes
-		//no tengo forma de saber las horas de uso que lleva un dispositivo en un periodo de tiempo
-		//solo a los dispositivos inteligentes se les puede decir que se apaguen
 		
-		//en el if debo comparar las horas de uso en lo que va del mes del sipositivo contra las horas de consumo optimas
-		if() {
+		if(horasConsumoOptimas <= dispositivo.horasTotalesEnPeriodo( this.primerDiaDelMes(LocalDate.now() ), LocalDate.now() ) ) {
 			dispositivo.apagarse();
 		}
 		

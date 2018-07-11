@@ -31,7 +31,7 @@ public class DispositivoInteligente implements Dispositivo {
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
 	public void agregarNuevoRegistroDeConsumo()
 	{
-		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo()));
+		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo(), this.getHorasEncendido() ) );
 	}
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
@@ -39,6 +39,14 @@ public class DispositivoInteligente implements Dispositivo {
 		return 	registrosConsumo.stream()
 				.filter(registro -> registro.estaEntreFechas(inicio, fin))
 				.mapToDouble(registro -> registro.kwConsumidos())
+				.sum();
+	}
+	
+	public double horasTotalesEnPeriodo (LocalDate inicio, LocalDate fin) { 
+		// se asume, y se van a guardar de manera ordenada los registros
+		return 	registrosConsumo.stream()
+				.filter(registro -> registro.estaEntreFechas(inicio, fin))
+				.mapToDouble(registro -> registro.horasEncendido())
 				.sum();
 	}
 
@@ -87,6 +95,11 @@ public class DispositivoInteligente implements Dispositivo {
 	public double getRestriccionMaxima()
 	{
 		return this.restriccionMaxima;
+	}
+	
+	public double getHorasEncendido()
+	{
+		return fabricante.getHorasEncendido();
 	}
 
 

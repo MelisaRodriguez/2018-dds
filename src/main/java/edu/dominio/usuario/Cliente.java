@@ -127,4 +127,7 @@ public class Cliente {
 		return this.ahorroAutomatico;
 	}
 	
+	public List<DispositivoInteligente> dispositivosInteligentes (){
+		return dispositivosInteligentes;
+	}
 }

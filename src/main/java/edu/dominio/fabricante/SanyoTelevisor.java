@@ -48,4 +48,10 @@ public class SanyoTelevisor implements Fabricante {
 		// MOCK
 	}
 	
+	@Override
+	public double getHorasEncendido() {
+		return 1.0;
+		// MOCK
+	}
+	
 }
