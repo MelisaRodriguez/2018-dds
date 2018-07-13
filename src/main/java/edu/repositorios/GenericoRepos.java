@@ -9,4 +9,9 @@ public class GenericoRepos<T> {
 	public List<T> getEntidades() {
 		return entidades;
 	}
+	
+	public void agregar(T entidad)
+	{
+		entidades.add(entidad);
+	}
 }

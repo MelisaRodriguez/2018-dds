@@ -60,9 +60,9 @@ public class ClienteTests extends ClienteFixture {
 		Cliente unCliente = clientes.get(0);
 		unCliente.recategorizar();
 		Assert.assertEquals(RepoCategorias.getSingletonInstance().getEntidades().get(0), unCliente.getCategoria());
-		// No se puede poner en el valor esperado new Categor√≠a(par√°metros) porque
-		// tendr√≠a una categoria
-		// con los mismos par√°metros pero en otra direcci√≥n de memoria, es decir, no
+		// No se puede poner en el valor esperado new CategorÌa(par·metros) porque
+		// tendrÌa una categoria
+		// con los mismos par·metros pero en otra direcciÛn de memoria, es decir, no
 		// serian equivalentes
 	}*/
 	
@@ -92,7 +92,9 @@ public class ClienteTests extends ClienteFixture {
 		Assert.assertEquals(25, unCliente.getPuntos());
 	}
 	
-	// PEQUEÔøΩA GUIA PARA TESTS
+
+	// PEQUEnA GUIA PARA TESTS
+
 	// Assert.assertTrue(metodo que devuelva un true)
 	// Assert.assertFalse(metodo que devuelva false)
 	// Assert.assertEquals(metodo que devuelva valor, metodo que devuelva valor)
