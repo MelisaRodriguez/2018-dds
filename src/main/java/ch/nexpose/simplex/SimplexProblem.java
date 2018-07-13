@@ -2,7 +2,7 @@ package ch.nexpose.simplex;
 
 import ch.nexpose.simplex.types.ConstraintType;
 import ch.nexpose.simplex.types.OptimisationType;
-import com.sun.xml.ws.util.*;
+//import com.sun.xml.ws.util.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class SimplexProblem {
         String[] arrayDeDatos = this.recuperarDatosDe(data);
         cantidadDeVariables = Integer.parseInt(arrayDeDatos[unaPosicion++]);
         cantidadDeRestricciones = Integer.parseInt(arrayDeDatos[unaPosicion++]);
-        optimisationType = this.tipoDeOptimizacionSegun(arrayDeDatos[unaPosicion++]);
+        //optimisationType = this.tipoDeOptimizacionSegun(arrayDeDatos[unaPosicion++]);
         inicializarCoeficientesSegun(arrayDeDatos, unaPosicion);
         unaPosicion = unaPosicion + (this.cantidadDeVariables*2);
         inicializarRestriccionesSegun(arrayDeDatos, unaPosicion);
@@ -41,10 +41,10 @@ public class SimplexProblem {
                 .filter(s -> !s.isEmpty())
                 .toArray(String[]::new);
     }
-    
+   /* 
     private OptimisationType tipoDeOptimizacionSegun(String unValor) {
-    	return OptimisationType.valueOf(StringUtils.capitalize(unValor));
-    }
+    	//return OptimisationType.valueOf(StringUtils.capitalize(unValor));
+    }*/
     
     private void inicializarCoeficientesSegun(String[] datos, int unaPosicion) {
        agregarCoeficientesSegun(datos, unaPosicion);

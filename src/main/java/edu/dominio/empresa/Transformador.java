@@ -8,13 +8,15 @@ import edu.dominio.usuario.Cliente;
 import edu.repositorios.RepoZonaGeografica;
 
 public class Transformador {
-	private Point2D lugar;
+	
+	private Point2D.Double lugar;
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
-	public Transformador(Point2D lugar)
+	public Transformador(Point2D.Double lugar)
 	{
+		ZonaGeografica bolivia=new ZonaGeografica("Bolivia1",new Point2D.Double(-0.127512, 51.507222),8000);
 		this.lugar = lugar;
-		RepoZonaGeografica.getSingletonInstance().agregarTransformador(this, lugar);
+		RepoZonaGeografica.getSingletonInstance(bolivia).agregarTransformador(this, lugar);
 	}
 	
 	public void agregarCliente(Cliente unCliente)
@@ -27,7 +29,7 @@ public class Transformador {
 		return this.clientes.stream().mapToDouble(c->c.consumoTotal()).sum();
 	}
 	
-	public Point2D getLugar()
+	public Point2D.Double getLugar()
 	{
 		return this.lugar;
 	}
