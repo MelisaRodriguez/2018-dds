@@ -19,7 +19,7 @@ public class ZonaTest extends ZonaFixture {
 	
 	@Test
 	public void testTransformadorConsumidor() {
-		System.out.println(zona.get(0).getTransformadores().get(0));
+		//System.out.println(zona.get(0).getTransformadores().get(0));
 		Assert.assertEquals( 2028.0 , zona.get(0).getTransformadores().get(0).calcularConsumo() );
 	}	
 	

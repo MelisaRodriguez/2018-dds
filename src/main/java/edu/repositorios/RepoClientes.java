@@ -1,7 +1,5 @@
 package edu.repositorios;
 
-import java.util.List;
-
 import edu.dominio.usuario.Cliente;
 
 public class RepoClientes extends GenericoRepos<Cliente> {

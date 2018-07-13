@@ -1,6 +1,5 @@
 package edu.usuario.test;
 
-import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,22 +33,19 @@ public class ClienteFixture {
 	@Before
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
-		final RuntimeTypeAdapterFactory<Point2D> typeUbi = RuntimeTypeAdapterFactory
-                .of(Point2D.class, "type");
-		
         final RuntimeTypeAdapterFactory<Fabricante> typeFabricante = RuntimeTypeAdapterFactory
                 .of(Fabricante.class, "type")
                 .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1
                 //.registerSubtype(FabricanteY.class);
-        
+        /*
         final RuntimeTypeAdapterFactory<Dispositivo> typeDispositivo = RuntimeTypeAdapterFactory
                 .of(Dispositivo.class, "type")
                 .registerSubtype(DispositivoInteligente.class)//AGREGAR 1 X 1
                 .registerSubtype(DispositivoEstandar.class);
-        
+        */
         final Gson gson = new GsonBuilder()
-        		.registerTypeAdapterFactory(typeFabricante).registerTypeAdapterFactory(typeUbi)
-        		.registerTypeAdapterFactory(typeDispositivo)
+        		.registerTypeAdapterFactory(typeFabricante)
+        		//.registerTypeAdapterFactory(typeDispositivo)
         		.create();
         
         final TypeToken<List<Cliente>> clienteListType 

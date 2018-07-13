@@ -34,10 +34,9 @@ public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
 		return this.conseguirZonaSegun(zona->zona.getID().equalsIgnoreCase(ID)).verConsumo();
 	}
 	
-	public static RepoZonaGeografica getSingletonInstance(ZonaGeografica x) {
+	public static RepoZonaGeografica getSingletonInstance() {
 		if (repoZona == null) {
 			repoZona = new RepoZonaGeografica();
-			repoZona.agregar(x);
 		}
 		return repoZona;
 	}

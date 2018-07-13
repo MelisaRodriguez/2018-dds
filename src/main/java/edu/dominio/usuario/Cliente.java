@@ -49,7 +49,7 @@ public class Cliente {
 		
 		ZonaGeografica bolivia=new ZonaGeografica("Bolivia1",new Point2D.Double(-0.127512, 51.507222),8000);
 		
-		RepoZonaGeografica.getSingletonInstance(bolivia).SolicitarTransformador(this, ubicacion);
+		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
 	}
 	
 	public void recategorizar() {

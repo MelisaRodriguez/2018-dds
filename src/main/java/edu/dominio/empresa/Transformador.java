@@ -14,9 +14,8 @@ public class Transformador {
 	
 	public Transformador(Point2D.Double lugar)
 	{
-		ZonaGeografica bolivia=new ZonaGeografica("Bolivia1",new Point2D.Double(-0.127512, 51.507222),8000);
 		this.lugar = lugar;
-		RepoZonaGeografica.getSingletonInstance(bolivia).agregarTransformador(this, lugar);
+		RepoZonaGeografica.getSingletonInstance().agregarTransformador(this, lugar);
 	}
 	
 	public void agregarCliente(Cliente unCliente)

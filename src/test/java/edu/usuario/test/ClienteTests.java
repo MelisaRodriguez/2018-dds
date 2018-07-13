@@ -92,7 +92,9 @@ public class ClienteTests extends ClienteFixture {
 		Assert.assertEquals(25, unCliente.getPuntos());
 	}
 	
-	// PEQUEA GUIA PARA TESTS
+
+	// PEQUEnA GUIA PARA TESTS
+
 	// Assert.assertTrue(metodo que devuelva un true)
 	// Assert.assertFalse(metodo que devuelva false)
 	// Assert.assertEquals(metodo que devuelva valor, metodo que devuelva valor)

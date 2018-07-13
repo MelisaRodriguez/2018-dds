@@ -68,4 +68,8 @@ public class DispositivoInteligente implements Dispositivo {
 	public void accionar() { // se desconoce implementación, al menos hasta entrega 1.
 	}
 
+	public Object getFabricante() {
+		return fabricante;
+	}
+
 }
