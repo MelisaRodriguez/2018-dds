@@ -22,7 +22,7 @@
 			"dispositivosEstandar":[
 			{
 				"nombre":"celular",
-				"kWxHora":45.0,
+				"kW":45.0,
 				"horasUsoxDiaSegunUsuario":15.0
 			}],
 			"ahorroAutomatico": false,
@@ -42,7 +42,7 @@
 			"dispositivosEstandar":[
 			{
 				"nombre":"celular",
-				"kWxHora":45.0,
+				"kW":45.0,
 				"horasUsoxDiaSegunUsuario":15.0}],
 				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}},
@@ -62,7 +62,7 @@
 				"registrosConsumo":[]}],
 			"dispositivosEstandar":[
 				{"nombre":"heladera",
-				"kWxHora":45.0,
+				"kW":45.0,
 				"horasUsoxDiaSegunUsuario":15.0}],
 				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}}]}],

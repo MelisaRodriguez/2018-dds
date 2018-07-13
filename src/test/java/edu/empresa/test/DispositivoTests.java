@@ -51,10 +51,5 @@ public class DispositivoTests extends DispositivoFixture{
 		Assert.assertTrue(dispositivoInteligente.estaModoAhorroEnergia());	
 		verify(televisor).activarAhorroDeEnergia();
 	}
-	
-	// PEQUEÑA GUIA PARA TESTS
-	// Assert.assertTrue(metodo que devuelva un true)
-	// Assert.assertFalse(metodo que devuelva false)
-	// Assert.assertEquals(metodo que devuelva valor, metodo que devuelva valor)
-	// @Test (expected = TipoDeExcepcionEsperadaException)
+
 }

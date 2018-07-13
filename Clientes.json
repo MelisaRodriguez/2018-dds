@@ -10,14 +10,14 @@
 	"categoria":{"nombre":"R7","cargoFijo":443.59,"cargoVariable":0.851,"limiteInferior":601,"limiteSuperior":700},
 	"dispositivosInteligentes":[
 	{
-		"nombre":"plancha",
+		"nombre":"Televisor",
 		"fechaDeRegistro":{"year":2018,"month":5,"day":18},
 		"fabricante":{"type":"SanyoTelevisor"},"registrosConsumo":[]
 	}]
 	,"dispositivosEstandar":[
 	{
 		"nombre":"celular",
-		"kWxHora":45.0,
+		"kW":45.0,
 		"horasUsoxDiaSegunUsuario":15.0
 	}],
 	"ahorroAutomatico": false,
@@ -34,7 +34,7 @@
 	"fechaDeAltaServicio":{"year":2018,"month":5,"day":18},
 	"categoria":{"nombre":"R7","cargoFijo":443.59,"cargoVariable":0.851,"limiteInferior":601,"limiteSuperior":700},
 	"dispositivosInteligentes":[{"nombre":"plancha","fechaDeRegistro":{"year":2018,"month":5,"day":18},"fabricante":{"type":"SanyoTelevisor"},
-	"registrosConsumo":[]}],"dispositivosEstandar":[{"nombre":"celular","kWxHora":45.0,"horasUsoxDiaSegunUsuario":15.0}],
+	"registrosConsumo":[]}],"dispositivosEstandar":[{"nombre":"celular","kW":45.0,"horasUsoxDiaSegunUsuario":15.0}],
 	"ahorroAutomatico": false,
 	"ubicacion":{"x":-0.127512,"y":51.507222}
 }
@@ -49,7 +49,7 @@
 	"fechaDeAltaServicio":{"year":2018,"month":5,"day":18},
 	"categoria":{"nombre":"R7","cargoFijo":443.59,"cargoVariable":0.851,"limiteInferior":601,"limiteSuperior":700},
 	"dispositivosInteligentes":[{"nombre":"plancha","fechaDeRegistro":{"year":2018,"month":5,"day":18},"fabricante":{"type":"SanyoTelevisor"},
-	"registrosConsumo":[]}],"dispositivosEstandar":[{"nombre":"heladera","kWxHora":45.0,"horasUsoxDiaSegunUsuario":15.0}],
+	"registrosConsumo":[]}],"dispositivosEstandar":[{"nombre":"heladera","kW":45.0,"horasUsoxDiaSegunUsuario":15.0}],
 	"ahorroAutomatico": false,
 	"ubicacion":{"x":-0.127512,"y":51.507222}
 }

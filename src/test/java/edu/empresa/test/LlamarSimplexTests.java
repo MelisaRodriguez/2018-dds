@@ -63,9 +63,3 @@ public final class LlamarSimplexTests extends LlamarSimplexFixture{
 	}
 
 }
-
-	// PEQUE�A GUIA PARA TESTS
-	// Assert.assertTrue(metodo que devuelva un true)
-	// Assert.assertFalse(metodo que devuelva false)
-	// Assert.assertEquals(metodo que devuelva valor, metodo que devuelva valor)
-	// @Test (expected = TipoDeExcepcionEsperadaException)

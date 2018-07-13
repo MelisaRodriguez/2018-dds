@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.util.List;
 import org.junit.Before;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -37,6 +38,7 @@ public class ClienteFixture {
 	@Before
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
+		dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new SanyoTelevisor());
         final RuntimeTypeAdapterFactory<Fabricante> typeFabricante = RuntimeTypeAdapterFactory
                 .of(Fabricante.class, "type")
                 .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1
