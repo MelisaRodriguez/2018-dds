@@ -22,10 +22,10 @@
 			"dispositivosEstandar":[
 			{
 				"nombre":"celular",
-				"kWxHora":45.0,
+				"kW":45.0,
 				"horasUsoxDiaSegunUsuario":15.0
 			}],
-			"puntos":15,
+			"ahorroAutomatico": false,
 			"ubicacion":{"x":-0.127512,"y":51.507222}},
 			{"nombre":"Lucas",
 			"apellido":"Perez",
@@ -42,9 +42,9 @@
 			"dispositivosEstandar":[
 			{
 				"nombre":"celular",
-				"kWxHora":45.0,
+				"kW":45.0,
 				"horasUsoxDiaSegunUsuario":15.0}],
-				"puntos":15,
+				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}},
 			{"nombre":"Lucas",
 			"apellido":"Perez",
@@ -62,9 +62,9 @@
 				"registrosConsumo":[]}],
 			"dispositivosEstandar":[
 				{"nombre":"heladera",
-				"kWxHora":45.0,
+				"kW":45.0,
 				"horasUsoxDiaSegunUsuario":15.0}],
-				"puntos":15,
+				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}}]}],
 				
 		"radio":8000.0,

@@ -1,10 +1,13 @@
 package edu.usuario.test;
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 import org.junit.Before;
+import java.lang.reflect.Type;
+import java.time.LocalDate;
 
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -20,10 +23,12 @@ import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.fabricante.SanyoTelevisor;
 import edu.dominio.usuario.Cliente;
+
+
+import edu.repositorios.RepoClientes;
 import edu.repositorios.RuntimeTypeAdapterFactory;
 
 public class ClienteFixture {
-	//protected List<Cliente> clientes;
 	protected DispositivoEstandar dispositivoEstandar;
 	protected DispositivoInteligente dispositivoInteligente;
 	protected SanyoTelevisor televisor;
@@ -33,6 +38,7 @@ public class ClienteFixture {
 	@Before
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
+		dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new SanyoTelevisor());
         final RuntimeTypeAdapterFactory<Fabricante> typeFabricante = RuntimeTypeAdapterFactory
                 .of(Fabricante.class, "type")
                 .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1
@@ -65,6 +71,5 @@ public class ClienteFixture {
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
-	
 	
 }

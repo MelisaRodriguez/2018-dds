@@ -221,6 +221,5 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
       }
     }.nullSafe();
   }
-
+  
 }
-

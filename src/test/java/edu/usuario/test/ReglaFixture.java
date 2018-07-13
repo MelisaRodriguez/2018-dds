@@ -1,7 +1,5 @@
 package edu.usuario.test;
 
-import static org.mockito.Mockito.mock;
-
 import java.util.Arrays;
 
 import org.junit.Before;
@@ -10,6 +8,7 @@ import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Regla;
 
+import static org.mockito.Mockito.*;
 
 public class ReglaFixture {
 	protected Regla regla;
