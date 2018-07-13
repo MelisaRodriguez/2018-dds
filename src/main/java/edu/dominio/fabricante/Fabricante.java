@@ -11,5 +11,6 @@ public interface  Fabricante {
 	public abstract boolean estaEncendido();	
 	public abstract boolean estaApagado();
 	public abstract boolean estaModoAhorroEnergia();
-	
+	public abstract double getPotencia();
+	public abstract double getHorasEncendido();
 }

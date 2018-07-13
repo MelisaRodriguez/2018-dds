@@ -1,11 +1,11 @@
 package edu.usuario.test;
 
-import static org.mockito.Mockito.mock;
-
 import org.junit.Before;
 
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Sensor;
+
+import static org.mockito.Mockito.*;
 
 public class CondicionFixture {
 

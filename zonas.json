@@ -25,7 +25,7 @@
 				"kWxHora":45.0,
 				"horasUsoxDiaSegunUsuario":15.0
 			}],
-			"puntos":15,
+			"ahorroAutomatico": false,
 			"ubicacion":{"x":-0.127512,"y":51.507222}},
 			{"nombre":"Lucas",
 			"apellido":"Perez",
@@ -44,7 +44,7 @@
 				"nombre":"celular",
 				"kWxHora":45.0,
 				"horasUsoxDiaSegunUsuario":15.0}],
-				"puntos":15,
+				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}},
 			{"nombre":"Lucas",
 			"apellido":"Perez",
@@ -64,7 +64,7 @@
 				{"nombre":"heladera",
 				"kWxHora":45.0,
 				"horasUsoxDiaSegunUsuario":15.0}],
-				"puntos":15,
+				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}}]}],
 				
 		"radio":8000.0,

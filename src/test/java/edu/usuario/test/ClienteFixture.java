@@ -1,10 +1,12 @@
 package edu.usuario.test;
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 import org.junit.Before;
+import java.lang.reflect.Type;
 
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -20,10 +22,12 @@ import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.fabricante.SanyoTelevisor;
 import edu.dominio.usuario.Cliente;
+
+
+import edu.repositorios.RepoClientes;
 import edu.repositorios.RuntimeTypeAdapterFactory;
 
 public class ClienteFixture {
-	//protected List<Cliente> clientes;
 	protected DispositivoEstandar dispositivoEstandar;
 	protected DispositivoInteligente dispositivoInteligente;
 	protected SanyoTelevisor televisor;
@@ -65,6 +69,5 @@ public class ClienteFixture {
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
-	
 	
 }

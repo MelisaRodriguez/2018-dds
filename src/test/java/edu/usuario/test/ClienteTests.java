@@ -2,35 +2,38 @@ package edu.usuario.test;
 
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+
 import edu.dominio.usuario.Cliente;
+import edu.repositorios.RepoCategorias;
 import junit.framework.Assert;
 
 public class ClienteTests extends ClienteFixture {
-	
-	//public List<Cliente> clientes;
 	
 	@Test
 	public void testLeerJson() {
 		
 		// El archivo Json arma una lista de clientes con longitud 3 (para el actual
 		// .json)
-		System.out.println(clientes.size());
-		Assert.assertEquals( 3, clientes.size() );
+		Assert.assertEquals(3, clientes.size() );
 	}
-	
+
 	@Test
 	public void testClienteCuantosKwConsume() // Cliente (consumoTotal)
 	{
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(676.0, unCliente.consumoTotal());
 	}
-
+	
 	@Test
 	public void testCuantosDispositivosTieneCliente() // Cliente(cantDispositivos)
 	{
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(2, unCliente.cantDispositivosEnTotal());
 	}
+	
 
 	@Test
 	public void testCantidadDispositivosEncendidos() // Cliente (cantDispositivosEncendidos)
@@ -52,7 +55,7 @@ public class ClienteTests extends ClienteFixture {
 		Cliente unCliente = clientes.get(0);
 		Assert.assertEquals(true,unCliente.tieneDispositivoEncendido());
 	}
-/*
+
 	@Test
 	public void testRecategorizarCliente() // Cliente (recategorizar, getCategoria), RepoCategorias (solicitarCategoria,
 											// getCategorias), Categoria (estaEnLimites)
@@ -64,7 +67,7 @@ public class ClienteTests extends ClienteFixture {
 		// tendría una categoria
 		// con los mismos parámetros pero en otra dirección de memoria, es decir, no
 		// serian equivalentes
-	}*/
+	}
 	
 
 	@Test
@@ -89,7 +92,7 @@ public class ClienteTests extends ClienteFixture {
 	{
 		Cliente unCliente = clientes.get(2);
 		unCliente.convertirDispositivo(0);
-		Assert.assertEquals(25, unCliente.getPuntos());
+		Assert.assertEquals(15, unCliente.getPuntos());
 	}
 	
 

@@ -2,12 +2,10 @@ package edu.empresa.test;
 
 import org.junit.Before;
 
-import static org.mockito.Mockito.mock;
-
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.fabricante.SanyoTelevisor;
-
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 

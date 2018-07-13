@@ -13,9 +13,10 @@ import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.ZonaGeografica;
 import edu.repositorios.RepoCategorias;
 import edu.repositorios.RepoZonaGeografica;
-
+import edu.dominio.empresa.LlamarSimplex;
 
 public class Cliente {
+
 	private String nombre;
 	private String apellido;
 	private TipoDocumento tipoDocumento;
@@ -27,13 +28,12 @@ public class Cliente {
 	private List<DispositivoInteligente> dispositivosInteligentes;
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
+	private boolean ahorroAutomatico;
 	private Point2D.Double ubicacion;
-	//private Transformador miTransformador;
-
 	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar, Point2D.Double ubicacion) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Point2D.Double ubicacion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -45,19 +45,21 @@ public class Cliente {
 		this.puntos = this.dispositivosInteligentes.size() * 15;
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
+		this.ahorroAutomatico = ahorroAutomatico;
 		this.ubicacion = ubicacion;
 		
 		ZonaGeografica bolivia=new ZonaGeografica("Bolivia1",new Point2D.Double(-0.127512, 51.507222),8000);
 		
 		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
+
 	}
-	
+
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()
 				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
 	}
 
-	private List<Dispositivo> todosSusDispositivos() {
+	public List<Dispositivo> todosSusDispositivos() {
 		return Stream.concat(dispositivosInteligentes.stream(), dispositivosEstandar.stream())
 				.collect(Collectors.toList());
 	}
@@ -117,4 +119,21 @@ public class Cliente {
 		return this.puntos;
 	}
 	
+	public void solicitarRecomendacion(double restriccionMaxima)
+	{
+		new LlamarSimplex(restriccionMaxima).generarRecomendacion(this);
+	} 
+
+	public void setAhorroAutomatico(boolean ahorro)
+	{
+		this.ahorroAutomatico = ahorro;
+	}
+	public boolean getAhorroAutomatico()
+	{
+		return this.ahorroAutomatico;
+	}
+	
+	public List<DispositivoInteligente> dispositivosInteligentes (){
+		return dispositivosInteligentes;
+	}
 }
