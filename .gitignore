@@ -1,0 +1,8 @@
+*.class
+*.sql
+*.jar
+target
+.classpath
+.project
+.metadata
+local.properties
