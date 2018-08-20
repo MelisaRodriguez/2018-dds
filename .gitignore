@@ -2,6 +2,7 @@
 *.sql
 *.jar
 target
+bin
 .classpath
 .project
 .metadata
