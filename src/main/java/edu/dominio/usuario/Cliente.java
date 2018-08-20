@@ -1,6 +1,5 @@
 package edu.dominio.usuario;
 
-import java.awt.geom.Point2D;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,10 +9,11 @@ import java.util.stream.Stream;
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
-import edu.dominio.empresa.ZonaGeografica;
+import edu.dominio.empresa.LlamarSimplex;
+import edu.dominio.posicion.Punto;
+import edu.dominio.usuario.Categoria;
 import edu.repositorios.RepoCategorias;
 import edu.repositorios.RepoZonaGeografica;
-import edu.dominio.empresa.LlamarSimplex;
 
 public class Cliente {
 
@@ -29,11 +29,11 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
-	private Point2D.Double ubicacion;
+	private Punto ubicacion;
 	
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Point2D.Double ubicacion) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Punto ubicacion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -46,10 +46,7 @@ public class Cliente {
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 		this.ahorroAutomatico = ahorroAutomatico;
-		this.ubicacion = ubicacion;
-		
-		ZonaGeografica bolivia=new ZonaGeografica("Bolivia1",new Point2D.Double(-0.127512, 51.507222),8000);
-		
+		this.ubicacion = ubicacion;		
 		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
 
 	}
