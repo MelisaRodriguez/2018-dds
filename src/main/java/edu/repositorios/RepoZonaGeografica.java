@@ -1,10 +1,10 @@
 package edu.repositorios;
 
-import java.awt.geom.Point2D;
 import java.util.function.Predicate;
 
 import edu.dominio.empresa.Transformador;
 import edu.dominio.empresa.ZonaGeografica;
+import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
 
 public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
@@ -17,16 +17,16 @@ public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
 		return this.entidades.stream().filter(cond).findFirst().get();
 	}
 	
-	public void agregarTransformador(Transformador unTransformador, Point2D.Double lugar)
+	public void agregarTransformador(Transformador unTransformador, Punto lugar)
 	{
 		conseguirZona(lugar).agregarTransformador(unTransformador);
 	}
 
-	private ZonaGeografica conseguirZona(Point2D.Double lugar) {
+	private ZonaGeografica conseguirZona(Punto lugar) {
 		return this.conseguirZonaSegun(zona->zona.estaEnRango(lugar));
 	}
 	
-	public void SolicitarTransformador(Cliente unCliente, Point2D.Double lugar){
+	public void SolicitarTransformador(Cliente unCliente, Punto lugar){
 		conseguirZona(lugar).agregarCliente(unCliente, lugar);
 	}
 	public double consultarConsumo(String ID)
