@@ -17,13 +17,17 @@
 				"nombre":"plancha",
 				"fechaDeRegistro":{"year":2018,"month":5,"day":18},
 				"fabricante":{"type":"SanyoTelevisor"},
-				"registrosConsumo":[]
+				"registrosConsumo":[],
+				"restriccionMinima":15.0,
+				"restriccionMaxima":450.0
 			}],
 			"dispositivosEstandar":[
 			{
 				"nombre":"celular",
 				"kW":45.0,
-				"horasUsoxDiaSegunUsuario":15.0
+				"horasUsoxDiaSegunUsuario":15.0,
+				"restriccionMinima":15.0,
+				"restriccionMaxima":450.0
 			}],
 			"ahorroAutomatico": false,
 			"ubicacion":{"x":-0.127512,"y":51.507222}},
@@ -38,12 +42,16 @@
 			"dispositivosInteligentes":[{"nombre":"plancha",
 			"fechaDeRegistro":{"year":2018,"month":5,"day":18},
 			"fabricante":{"type":"SanyoTelevisor"},
-			"registrosConsumo":[]}],
+			"registrosConsumo":[],
+			"restriccionMinima":15.0,
+			"restriccionMaxima":450.0}],
 			"dispositivosEstandar":[
 			{
 				"nombre":"celular",
 				"kW":45.0,
-				"horasUsoxDiaSegunUsuario":15.0}],
+				"horasUsoxDiaSegunUsuario":15.0,
+				"restriccionMinima":15.0,
+				"restriccionMaxima":450.0}],
 				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}},
 			{"nombre":"Lucas",
@@ -59,11 +67,15 @@
 				{"nombre":"plancha",
 				"fechaDeRegistro":{"year":2018,"month":5,"day":18},
 				"fabricante":{"type":"SanyoTelevisor"},
-				"registrosConsumo":[]}],
+				"registrosConsumo":[],
+				"restriccionMinima":15.0,
+				"restriccionMaxima":450.0}],
 			"dispositivosEstandar":[
 				{"nombre":"heladera",
 				"kW":45.0,
-				"horasUsoxDiaSegunUsuario":15.0}],
+				"horasUsoxDiaSegunUsuario":15.0,
+				"restriccionMinima":15.0,
+				"restriccionMaxima":450.0}],
 				"ahorroAutomatico": false,
 				"ubicacion":{"x":-0.127512,"y":51.507222}}]}],
 				

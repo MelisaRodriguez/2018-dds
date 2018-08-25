@@ -13,11 +13,13 @@ public class DispositivoEstandar implements Dispositivo {
 	private double restriccionMinima;
 	private double restriccionMaxima;
 
-	public DispositivoEstandar(String nombre, double kW, double horasUso, Fabricante fabricante) {
+	public DispositivoEstandar(String nombre, double kW, double horasUso, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
 		this.nombre = nombre;
 		this.kW = kW;
 		this.horasUsoxDiaSegunUsuario = horasUso;
 		this.fabricante = fabricante;
+		this.restriccionMinima = restriccionMinima;
+		this.restriccionMaxima = restriccionMaxima;
 	}
 	
 	public void actualizarHorasUso(double horas)
@@ -33,7 +35,7 @@ public class DispositivoEstandar implements Dispositivo {
 	
 	public DispositivoInteligente convertirAInteligente()
 	{
-		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante);
+		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante, restriccionMinima, restriccionMaxima);
 	}
 
 	@Override

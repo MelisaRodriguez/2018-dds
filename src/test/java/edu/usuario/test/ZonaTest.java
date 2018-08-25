@@ -1,9 +1,8 @@
 package edu.usuario.test;
 
-import java.awt.geom.Point2D;
-
 import org.junit.Test;
 
+import edu.dominio.posicion.Punto;
 import junit.framework.Assert;
 
 public class ZonaTest extends ZonaFixture {
@@ -14,7 +13,9 @@ public class ZonaTest extends ZonaFixture {
 	
 	@Test
 	public void testTransformadorLugar() {
-		Assert.assertEquals( new Point2D.Double(-0.127512, 51.507222), zona.get(0).getTransformadores().get(0).getLugar() );
+		Punto punto = new Punto(-0.127512, 51.507222);
+		Assert.assertEquals(punto.getX(), zona.get(0).getTransformadores().get(0).getLugar().getX());
+		Assert.assertEquals(punto.getY(), zona.get(0).getTransformadores().get(0).getLugar().getY());
 	}	
 	
 	@Test

@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 import org.junit.Before;
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 
 import com.google.gson.reflect.TypeToken;
@@ -15,17 +14,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-import static org.mockito.Mockito.mock;
-
-import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.fabricante.SanyoTelevisor;
 import edu.dominio.usuario.Cliente;
 
-
-import edu.repositorios.RepoClientes;
 import edu.repositorios.RuntimeTypeAdapterFactory;
 
 public class ClienteFixture {
@@ -38,7 +32,7 @@ public class ClienteFixture {
 	@Before
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
-		dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new SanyoTelevisor());
+		dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new SanyoTelevisor(),0,0);
         final RuntimeTypeAdapterFactory<Fabricante> typeFabricante = RuntimeTypeAdapterFactory
                 .of(Fabricante.class, "type")
                 .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1

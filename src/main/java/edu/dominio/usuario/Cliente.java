@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
-import edu.dominio.empresa.LlamarSimplex;
+import edu.dominio.empresa.Simplex;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Categoria;
 import edu.repositorios.RepoCategorias;
@@ -30,7 +30,7 @@ public class Cliente {
 	private int puntos;
 	private boolean ahorroAutomatico;
 	private Punto ubicacion;
-	
+
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
 			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Punto ubicacion) {
@@ -118,7 +118,7 @@ public class Cliente {
 	
 	public void solicitarRecomendacion(double restriccionMaxima)
 	{
-		new LlamarSimplex(restriccionMaxima).generarRecomendacion(this);
+		new Simplex(restriccionMaxima).generarRecomendacion(this);
 	} 
 
 	public void setAhorroAutomatico(boolean ahorro)

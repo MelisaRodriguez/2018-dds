@@ -14,16 +14,19 @@ public class Punto {
 		this.y = y;
 	}
 	
-	private Point2D getPosicion()
-	{
-		return new Point2D.Double(x, y);
+	public double getX() {
+		return x;
 	}
-	
+
+	public double getY() {
+		return y;
+	}
+
 	public static double calcularDistancia(Punto p1, Punto p2)
 	{
 		GeodeticCalculator calc = new GeodeticCalculator();
-		calc.setStartingGeographicPoint(p1.getPosicion());
-		calc.setDestinationGeographicPoint(p2.getPosicion());
+		calc.setStartingGeographicPoint(new Point2D.Double(p1.x, p1.y));
+		calc.setDestinationGeographicPoint(new Point2D.Double(p2.x, p2.y));
 		return calc.getOrthodromicDistance();
 	}
 }

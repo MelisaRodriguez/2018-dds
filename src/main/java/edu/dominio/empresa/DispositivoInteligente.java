@@ -15,11 +15,13 @@ public class DispositivoInteligente implements Dispositivo {
 	private double restriccionMinima;
 	private double restriccionMaxima;
 	
-	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante) {
+	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
 		this.nombre = nombre;
 		this.fechaDeRegistro = fechaDeRegistro;
 		this.fabricante = fabricante;
 		this.registrosConsumo = new ArrayList<RegistroMedicion>();
+		this.restriccionMinima = restriccionMinima;
+		this.restriccionMaxima = restriccionMaxima;
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class DispositivoInteligente implements Dispositivo {
 	
 	public double horasTotalesEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
+		System.out.println("REGISTROS = " + registrosConsumo.stream().filter(registro -> registro.estaEntreFechas(inicio, fin)).count());
 		return 	registrosConsumo.stream()
 				.filter(registro -> registro.estaEntreFechas(inicio, fin))
 				.mapToDouble(registro -> registro.horasEncendido())
@@ -87,7 +90,8 @@ public class DispositivoInteligente implements Dispositivo {
 		return fabricante.getPotencia();
 	}
 	
-	public void accionar() { // se desconoce implementación, al menos hasta entrega 1.
+	public void accionar() {
+		// se desconoce implementación, al menos hasta entrega 1.
 	}
 	
 	@Override

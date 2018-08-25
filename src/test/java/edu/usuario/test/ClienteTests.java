@@ -2,12 +2,6 @@ package edu.usuario.test;
 
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
-import edu.dominio.empresa.DispositivoInteligente;
-import edu.dominio.fabricante.SanyoTelevisor;
 import edu.dominio.usuario.Cliente;
 import edu.repositorios.RepoCategorias;
 import junit.framework.Assert;
@@ -64,9 +58,9 @@ public class ClienteTests extends ClienteFixture {
 		Cliente unCliente = clientes.get(0);
 		unCliente.recategorizar();
 		Assert.assertEquals(RepoCategorias.getSingletonInstance().getEntidades().get(6), unCliente.getCategoria());
-		// No se puede poner en el valor esperado new Categoría(parámetros) porque
-		// tendría una categoria
-		// con los mismos parámetros pero en otra dirección de memoria, es decir, no
+		// No se puede poner en el valor esperado new Categorï¿½a(parï¿½metros) porque
+		// tendrï¿½a una categoria
+		// con los mismos parï¿½metros pero en otra direcciï¿½n de memoria, es decir, no
 		// serian equivalentes
 	}
 	

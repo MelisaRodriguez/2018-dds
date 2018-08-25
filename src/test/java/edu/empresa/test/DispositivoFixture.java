@@ -18,7 +18,7 @@ public class DispositivoFixture {
 	@Before
 	public void fixture() {
 		televisor = mock(SanyoTelevisor.class);
-		dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), televisor);
-		dispositivoEstandar = new DispositivoEstandar("Televisor", 10, 5, televisor);
+		dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), televisor, 0, 0);
+		dispositivoEstandar = new DispositivoEstandar("Televisor", 10, 5, televisor, 0, 0);
 	}
 }

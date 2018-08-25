@@ -1,10 +1,15 @@
 package edu.dominio.empresa;
 
+import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Cliente;
+import edu.dominio.usuario.Condicion;
+import edu.dominio.usuario.Regla;
+import edu.dominio.usuario.Sensor;
 
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.math3.optim.MaxIter;
@@ -17,35 +22,35 @@ import org.apache.commons.math3.optim.linear.Relationship;
 import org.apache.commons.math3.optim.linear.SimplexSolver;
 import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
 
-
-public class LlamarSimplex {
+public class Simplex {
 	private double restriccionMaxima;
 	
-	public LlamarSimplex(double restriccionMaxima) {
+	public Simplex(double restriccionMaxima) {
 		this.restriccionMaxima = restriccionMaxima;
 	}
 	
-	public void generarRecomendacion(Cliente cliente) {
+	// recomendacion que pide el cliente - MANUAL
+	public List<Double> generarRecomendacion(Cliente cliente) { 
 	
-		PointValuePair resultado = ejecutarSimplex(cliente);
+		PointValuePair resultado = this.ejecutarSimplex(cliente);
 		
-		double [] arrayResultados = resultado.getPoint();
-		double z = resultado.getValue(); 
-		List<Dispositivo> dispositivos = cliente.todosSusDispositivos();
-		int posicion = 0;
-		for (Dispositivo d : dispositivos)
-		{
-			System.out.println("Horas m·ximas posibles de uso para " + d.getNombre() + " son " + arrayResultados[posicion]);
-			posicion++;
-		}
-		System.out.println("Sumatoria de horas m·ximas posibles de consumo de todos los dispositivos: " + z);
+		List<Double> resultados = new ArrayList<>();
+		for(double d : resultado.getPoint()) resultados.add(d);
+		resultados.add(resultado.getValue());
 		
+		return resultados;
+		// le doy al cliente las horas de cada dispositivo, y el valor m√°ximo Z.
+	}
+	
+	// AUTOMATICA - CRON
+	public void optimizacionAutomatica(Cliente cliente)
+	{
+		PointValuePair resultado = this.ejecutarSimplex(cliente);
 		if (cliente.getAhorroAutomatico()) {
 			this.mejorarEficienciaHogar(cliente,resultado);
 		}
-		
 	}
-
+	
 	public void mejorarEficienciaHogar(Cliente cliente, PointValuePair resultado) {
 		
 		double [] arrayResultados = resultado.getPoint(); 
@@ -55,21 +60,23 @@ public class LlamarSimplex {
 		{
 			this.revisarEficienciaDispositivo(dispositivo,arrayResultados[posicion]);
 			posicion++;
-		}
-		
-	}
-	
-	private LocalDate primerDiaDelMes(LocalDate fechaActual) {
-		return LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 1) ;
+		}	
 	}
 	
 	private void revisarEficienciaDispositivo(DispositivoInteligente dispositivo, double horasConsumoOptimas) {
 		
-		if(horasConsumoOptimas <= dispositivo.horasTotalesEnPeriodo( this.primerDiaDelMes(LocalDate.now() ), LocalDate.now() ) ) {
-			dispositivo.apagarse();
-		}
-		
+		Actuador actuador = new Actuador(dispositivo);
+		Sensor sensor = new Sensor();
+		sensor.tomarMedicion(dispositivo.horasTotalesEnPeriodo(this.primerDiaDelMes(LocalDate.now()),LocalDate.now()));
+		Condicion condicion = new Condicion(sensor,(Double valor) -> {return valor >= horasConsumoOptimas;});
+		Regla regla = new Regla(Arrays.asList(condicion),Arrays.asList(actuador));
+		regla.ejecutar();
 	}
+	
+	public LocalDate primerDiaDelMes(LocalDate fechaActual) {
+		return LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 1) ;
+	}
+	
 
 	private PointValuePair ejecutarSimplex(Cliente cliente) {
 		
