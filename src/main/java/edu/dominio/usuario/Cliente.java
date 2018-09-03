@@ -6,6 +6,14 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
@@ -15,8 +23,12 @@ import edu.dominio.usuario.Categoria;
 import edu.repositorios.RepoCategorias;
 import edu.repositorios.RepoZonaGeografica;
 
+@Entity
 public class Cliente {
 
+	@Id
+	@GeneratedValue
+	private long id;
 	private String nombre;
 	private String apellido;
 	private TipoDocumento tipoDocumento;
@@ -24,11 +36,15 @@ public class Cliente {
 	private String telefono;
 	private String domicilioServicio;
 	private LocalDate fechaDeAltaServicio;
+	@ManyToOne
 	private Categoria categoria;
+	@OneToMany
 	private List<DispositivoInteligente> dispositivosInteligentes;
+	@OneToMany
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
+	@Embedded
 	private Punto ubicacion;
 
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,

@@ -2,8 +2,11 @@ package edu.dominio.posicion;
 
 import java.awt.geom.Point2D;
 
+import javax.persistence.Embeddable;
+
 import org.geotools.referencing.GeodeticCalculator;
 
+@Embeddable
 public class Punto {
 	private double x;
 	private double y;
