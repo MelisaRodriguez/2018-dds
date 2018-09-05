@@ -1,10 +1,10 @@
 package edu.dominio.empresa;
 
-public interface Dispositivo
+public abstract class Dispositivo
 {
-	public double calcularConsumo();	
-	public double getRestriccionMinima();
-	public double getRestriccionMaxima();
-	public double getPotencia();
-	public String getNombre();
+	public abstract double calcularConsumo();	
+	public abstract double getRestriccionMinima();
+	public abstract double getRestriccionMaxima();
+	public abstract double getPotencia();
+	public abstract String getNombre();
 }

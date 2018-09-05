@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.dominio.fabricante.Fabricante;
 
-public class DispositivoInteligente implements Dispositivo {
+public class DispositivoInteligente extends Dispositivo {
 	
 	private String nombre;
 	private LocalDate fechaDeRegistro;

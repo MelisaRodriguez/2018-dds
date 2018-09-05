@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import edu.dominio.fabricante.Fabricante;
 
-public class DispositivoEstandar implements Dispositivo {
+public class DispositivoEstandar extends Dispositivo {
 
 	private String nombre;
 	private double kW;
