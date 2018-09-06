@@ -11,6 +11,8 @@ public class Punto {
 	private double x;
 	private double y;
 	
+	public Punto() {}
+	
 	public Punto(double x, double y)
 	{
 		this.x = x;

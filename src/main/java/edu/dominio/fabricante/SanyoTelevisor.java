@@ -1,7 +1,7 @@
 package edu.dominio.fabricante;
 
 
-public class SanyoTelevisor implements Fabricante {
+public class SanyoTelevisor extends Fabricante {
 	
 	@Override
 	public void apagar() {

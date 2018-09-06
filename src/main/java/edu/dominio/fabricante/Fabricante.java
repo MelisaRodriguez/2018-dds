@@ -1,8 +1,17 @@
 package edu.dominio.fabricante;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-
-public interface  Fabricante {
+@Entity
+public abstract class Fabricante {
+	
+	@Id
+	@GeneratedValue
+	private int id_Fabricante;
+	
+	protected String nombre;
 	
 	public abstract void apagar();
 	public abstract void encender();

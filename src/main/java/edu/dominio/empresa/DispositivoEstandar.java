@@ -2,8 +2,14 @@ package edu.dominio.empresa;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import edu.dominio.fabricante.Fabricante;
 
+@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
 public class DispositivoEstandar extends Dispositivo {
 
 	private String nombre;
@@ -21,6 +27,8 @@ public class DispositivoEstandar extends Dispositivo {
 		this.restriccionMinima = restriccionMinima;
 		this.restriccionMaxima = restriccionMaxima;
 	}
+	
+	public DispositivoEstandar() {}
 	
 	public void actualizarHorasUso(double horas)
 	{

@@ -1,13 +1,13 @@
 package edu.empresa.test;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import edu.dominio.fabricante.Fabricante;
-
-import static org.mockito.Mockito.*;
 
 public final class SimplexTests extends SimplexFixture{
 	

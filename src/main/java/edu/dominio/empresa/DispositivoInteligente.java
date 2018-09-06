@@ -4,8 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import edu.dominio.fabricante.Fabricante;
 
+@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
 public class DispositivoInteligente extends Dispositivo {
 	
 	private String nombre;
@@ -23,7 +29,8 @@ public class DispositivoInteligente extends Dispositivo {
 		this.restriccionMinima = restriccionMinima;
 		this.restriccionMaxima = restriccionMaxima;
 	}
-
+	
+	public DispositivoInteligente() {}
 	@Override
 	public double calcularConsumo() 
 	{

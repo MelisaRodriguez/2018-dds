@@ -15,7 +15,7 @@
     	<class>edu.dominio.empresa.DispositivoInteligente</class>    	
     	<class>edu.dominio.usuario.Actuador</class>
     	<class>edu.dominio.usuario.Sensor</class>
-    	<class>edu.dominio.empresa.Transformador</class>
+    	<!-- <class>edu.dominio.empresa.Transformador</class> -->
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

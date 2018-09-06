@@ -11,6 +11,7 @@ import java.time.LocalDate;
 
 
 public class DispositivoFixture {
+	
 	protected DispositivoInteligente dispositivoInteligente;
 	protected DispositivoEstandar dispositivoEstandar;
 	protected SanyoTelevisor televisor;
