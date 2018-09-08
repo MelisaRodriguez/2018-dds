@@ -2,8 +2,16 @@ package edu.dominio.empresa;
 
 import java.time.LocalDate;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+
+@Entity
 class RegistroMedicion
 {
+	@Id
+	@GeneratedValue
+	private int idRegistro;
 	private LocalDate fecha;
 	private double kwConsumidos;
 	private double horasEncendido;

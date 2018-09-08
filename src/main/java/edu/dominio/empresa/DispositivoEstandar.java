@@ -9,23 +9,16 @@ import javax.persistence.InheritanceType;
 import edu.dominio.fabricante.Fabricante;
 
 @Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DispositivoEstandar extends Dispositivo {
 
-	private String nombre;
 	private double kW;
 	private double horasUsoxDiaSegunUsuario;
-	private Fabricante fabricante;
-	private double restriccionMinima;
-	private double restriccionMaxima;
 
 	public DispositivoEstandar(String nombre, double kW, double horasUso, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
-		this.nombre = nombre;
+		super(nombre, fabricante, restriccionMinima, restriccionMaxima);
 		this.kW = kW;
 		this.horasUsoxDiaSegunUsuario = horasUso;
-		this.fabricante = fabricante;
-		this.restriccionMinima = restriccionMinima;
-		this.restriccionMaxima = restriccionMaxima;
 	}
 	
 	public DispositivoEstandar() {}
@@ -46,27 +39,21 @@ public class DispositivoEstandar extends Dispositivo {
 		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante, restriccionMinima, restriccionMaxima);
 	}
 
-	@Override
-	public double getRestriccionMinima()
-	{
-		return this.restriccionMinima;
+	public double getkW() {
+		return kW;
+	}
+
+	public void setkW(double kW) {
+		this.kW = kW;
+	}
+
+	public double getHorasUsoxDiaSegunUsuario() {
+		return horasUsoxDiaSegunUsuario;
+	}
+
+	public void setHorasUsoxDiaSegunUsuario(double horasUsoxDiaSegunUsuario) {
+		this.horasUsoxDiaSegunUsuario = horasUsoxDiaSegunUsuario;
 	}
 	
-	@Override
-	public double getRestriccionMaxima()
-	{
-		return this.restriccionMaxima;
-	}
 	
-	@Override
-	public double getPotencia()
-	{ 
-		return this.kW;
-	}
-	
-	@Override
-	public String getNombre()
-	{
-		return nombre;
-	}
 }

@@ -7,34 +7,32 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 
 import edu.dominio.fabricante.Fabricante;
 
 @Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DispositivoInteligente extends Dispositivo {
 	
-	private String nombre;
 	private LocalDate fechaDeRegistro;
-	private Fabricante fabricante; // Adapter
+	@OneToMany
+	//@JoinColum(idDispositivo) //??
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
-	private double restriccionMinima;
-	private double restriccionMaxima;
 	
 	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
-		this.nombre = nombre;
+		super(nombre, fabricante, restriccionMinima, restriccionMaxima);
 		this.fechaDeRegistro = fechaDeRegistro;
-		this.fabricante = fabricante;
 		this.registrosConsumo = new ArrayList<RegistroMedicion>();
-		this.restriccionMinima = restriccionMinima;
-		this.restriccionMaxima = restriccionMaxima;
 	}
 	
 	public DispositivoInteligente() {}
+	
 	@Override
 	public double calcularConsumo() 
 	{
-		return fabricante.cuantoConsume();
+		return this.fabricante.cuantoConsume(this);
 	}
 
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
@@ -63,23 +61,23 @@ public class DispositivoInteligente extends Dispositivo {
 	// estos metodos se los delega al fabricante que se comunica con el dispositivo fisico.
 	
 	public void apagarse() {
-		fabricante.apagar();
+		fabricante.apagar(this);
 	}
 	
 	public void encenderse() {
-		fabricante.encender();
+		fabricante.encender(this);
 	}
 	
 	public void modoAhorroEnergia() {
-		fabricante.activarAhorroDeEnergia();
+		fabricante.activarAhorroDeEnergia(this);
 	}
 	
 	public boolean estaEncendido() {
-		return fabricante.estaEncendido();
+		return fabricante.estaEncendido(this);
 	}
 	
 	public boolean estaApagado() {
-		return fabricante.estaApagado();
+		return fabricante.estaApagado(this);
 	}
 	
 	public boolean estaModoAhorroEnergia() {
@@ -91,37 +89,26 @@ public class DispositivoInteligente extends Dispositivo {
 		return fabricante.getHorasEncendido();
 	}
 	
-	@Override
-	public double getPotencia()
-	{
-		return fabricante.getPotencia();
-	}
-	
 	public void accionar() {
 		// se desconoce implementación, al menos hasta entrega 1.
 	}
-	
-	@Override
-	public double getRestriccionMinima()
-	{
-		return this.restriccionMinima;
-	}
-	
-	@Override
-	public double getRestriccionMaxima()
-	{
-		return this.restriccionMaxima;
-	}
-	
-	@Override
-	public String getNombre()
-	{
-		return nombre;
+
+	public LocalDate getFechaDeRegistro() {
+		return fechaDeRegistro;
 	}
 
-
-	public Object getFabricante() {
-		return fabricante;
+	public void setFechaDeRegistro(LocalDate fechaDeRegistro) {
+		this.fechaDeRegistro = fechaDeRegistro;
 	}
+
+	public List<RegistroMedicion> getRegistrosConsumo() {
+		return registrosConsumo;
+	}
+
+	public void setRegistrosConsumo(List<RegistroMedicion> registrosConsumo) {
+		this.registrosConsumo = registrosConsumo;
+	}
+	
+	
 
 }
