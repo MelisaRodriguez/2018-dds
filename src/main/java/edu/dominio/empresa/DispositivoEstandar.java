@@ -39,10 +39,6 @@ public class DispositivoEstandar extends Dispositivo {
 		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante, restriccionMinima, restriccionMaxima);
 	}
 
-	public double getkW() {
-		return kW;
-	}
-
 	public void setkW(double kW) {
 		this.kW = kW;
 	}
@@ -56,4 +52,8 @@ public class DispositivoEstandar extends Dispositivo {
 	}
 	
 	
+	@Override
+	public double getPotencia() {
+		return kW;
+	}
 }

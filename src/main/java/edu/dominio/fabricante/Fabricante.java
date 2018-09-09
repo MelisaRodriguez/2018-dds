@@ -4,39 +4,51 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import edu.dominio.empresa.DispositivoInteligente;
+
 @Entity
-public abstract class Fabricante {
+public class Fabricante {
+	
 	@Id
 	@GeneratedValue
 	private int idFabricante;
 	private String nombre;
+	
 	private FabricanteMock fabricanteMock;
 	
-	public abstract void apagar(DispositivoInteligente d) {
+	public Fabricante(){}
+	
+	public Fabricante(String nombre,FabricanteMock fabricanteMock){
+		//this.idFabricante=idFabricante;
+		this.nombre=nombre;
+		this.fabricanteMock=fabricanteMock;
+	}
+	
+	public void apagar(DispositivoInteligente d) {
 		fabricanteMock.apagar(d);
 	}
-	public abstract void encender(DispositivoInteligente d) {
+	public void encender(DispositivoInteligente d) {
 		fabricanteMock.encender(d);
 	}
-	public abstract void activarAhorroDeEnergia(DispositivoInteligente d) {
+	public void activarAhorroDeEnergia(DispositivoInteligente d) {
 		fabricanteMock.activarAhorroDeEnergia(d);
 	}	
-	public abstract double cuantoConsume(DispositivoInteligente d) {
+	public double cuantoConsume(DispositivoInteligente d) {
 		return fabricanteMock.cuantoConsume(d);
 	}
-	public abstract boolean estaEncendido(DispositivoInteligente d) {
+	public boolean estaEncendido(DispositivoInteligente d) {
 		return fabricanteMock.estaEncendido(d);
 	}	
-	public abstract boolean estaApagado(DispositivoInteligente d) {
+	public boolean estaApagado(DispositivoInteligente d) {
 		return fabricanteMock.estaApagado(d);
 	}
-	public abstract boolean estaModoAhorroEnergia(DispositivoInteligente d) {
+	public boolean estaModoAhorroEnergia(DispositivoInteligente d) {
 		return fabricanteMock.estaModoAhorroEnergia(d);
 	}
-	public abstract double getPotencia(DispositivoInteligente d) {
-		return fabricanteMock.getPotencia(d);
+	public double getKW(DispositivoInteligente d) {
+		return fabricanteMock.getKW(d);
 	}
-	public abstract double getHorasEncendido(DispositivoInteligente d) {
+	public double getHorasEncendido(DispositivoInteligente d) {
 		return fabricanteMock.getHorasEncendido(d);
 	}
 }

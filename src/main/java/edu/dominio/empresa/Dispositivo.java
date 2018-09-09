@@ -12,10 +12,10 @@ public abstract class Dispositivo
 	@Id
 	@GeneratedValue
 	private int idDispositivo;
-	private String nombre;
-	private Fabricante fabricante;
-	private double restriccionMinima;
-	private double restriccionMaxima;
+	protected String nombre;
+	protected Fabricante fabricante;
+	protected double restriccionMinima;
+	protected double restriccionMaxima;
 	
 	public Dispositivo(String nombre, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
 		this.nombre = nombre;
@@ -59,5 +59,7 @@ public abstract class Dispositivo
 		this.restriccionMaxima = restriccionMaxima;
 	}
 	
+
+	public abstract double getPotencia();
 	
 }

@@ -16,7 +16,6 @@ import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.Transformador;
 import edu.dominio.empresa.ZonaGeografica;
 import edu.dominio.fabricante.Fabricante;
-import edu.dominio.fabricante.SanyoTelevisor;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
 
@@ -24,11 +23,11 @@ public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
 	private static RepoZonaGeografica repoZona = null;
 	
 	public RepoZonaGeografica(){
-		
+		/*
 		final RuntimeTypeAdapterFactory<Fabricante> typeFabricante = RuntimeTypeAdapterFactory
                 .of(Fabricante.class, "type")
                 .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1
-                //.registerSubtype(FabricanteY.class);
+                //.registerSubtype(FabricanteY.class);*/
         
         final RuntimeTypeAdapterFactory<Dispositivo> typeDispositivo = RuntimeTypeAdapterFactory
                 .of(Dispositivo.class, "type")
@@ -36,7 +35,7 @@ public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
                 .registerSubtype(DispositivoEstandar.class);
         
         final Gson gson = new GsonBuilder()
-        		.registerTypeAdapterFactory(typeFabricante)
+        		//.registerTypeAdapterFactory(typeFabricante)
         		.registerTypeAdapterFactory(typeDispositivo)
         		.create();
         

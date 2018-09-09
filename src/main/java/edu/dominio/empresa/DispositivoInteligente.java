@@ -40,6 +40,9 @@ public class DispositivoInteligente extends Dispositivo {
 	{
 		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo(), this.getHorasEncendido() ) );
 	}
+	
+
+	
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
@@ -81,12 +84,12 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 	
 	public boolean estaModoAhorroEnergia() {
-		return fabricante.estaModoAhorroEnergia();
+		return fabricante.estaModoAhorroEnergia(this);
 	}
 	
 	public double getHorasEncendido()
 	{
-		return fabricante.getHorasEncendido();
+		return fabricante.getHorasEncendido(this);
 	}
 	
 	public void accionar() {
@@ -107,6 +110,11 @@ public class DispositivoInteligente extends Dispositivo {
 
 	public void setRegistrosConsumo(List<RegistroMedicion> registrosConsumo) {
 		this.registrosConsumo = registrosConsumo;
+	}
+
+	@Override
+	public double getPotencia() {
+		return fabricante.getKW(this);
 	}
 	
 	
