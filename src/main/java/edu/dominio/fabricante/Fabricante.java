@@ -1,19 +1,23 @@
 package edu.dominio.fabricante;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import edu.dominio.empresa.DispositivoInteligente;
 
 @Entity
+@Table(name="Fabricantes")
 public class Fabricante {
 	
 	@Id
 	@GeneratedValue
 	private int idFabricante;
 	private String nombre;
-	
+	@Transient
 	private FabricanteMock fabricanteMock;
 	
 	public Fabricante(){}
@@ -45,8 +49,8 @@ public class Fabricante {
 	public boolean estaModoAhorroEnergia(DispositivoInteligente d) {
 		return fabricanteMock.estaModoAhorroEnergia(d);
 	}
-	public double getKW(DispositivoInteligente d) {
-		return fabricanteMock.getKW(d);
+	public double getPotencia(DispositivoInteligente d) {
+		return fabricanteMock.getPotencia(d);
 	}
 	public double getHorasEncendido(DispositivoInteligente d) {
 		return fabricanteMock.getHorasEncendido(d);

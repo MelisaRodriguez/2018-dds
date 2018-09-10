@@ -7,12 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-@Entity
+//@Entity
 public class Condicion {
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private int idCondicion;
-	@ManyToOne
+	//@ManyToOne
 	private Sensor sensor; 
 	private Function<Double,Boolean> condicionLogica;
 	

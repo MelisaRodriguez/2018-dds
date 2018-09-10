@@ -4,21 +4,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import edu.dominio.fabricante.Fabricante;
 
+@DiscriminatorValue(value="Inteligente")
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DispositivoInteligente extends Dispositivo {
 	
 	private LocalDate fechaDeRegistro;
-	@OneToMany
-	//@JoinColum(idDispositivo) //??
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idDispositivo")
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
 	
 	public DispositivoInteligente(String nombre, LocalDate fechaDeRegistro, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
@@ -114,7 +114,7 @@ public class DispositivoInteligente extends Dispositivo {
 
 	@Override
 	public double getPotencia() {
-		return fabricante.getKW(this);
+		return fabricante.getPotencia(this);
 	}
 	
 	

@@ -2,6 +2,7 @@ package edu.dominio.fabricante;
 
 import edu.dominio.empresa.DispositivoInteligente;
 
+
 public interface FabricanteMock {
 	
 	public void apagar(DispositivoInteligente d);
@@ -11,6 +12,6 @@ public interface FabricanteMock {
 	public boolean estaEncendido(DispositivoInteligente d) ;
 	public boolean estaApagado(DispositivoInteligente d) ;
 	public boolean estaModoAhorroEnergia(DispositivoInteligente d) ;
-	public double getKW(DispositivoInteligente d);
+	public double getPotencia(DispositivoInteligente d);
 	public double getHorasEncendido(DispositivoInteligente d);
 }

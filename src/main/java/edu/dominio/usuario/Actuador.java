@@ -7,12 +7,12 @@ import javax.persistence.ManyToOne;
 
 import edu.dominio.empresa.DispositivoInteligente;
 
-@Entity
+//@Entity
 public class Actuador {
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private int idActuador;
-	@ManyToOne
+	//@ManyToOne
 	private DispositivoInteligente dispositivoInteligente;
 
 	public Actuador() {}

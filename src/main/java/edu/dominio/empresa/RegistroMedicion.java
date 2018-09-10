@@ -4,11 +4,19 @@ import java.time.LocalDate;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-class RegistroMedicion
+@Table(name="RegistrosMedicion")
+public class RegistroMedicion
 {
+	@Override
+	public String toString() {
+		return "RegistroMedicion [idRegistro=" + idRegistro + ", fecha=" + fecha + ", kwConsumidos=" + kwConsumidos
+				+ ", horasEncendido=" + horasEncendido + "]";
+	}
+
 	@Id
 	@GeneratedValue
 	private int idRegistro;

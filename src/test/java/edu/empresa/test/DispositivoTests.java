@@ -16,9 +16,11 @@ public class DispositivoTests extends DispositivoFixture{
 	@Test
 	public void testConsumoInteligente() 
 	{
-		when(televisor.cuantoConsume()).thenReturn(10.0);
+		when(fabricantemock.cuantoConsume(dispositivoInteligente)).thenReturn(10.0);
 		dispositivoInteligente.agregarNuevoRegistroDeConsumo(); 
 	
+		//System.out.println(fabricantemock.cuantoConsume(dispositivoInteligente));
+		
 		Assert.assertEquals(10.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018, 8, 9), LocalDate.of(2018, 10, 15)));		
 	}
 	
@@ -26,30 +28,30 @@ public class DispositivoTests extends DispositivoFixture{
 	public void apagarDispositivoInteligente() 
 	{
 		dispositivoInteligente.apagarse();
-		when(televisor.estaApagado()).thenReturn(true);
+		when(fabricantemock.estaApagado(dispositivoInteligente)).thenReturn(true);
 		
 		Assert.assertTrue(dispositivoInteligente.estaApagado());	
-		verify(televisor).apagar();
+		verify(fabricantemock).apagar(dispositivoInteligente);
 	}
 	
 	@Test
 	public void encenderDispositivoInteligente() 
 	{
 		dispositivoInteligente.encenderse();
-		when(televisor.estaEncendido()).thenReturn(true);
+		when(fabricantemock.estaEncendido(dispositivoInteligente)).thenReturn(true);
 		
 		Assert.assertTrue(dispositivoInteligente.estaEncendido());	
-		verify(televisor).encender();
+		verify(fabricantemock).encender(dispositivoInteligente);
 	}
 	
 	@Test
 	public void activarAhorroDeEnergiaDispositivoInteligente() 
 	{
 		dispositivoInteligente.modoAhorroEnergia();
-		when(televisor.estaModoAhorroEnergia()).thenReturn(true);
+		when(fabricantemock.estaModoAhorroEnergia(dispositivoInteligente)).thenReturn(true);
 		
 		Assert.assertTrue(dispositivoInteligente.estaModoAhorroEnergia());	
-		verify(televisor).activarAhorroDeEnergia();
+		verify(fabricantemock).activarAhorroDeEnergia(dispositivoInteligente);
 	}
 
 }

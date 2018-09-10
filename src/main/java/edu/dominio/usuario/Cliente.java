@@ -22,11 +22,11 @@ import edu.dominio.usuario.Categoria;
 import edu.repositorios.RepoCategorias;
 import edu.repositorios.RepoZonaGeografica;
 
-@Entity
+//@Entity
 public class Cliente {
 
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private long id;
 	private String nombre;
 	private String apellido;
@@ -35,15 +35,15 @@ public class Cliente {
 	private String telefono;
 	private String domicilioServicio;
 	private LocalDate fechaDeAltaServicio;
-	@ManyToOne
+	//@ManyToOne
 	private Categoria categoria;
-	@OneToMany
+	//@OneToMany
 	private List<DispositivoInteligente> dispositivosInteligentes;
-	@OneToMany
+	//@OneToMany
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
-	@Embedded
+	//@Embedded
 	private Punto ubicacion;
 
 	public Cliente() {}

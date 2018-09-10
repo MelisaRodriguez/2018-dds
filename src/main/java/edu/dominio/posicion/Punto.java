@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 
 import org.geotools.referencing.GeodeticCalculator;
 
-@Embeddable
+//@Embeddable
 public class Punto {
 	private double x;
 	private double y;

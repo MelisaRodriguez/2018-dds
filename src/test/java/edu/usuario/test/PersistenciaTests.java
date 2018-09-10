@@ -11,17 +11,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
+import edu.dominio.empresa.RegistroMedicion;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
+import junit.framework.Assert;
 
 public class PersistenciaTests {
 	
-	public class Samsung extends Fabricante
+	/*public class Samsung extends Fabricante
 	{
 		public Samsung () {}
 		
@@ -79,7 +83,9 @@ public class PersistenciaTests {
 			return 1.0;
 			// MOCK
 		}
-	}
+	}*/
+	
+	/*
 	@Test
 	public void ReglaTest() {
 		
@@ -89,7 +95,7 @@ public class PersistenciaTests {
 		manager.getTransaction().begin();
 		
 		// Creamos un dispositivo al cual se le va a aplicar la regla
-		Fabricante fabricante = new Samsung();
+		Fabricante fabricante = new Fabricante ("Samsung",null);
 		DispositivoInteligente dispositivo = new DispositivoInteligente("Smartphone", LocalDate.now(), fabricante, 150.0, 300.0);
 		
 		// Creamos un sensor y tomamos una medicion
@@ -125,6 +131,46 @@ public class PersistenciaTests {
 		Regla regla2 = manager.find(Regla.class, 1);
 		
 		System.out.println(regla2.toString());
+	}*/
+	
+	@Test
+	public void testCreacion() {
+		
+		Fabricante sony=new Fabricante("Sony",null);
+		DispositivoInteligente dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), sony, 0, 0);
+		
+		EntityManager manager = PerThreadEntityManagers.getEntityManager();
+		//EntityManager manager = fabrica.createEntityManager();
+		
+		RegistroMedicion registro1=new RegistroMedicion(LocalDate.of(2018, 5, 18),80,10 );
+		RegistroMedicion registro2=new RegistroMedicion(LocalDate.of(2018, 5, 25),2000,22);
+		
+		List<RegistroMedicion> registros=new ArrayList<>();
+		registros.add(registro1);
+		registros.add(registro2);
+		
+		dispositivoInteligente.setRegistrosConsumo(registros);
+		
+		manager.getTransaction().begin();
+		manager.persist(dispositivoInteligente);
+		manager.getTransaction().commit();
+		
+		manager.getTransaction().begin();
+		DispositivoInteligente televisor=manager.find(DispositivoInteligente.class, 1);
+		List<RegistroMedicion> registrosEncontrados=televisor.getRegistrosConsumo();
+		registrosEncontrados.stream().forEach(r->System.out.println(r.toString()));
+		
+		televisor.setNombre("Plasma");
+		
+		manager.getTransaction().commit();
+		
+		manager.getTransaction().begin();
+		DispositivoInteligente plasma=manager.find(DispositivoInteligente.class, 1);
+		
+		Assert.assertEquals("Plasma", plasma.getNombre() );
+		manager.getTransaction().commit();
+		
+		
 	}
 	
 }

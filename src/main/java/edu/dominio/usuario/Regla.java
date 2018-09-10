@@ -7,14 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Regla {
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private int idRegla;
-	@ManyToMany
+	//@ManyToMany
 	private List<Condicion> condiciones;
-	@ManyToMany
+	//@ManyToMany
 	private List<Actuador> actuadores;
 	
 	public Regla() {}

@@ -2,16 +2,19 @@ package edu.dominio.empresa;
 
 import java.time.LocalDate;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import edu.dominio.fabricante.Fabricante;
 
+@DiscriminatorValue(value="Estandar")
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DispositivoEstandar extends Dispositivo {
 
+	
+	
 	private double kW;
 	private double horasUsoxDiaSegunUsuario;
 
