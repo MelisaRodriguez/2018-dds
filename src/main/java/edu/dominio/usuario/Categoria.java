@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class Categoria {
 
-	//@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue
 	private long id;
 	private String nombre;
 	private double cargoFijo;
@@ -19,7 +19,7 @@ public class Categoria {
 	public Categoria() {}
 	
 	public Categoria(String nombre, double cargoFijo, double cargoVariable, int limiteInferior, long limiteSuperior) {
-		this.nombre = nombre;
+		this.setNombre(nombre);
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
 		this.limiteInferior = limiteInferior;
@@ -32,5 +32,13 @@ public class Categoria {
 
 	public double calcularTarifaEstimada(double kwPorHora) {
 		return cargoFijo + (kwPorHora * cargoVariable);
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

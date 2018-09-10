@@ -8,17 +8,17 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	
-    	
-    	
     	<class>edu.dominio.usuario.Cliente</class>
     	<class>edu.dominio.usuario.Categoria</class>
     	<class>edu.dominio.empresa.Dispositivo</class>
     	<class>edu.dominio.empresa.DispositivoEstandar</class>
     	<class>edu.dominio.empresa.DispositivoInteligente</class>    	
-    	<class>edu.dominio.usuario.Actuador</class>
-    	<class>edu.dominio.usuario.Sensor</class>
     	<class>edu.dominio.fabricante.Fabricante</class>
     	<class>edu.dominio.empresa.RegistroMedicion</class>
+    	<class>edu.dominio.usuario.Regla</class>
+    	<class>edu.dominio.usuario.Actuador</class>
+    	<class>edu.dominio.usuario.Sensor</class>
+    	<class>edu.dominio.usuario.Condicion</class>
     	<!-- <class>edu.dominio.empresa.Transformador</class> -->
 
         <properties> 

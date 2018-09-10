@@ -5,16 +5,17 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
-//@Entity
+@Entity
 public class Regla {
-	//@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue
 	private int idRegla;
-	//@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Condicion> condiciones;
-	//@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Actuador> actuadores;
 	
 	public Regla() {}
@@ -46,6 +47,13 @@ public class Regla {
 	public void setActuadores(List<Actuador> actuadores) {
 		this.actuadores = actuadores;
 	}
+	public int getIdRegla() {
+		return idRegla;
+	}
+	public void setIdRegla(int idRegla) {
+		this.idRegla = idRegla;
+	}
+	
 	
 	
 }
