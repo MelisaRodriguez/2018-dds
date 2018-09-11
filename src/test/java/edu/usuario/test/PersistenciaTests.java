@@ -16,6 +16,7 @@ import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
+import edu.dominio.usuario.Funciones;
 import junit.framework.Assert;
 
 public class PersistenciaTests {
@@ -134,7 +135,7 @@ public class PersistenciaTests {
 		
 		// Creamos una lista con una condicion
 		
-		Condicion condicion = new Condicion(sensor, (Double valor) -> {return valor > 20;});
+		Condicion condicion = new Condicion(sensor, Funciones.MayorQue ,20);
 		List<Condicion> condiciones = new ArrayList<Condicion>();
 		condiciones.add(condicion);
 		
@@ -155,7 +156,8 @@ public class PersistenciaTests {
 		Regla reglaPersist = manager.find(Regla.class, 1);
 		System.out.println("ID" + reglaPersist.getIdRegla()); // <-- No va, solo para verificar y seguir testeando.
 		reglaPersist.ejecutar();
-		reglaPersist.getCondiciones().get(0).setCondicionLogica((Double valor) -> {return valor >23;});
+		reglaPersist.getCondiciones().get(0).setFuncion(Funciones.MayorQue);
+		reglaPersist.getCondiciones().get(0).setLimite(23);
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
