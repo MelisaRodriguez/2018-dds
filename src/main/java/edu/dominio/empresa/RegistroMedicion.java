@@ -11,11 +11,6 @@ import javax.persistence.Entity;
 @Table(name="RegistrosMedicion")
 public class RegistroMedicion
 {
-	@Override
-	public String toString() {
-		return "RegistroMedicion [idRegistro=" + idRegistro + ", fecha=" + fecha + ", kwConsumidos=" + kwConsumidos
-				+ ", horasEncendido=" + horasEncendido + "]";
-	}
 
 	@Id
 	@GeneratedValue
@@ -30,6 +25,8 @@ public class RegistroMedicion
 		this.kwConsumidos = kwConsumidos;
 		this.horasEncendido = horasEncendido;
 	}
+	
+	public RegistroMedicion() {}
 
 	public boolean estaEntreFechas(LocalDate inicio, LocalDate fin)
 	{
@@ -49,5 +46,11 @@ public class RegistroMedicion
 	public double kwConsumidos()
 	{
 		return kwConsumidos;
+	}
+	
+	@Override
+	public String toString() {
+		return "RegistroMedicion [idRegistro=" + idRegistro + ", fecha=" + fecha + ", kwConsumidos=" + kwConsumidos
+				+ ", horasEncendido=" + horasEncendido + "]";
 	}
 }

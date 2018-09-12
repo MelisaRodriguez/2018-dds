@@ -14,9 +14,9 @@ import edu.dominio.empresa.RegistroMedicion;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Condicion;
+import edu.dominio.usuario.Operador;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
-import edu.dominio.usuario.Funciones;
 import junit.framework.Assert;
 
 public class PersistenciaTests {
@@ -135,7 +135,7 @@ public class PersistenciaTests {
 		
 		// Creamos una lista con una condicion
 		
-		Condicion condicion = new Condicion(sensor, Funciones.MayorQue ,20);
+		Condicion condicion = new Condicion(sensor,Operador.MAYOR,20.0);
 		List<Condicion> condiciones = new ArrayList<Condicion>();
 		condiciones.add(condicion);
 		
@@ -149,42 +149,27 @@ public class PersistenciaTests {
 		Regla regla = new Regla(condiciones,actuadores);
 		
 		manager.getTransaction().begin();
-		manager.persist(regla);
+		manager.persist(regla); // Persistimos la Regla
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		Regla reglaPersist = manager.find(Regla.class, 1);
-		System.out.println("ID" + reglaPersist.getIdRegla()); // <-- No va, solo para verificar y seguir testeando.
-		reglaPersist.ejecutar();
-		reglaPersist.getCondiciones().get(0).setFuncion(Funciones.MayorQue);
-		reglaPersist.getCondiciones().get(0).setLimite(23);
-		manager.getTransaction().commit();
+		Regla reglaPersistida = manager.find(Regla.class, 1); // Recuperamos la regla
+		System.out.println(reglaPersistida.getIdRegla()); // Verificamos que se haya persitida la regla.
+		reglaPersistida.ejecutar(); // Ejecutamos la regla
+		Condicion condicionPersistida = reglaPersistida.getCondiciones().get(0);
+		// Modificamos una condición.
+		condicionPersistida.setOperador(Operador.MAYOR_IGUAL);
+		condicionPersistida.setValor(25);
+		manager.getTransaction().commit(); // Volvemos a persistir.
 		
 		manager.getTransaction().begin();
-		// Ver condicion modificada;
+		reglaPersistida = manager.find(Regla.class, 1); // Recuperamos de nuevo la regla.
+		condicionPersistida = reglaPersistida.getCondiciones().get(0);
 		manager.getTransaction().commit();
 		manager.close();
 		
-		/* NOTA: Rompe el test, porque no sabe como convertir la Function en un dato posible para una tabla en
-		 * SQL. Esto es normal, y era bastante predecible. Se me ocurrió cambiar la clase Condicion.
-		 * Para esto haría @Transient la Function, porque no la vamos a poder persistir, pero sí dejarla en el dominio
-		 * de objetos para poder ejecutarla con el apply(). La modificación sería agregar un valor numérico que
-		 * sea el que haya que superar o no alcanzar para cumplir una condición, (por ejemplo, el número 20 si la
-		 * temperatura tiene que ser mayor a 20) y un enumerado (una cagada) para el operador de comparación,
-		 *  (>, <, >= o <=). Luego hacer dos métodos setters, uno para el enum y otro para el operador que se podría
-		 *  ingresar como un String, ejemplo: ">", y un ultimo metodo set que es el de armar la Function según
-		 *  esos valores ingresados, algo así como
-		 *  
-		 *  setCondicionLogica()
-		 *  { 	
-		 *  	this.condicionLogica =  (Double valor) -> {return valor this.operador this.numero;} 
-		 *  }
-		 *  y convirtiendo el operador ">" al > posta, que acá no sé que hacer, esta es la complicación posta.
-		 *  (y este mismo método sirve para hacer la modificación en el test).
-		 *  Aclaración: estos dos atributos serían persistibles, y habría que agregar la unidad: "Temperatura", 
-		 *  
-		 *  Después no afecta a ningún lado del dominio.
-		 * */
+		Assert.assertEquals(Operador.MAYOR_IGUAL + " 25.0", condicionPersistida.getOperador() + " " + condicionPersistida.getValor());
+		
 	}
 	
 }

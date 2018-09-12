@@ -13,9 +13,9 @@ public class Regla {
 	@Id
 	@GeneratedValue
 	private int idRegla;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Condicion> condiciones;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Actuador> actuadores;
 	
 	public Regla() {}

@@ -19,7 +19,7 @@ public class Categoria {
 	public Categoria() {}
 	
 	public Categoria(String nombre, double cargoFijo, double cargoVariable, int limiteInferior, long limiteSuperior) {
-		this.setNombre(nombre);
+		this.nombre = nombre;
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
 		this.limiteInferior = limiteInferior;

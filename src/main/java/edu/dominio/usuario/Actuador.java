@@ -2,6 +2,7 @@ package edu.dominio.usuario;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -12,7 +13,7 @@ public class Actuador {
 	@Id
 	@GeneratedValue
 	private int idActuador;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private DispositivoInteligente dispositivoInteligente;
 
 	public Actuador() {}
