@@ -153,4 +153,12 @@ public class Cliente {
 	public List<DispositivoInteligente> dispositivosInteligentes (){
 		return dispositivosInteligentes;
 	}
+	public Punto getUbicacion() {
+		return ubicacion;
+	}
+	public void setUbicacion(Punto ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+	
+	
 }

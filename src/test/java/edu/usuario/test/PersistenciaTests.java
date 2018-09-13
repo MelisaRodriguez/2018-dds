@@ -9,18 +9,106 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
 import edu.dominio.fabricante.Fabricante;
+import edu.dominio.fabricante.FabricanteMock;
+import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Actuador;
+import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Operador;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
+import edu.dominio.usuario.TipoDocumento;
 import junit.framework.Assert;
 
 public class PersistenciaTests {
 	
+	public class Sony implements FabricanteMock{
+
+		public Sony() {}
+		@Override
+		public void apagar(DispositivoInteligente d) {}
+
+		@Override
+		public void encender(DispositivoInteligente d) {}
+
+		@Override
+		public void activarAhorroDeEnergia(DispositivoInteligente d) {}
+
+		@Override
+		public double cuantoConsume(DispositivoInteligente d) {
+			return 1;
+		}
+
+		@Override
+		public boolean estaEncendido(DispositivoInteligente d) {
+			return true;
+		}
+
+		@Override
+		public boolean estaApagado(DispositivoInteligente d) {
+			return false;
+		}
+
+		@Override
+		public boolean estaModoAhorroEnergia(DispositivoInteligente d) {
+			return false;
+		}
+
+		@Override
+		public double getPotencia(DispositivoInteligente d) {
+			return 0;
+		}
+
+		@Override
+		public double getHorasEncendido(DispositivoInteligente d) {
+			return 0;
+		}
+	}
+	
+	public Sony s;
+	
+	@Test
+	public void testCasoDePruebaUno() {
+		
+		Fabricante sony=new Fabricante("Sony",s);
+		DispositivoInteligente dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), sony, 0, 0);
+		
+		List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<>();
+		dispositivosInteligentes.add(dispositivoInteligente);
+		
+		DispositivoEstandar dispositivoEstandar = new DispositivoEstandar ("Licuadora", 6, 3, sony, 2, 10);
+		
+		List<DispositivoEstandar> dispositivosEstandares = new ArrayList<>();
+		dispositivosEstandares.add(dispositivoEstandar);
+		
+		Cliente unCliente = new Cliente ("Fede", "Perez", TipoDocumento.DNI ,"41919911", "23456379", "De la puerta para adentro", LocalDate.of(2018, 5, 20), dispositivosInteligentes, dispositivosEstandares, false, new Punto(-0.127512 , 51.507222) ) ;
+		
+		EntityManager manager = PerThreadEntityManagers.getEntityManager();
+		
+		manager.getTransaction().begin();
+		manager.persist(unCliente);
+		manager.getTransaction().commit();
+		
+		manager.getTransaction().begin();
+		Cliente supuestamenteElMismoCliente = manager.find(Cliente.class, 1);
+		
+		supuestamenteElMismoCliente.setUbicacion(new Punto (0.127512 ,- 51.507222));
+		
+		manager.getTransaction().commit();
+		
+		manager.getTransaction().begin();
+		
+		Cliente supuestamenteElMismoClienteModificado = manager.find(Cliente.class, 1);
+		
+		Assert.assertEquals(supuestamenteElMismoClienteModificado, supuestamenteElMismoCliente);
+		manager.getTransaction().commit();
+		
+		manager.close();
+	}
 	/*public class Samsung extends Fabricante
 	{
 		public Samsung () {}
