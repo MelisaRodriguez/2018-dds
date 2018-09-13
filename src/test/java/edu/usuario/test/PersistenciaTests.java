@@ -74,7 +74,7 @@ public class PersistenciaTests {
 	@Test
 	public void testCasoDePruebaUno() {
 		
-		Fabricante sony=new Fabricante("Sony",s);
+		Fabricante sony=new Fabricante("Sony",new Sony());
 		DispositivoInteligente dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), sony, 0, 0);
 		
 		List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<>();

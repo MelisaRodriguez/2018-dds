@@ -6,8 +6,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -22,32 +25,29 @@ import edu.dominio.usuario.Categoria;
 import edu.repositorios.RepoCategorias;
 import edu.repositorios.RepoZonaGeografica;
 
-//@Entity
+@Entity
 public class Cliente {
 
-	//@Id
-	//@GeneratedValue
-	private long id;
+	@Id
+	@GeneratedValue
+	private int id;
 	private String nombre;
 	private String apellido;
+	@Enumerated(EnumType.ORDINAL)
 	private TipoDocumento tipoDocumento;
 	private String nroDocumento;
 	private String telefono;
 	private String domicilioServicio;
 	private LocalDate fechaDeAltaServicio;
-	public List<DispositivoInteligente> getDispositivosInteligentes() {
-		return dispositivosInteligentes;
-	}
-
-	//@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Categoria categoria;
-	//@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<DispositivoInteligente> dispositivosInteligentes;
-	//@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
-	//@Embedded
+	@Embedded
 	private Punto ubicacion;
 
 	public Cliente() {}
@@ -158,6 +158,9 @@ public class Cliente {
 	}
 	public void setUbicacion(Punto ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+	public List<DispositivoInteligente> getDispositivosInteligentes() {
+		return dispositivosInteligentes;
 	}
 	
 	

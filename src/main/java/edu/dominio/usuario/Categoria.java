@@ -41,4 +41,44 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public double getCargoFijo() {
+		return cargoFijo;
+	}
+
+	public void setCargoFijo(double cargoFijo) {
+		this.cargoFijo = cargoFijo;
+	}
+
+	public double getCargoVariable() {
+		return cargoVariable;
+	}
+
+	public void setCargoVariable(double cargoVariable) {
+		this.cargoVariable = cargoVariable;
+	}
+
+	public int getLimiteInferior() {
+		return limiteInferior;
+	}
+
+	public void setLimiteInferior(int limiteInferior) {
+		this.limiteInferior = limiteInferior;
+	}
+
+	public long getLimiteSuperior() {
+		return limiteSuperior;
+	}
+
+	public void setLimiteSuperior(long limiteSuperior) {
+		this.limiteSuperior = limiteSuperior;
+	}
 }

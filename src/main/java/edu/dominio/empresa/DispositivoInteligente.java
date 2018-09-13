@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 
 import edu.dominio.fabricante.Fabricante;
 
-@DiscriminatorValue(value="Inteligente")
 @Entity
 public class DispositivoInteligente extends Dispositivo {
 	

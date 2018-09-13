@@ -9,7 +9,6 @@ import javax.persistence.InheritanceType;
 
 import edu.dominio.fabricante.Fabricante;
 
-@DiscriminatorValue(value="Estandar")
 @Entity
 public class DispositivoEstandar extends Dispositivo {
 

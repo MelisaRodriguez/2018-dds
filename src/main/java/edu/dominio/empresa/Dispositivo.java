@@ -12,10 +12,8 @@ import javax.persistence.Table;
 
 import edu.dominio.fabricante.Fabricante;
 
-@DiscriminatorColumn(name="tipo")
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name="Dispositivos")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Dispositivo
 {
 	@Id
