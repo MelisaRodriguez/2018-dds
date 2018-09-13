@@ -17,26 +17,74 @@ import com.google.gson.JsonSyntaxException;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.Fabricante;
-import edu.dominio.fabricante.SanyoTelevisor;
+import edu.dominio.fabricante.FabricanteMock;
 import edu.dominio.usuario.Cliente;
 
 import edu.repositorios.RuntimeTypeAdapterFactory;
+import edu.usuario.test.ZonaFixture.Sony;
 
 public class ClienteFixture {
 	protected DispositivoEstandar dispositivoEstandar;
 	protected DispositivoInteligente dispositivoInteligente;
-	protected SanyoTelevisor televisor;
+	
+	
+	public class Sony implements FabricanteMock{
+
+		public Sony() {}
+		@Override
+		public void apagar(DispositivoInteligente d) {}
+
+		@Override
+		public void encender(DispositivoInteligente d) {}
+
+		@Override
+		public void activarAhorroDeEnergia(DispositivoInteligente d) {}
+
+		@Override
+		public double cuantoConsume(DispositivoInteligente d) {
+			return 1;
+		}
+
+		@Override
+		public boolean estaEncendido(DispositivoInteligente d) {
+			return true;
+		}
+
+		@Override
+		public boolean estaApagado(DispositivoInteligente d) {
+			return false;
+		}
+
+		@Override
+		public boolean estaModoAhorroEnergia(DispositivoInteligente d) {
+			return false;
+		}
+
+		@Override
+		public double getPotencia(DispositivoInteligente d) {
+			return 0;
+		}
+
+		@Override
+		public double getHorasEncendido(DispositivoInteligente d) {
+			return 0;
+		}
+	}
+	
+	public Sony s;
+	
 	
 	public List<Cliente> clientes;
 	
 	@Before
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
-		dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new SanyoTelevisor(),0,0);
-        final RuntimeTypeAdapterFactory<Fabricante> typeFabricante = RuntimeTypeAdapterFactory
-                .of(Fabricante.class, "type")
-                .registerSubtype(SanyoTelevisor.class);//AGREGAR 1 X 1
-                //.registerSubtype(FabricanteY.class);
+		s=new Sony();
+       
+		final RuntimeTypeAdapterFactory<FabricanteMock> typeFabricante = RuntimeTypeAdapterFactory
+                .of(FabricanteMock.class, "type")
+                .registerSubtype(Sony.class);//AGREGAR 1 X 1
+                //.registerSubtype(FabricanteY.class);*/
         /*
         final RuntimeTypeAdapterFactory<Dispositivo> typeDispositivo = RuntimeTypeAdapterFactory
                 .of(Dispositivo.class, "type")
@@ -59,6 +107,12 @@ public class ClienteFixture {
 			e.printStackTrace();
 		}
     	clientes = gson.fromJson( br, clienteListType.getType());
+    	dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new Fabricante("SONY",s),0,0);
+	
+    	clientes.get(0).getDispositivosInteligentes().stream().forEach(x->x.getFabricante().setFabricanteMock(s));
+
+	
+	
 	}
 
 

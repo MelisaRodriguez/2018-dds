@@ -17,6 +17,9 @@ public class Fabricante {
 	@GeneratedValue
 	private int idFabricante;
 	private String nombre;
+	public void setFabricanteMock(FabricanteMock fabricanteMock) {
+		this.fabricanteMock = fabricanteMock;
+	}
 	@Transient
 	private FabricanteMock fabricanteMock;
 	

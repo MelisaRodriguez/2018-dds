@@ -35,6 +35,10 @@ public class Cliente {
 	private String telefono;
 	private String domicilioServicio;
 	private LocalDate fechaDeAltaServicio;
+	public List<DispositivoInteligente> getDispositivosInteligentes() {
+		return dispositivosInteligentes;
+	}
+
 	//@ManyToOne
 	private Categoria categoria;
 	//@OneToMany

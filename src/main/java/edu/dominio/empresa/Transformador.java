@@ -23,6 +23,10 @@ public class Transformador {
 		this.clientes.add(unCliente);
 	}
 	
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
 	public double calcularConsumo()
 	{
 		return this.clientes.stream().mapToDouble(c->c.consumoTotal()).sum();
