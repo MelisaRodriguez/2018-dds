@@ -187,13 +187,6 @@ public class PersistenciaTests extends PersistenciaFixture{
 		assertEquals(2, ts.size());
 	}
 	
-	/*Caso de prueba 5:
-Dado un hogar y un período, mostrar por consola (interfaz de comandos) el
-consumo total. Dado un dispositivo y un período, mostrar por consola su
-consumo promedio. Dado un transformador y un período, mostrar su consumo
-promedio. Recuperar un dispositivo asociado a un hogar de ese transformador
-e incrementar un 1000 % el consumo para ese período. Persistir el dispositivo.
-Nuevamente mostrar el consumo para ese transformador.*/
 	@Test
 	public void testCasoDePrueba5() {
 		LocalDate inicio = LocalDate.of(2017, 4, 28);

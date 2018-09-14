@@ -45,8 +45,6 @@ public class DispositivoInteligente extends Dispositivo {
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
-		registrosConsumo.stream()
-		.filter(registro -> registro.estaEntreFechas(inicio, fin)).forEach(r -> System.out.println("REGISTO " + r.kwConsumidos())); //TODO
 		return 	registrosConsumo.stream()
 				.filter(registro -> registro.estaEntreFechas(inicio, fin))
 				.mapToDouble(registro -> registro.kwConsumidos())
