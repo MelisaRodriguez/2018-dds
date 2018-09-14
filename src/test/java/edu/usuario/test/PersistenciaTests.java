@@ -190,13 +190,6 @@ public class PersistenciaTests extends PersistenciaFixture{
 		assertEquals(2, ts.size());
 	}
 	
-	/*Caso de prueba 5:
-Dado un hogar y un período, mostrar por consola (interfaz de comandos) el
-consumo total. Dado un dispositivo y un período, mostrar por consola su
-consumo promedio. Dado un transformador y un período, mostrar su consumo
-promedio. Recuperar un dispositivo asociado a un hogar de ese transformador
-e incrementar un 1000 % el consumo para ese período. Persistir el dispositivo.
-Nuevamente mostrar el consumo para ese transformador.*/
 	@Test
 	public void testCasoDePrueba5() {
 		LocalDate inicio = LocalDate.of(2017, 4, 28);
@@ -240,21 +233,19 @@ Nuevamente mostrar el consumo para ese transformador.*/
 		//Dado un transformador y un período, mostrar su consumo promedio.
 		manager.getTransaction().begin();
 		Transformador transformador = manager.find(Transformador.class, 1);
-		System.out.println("NOMBRE: " + transformador.getClientes().get(0).getNombre()); //TODO
-		System.out.println("SIZE: " + transformador.getClientes().get(0).cantRegistrosMedicion()); // TODO
-		System.out.println("Promedio consumo transformador = " + transformador.consumoTotalEnPeriodo(inicio, fin)/transformador.getClientes().get(0).dispositivosInteligentes().get(0).getRegistrosConsumo().size());
+		System.out.println("Promedio consumo transformador = " + transformador.consumoTotalEnPeriodo(inicio, fin)/transformador.getClientes().get(2).cantRegistrosMedicion());
 		manager.getTransaction().commit();
 		
 		//Recuperar un dispositivo asociado a un hogar de ese transformador e incrementar un 1000 % el consumo para ese período.
 		manager.getTransaction().begin();
 		transformador = manager.find(Transformador.class, 1);
-		transformador.getClientes().get(0).getDispositivosInteligentes().get(0).getRegistrosConsumo().stream().forEach(res -> res.setKwConsumidos(res.getKwConsumidos() * 10));
+		transformador.getClientes().get(2).getDispositivosInteligentes().get(0).getRegistrosConsumo().stream().forEach(res -> res.setKwConsumidos(res.getKwConsumidos() * 10));
 		manager.getTransaction().commit();
 		
 		//Nuevamente mostrar el consumo para ese transformador.
 		manager.getTransaction().begin();
 		transformador = manager.find(Transformador.class, 1);
-		System.out.println("Consumo final: " + transformador.consumoTotalEnPeriodo(inicio, fin));
+		System.out.println("Consumo promedio final transformador = " + transformador.consumoTotalEnPeriodo(inicio, fin)/transformador.getClientes().get(2).cantRegistrosMedicion());
 		manager.getTransaction().commit();
 	}
 }
