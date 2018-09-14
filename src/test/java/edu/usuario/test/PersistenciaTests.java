@@ -8,9 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import edu.dominio.empresa.Administrador;
@@ -32,7 +30,6 @@ import edu.dominio.usuario.TipoDocumento;
 import edu.repositorios.RepoZonaGeografica;
 import junit.framework.Assert;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PersistenciaTests extends PersistenciaFixture{
 	
 	@SuppressWarnings("deprecation")
@@ -56,7 +53,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		Cliente supuestamenteElMismoCliente = manager.find(Cliente.class, 1);
+		Cliente supuestamenteElMismoCliente = manager.find(Cliente.class, unCliente.getId());
 		
 		supuestamenteElMismoCliente.setUbicacion(new Punto (0.127512 ,- 51.507222));
 		
@@ -64,7 +61,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		
 		manager.getTransaction().begin();
 		
-		Cliente supuestamenteElMismoClienteModificado = manager.find(Cliente.class, 1);
+		Cliente supuestamenteElMismoClienteModificado = manager.find(Cliente.class, unCliente.getId());
 		
 		Assert.assertEquals(supuestamenteElMismoClienteModificado, supuestamenteElMismoCliente);
 		manager.getTransaction().commit();
@@ -90,7 +87,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		DispositivoInteligente televisor=manager.find(DispositivoInteligente.class, 3);
+		DispositivoInteligente televisor=manager.find(DispositivoInteligente.class, dispositivoInteligente.getId());
 		List<RegistroMedicion> registrosEncontrados=televisor.getRegistrosConsumo();
 		registrosEncontrados.stream().forEach(r->System.out.println(r.toString()));
 		
@@ -99,7 +96,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		DispositivoInteligente plasma=manager.find(DispositivoInteligente.class, 3);
+		DispositivoInteligente plasma=manager.find(DispositivoInteligente.class, dispositivoInteligente.getId());
 		
 		Assert.assertEquals("Plasma", plasma.getNombre() );
 		manager.getTransaction().commit();
@@ -136,7 +133,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		Regla reglaPersistida = manager.find(Regla.class, 1); // Recuperamos la regla
+		Regla reglaPersistida = manager.find(Regla.class, regla.getIdRegla()); // Recuperamos la regla
 		System.out.println(reglaPersistida.getIdRegla()); // Verificamos que se haya persitida la regla.
 		reglaPersistida.ejecutar(); // Ejecutamos la regla
 		Condicion condicionPersistida = reglaPersistida.getCondiciones().get(0);
@@ -146,7 +143,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		manager.getTransaction().commit(); // Volvemos a persistir.
 		
 		manager.getTransaction().begin();
-		reglaPersistida = manager.find(Regla.class, 1); // Recuperamos de nuevo la regla.
+		reglaPersistida = manager.find(Regla.class, regla.getIdRegla()); // Recuperamos de nuevo la regla.
 		condicionPersistida = reglaPersistida.getCondiciones().get(0);
 		manager.getTransaction().commit();
 		
@@ -221,25 +218,30 @@ Nuevamente mostrar el consumo para ese transformador.*/
 		
 		Cliente cliente = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, dispositivosEstandar, true,new Punto(-0.127512, 51.507222));
 	
+		Transformador t = new Transformador();
+		t.setClientes(new ArrayList<Cliente>());
+		t.getClientes().add(cliente);
+		t.setLugar(new Punto(4,5));
+		
 		manager.getTransaction().begin();
-		manager.persist(cliente); 
+		manager.persist(t); 
 		manager.getTransaction().commit();
 		
 		//Dado un hogar y un período, mostrar por consola (interfaz de comandos) el consumo total.
 		manager.getTransaction().begin();
-		cliente = manager.find(Cliente.class, 3);
+		cliente = manager.find(Cliente.class, cliente.getId());
 		System.out.println("Consumo hogar = " + cliente.consumoTotalEnPeriodo(inicio, fin));
 		manager.getTransaction().commit();
 		
 		//Dado un dispositivo y un período, mostrar por consola su consumo promedio.
 		manager.getTransaction().begin();
-		aireAcondicionado = manager.find(DispositivoInteligente.class, 8);
+		aireAcondicionado = manager.find(DispositivoInteligente.class, cliente.getDispositivosInteligentes().get(0).getId());
 		System.out.println("Promedio consumo dispositivo = " + aireAcondicionado.consumoTotalEnPeriodo(inicio, fin)/aireAcondicionado.getRegistrosConsumo().size());
 		manager.getTransaction().commit();
 		
 		//Dado un transformador y un período, mostrar su consumo promedio.
 		manager.getTransaction().begin();
-		Transformador transformador = manager.find(Transformador.class, 1);
+		Transformador transformador = manager.find(Transformador.class, t.getIdTransformador());
 		System.out.println("NOMBRE: " + transformador.getClientes().get(0).getNombre()); //TODO
 		System.out.println("SIZE: " + transformador.getClientes().get(0).cantRegistrosMedicion()); // TODO
 		System.out.println("Promedio consumo transformador = " + transformador.consumoTotalEnPeriodo(inicio, fin)/transformador.getClientes().get(0).dispositivosInteligentes().get(0).getRegistrosConsumo().size());
@@ -247,13 +249,13 @@ Nuevamente mostrar el consumo para ese transformador.*/
 		
 		//Recuperar un dispositivo asociado a un hogar de ese transformador e incrementar un 1000 % el consumo para ese período.
 		manager.getTransaction().begin();
-		transformador = manager.find(Transformador.class, 1);
+		transformador = manager.find(Transformador.class, t.getIdTransformador());
 		transformador.getClientes().get(0).getDispositivosInteligentes().get(0).getRegistrosConsumo().stream().forEach(res -> res.setKwConsumidos(res.getKwConsumidos() * 10));
 		manager.getTransaction().commit();
 		
 		//Nuevamente mostrar el consumo para ese transformador.
 		manager.getTransaction().begin();
-		transformador = manager.find(Transformador.class, 1);
+		transformador = manager.find(Transformador.class, t.getIdTransformador());
 		System.out.println("Consumo final: " + transformador.consumoTotalEnPeriodo(inicio, fin));
 		manager.getTransaction().commit();
 	}
