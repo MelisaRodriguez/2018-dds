@@ -16,7 +16,7 @@ import edu.dominio.fabricante.Fabricante;
 public class DispositivoInteligente extends Dispositivo {
 	
 	private LocalDate fechaDeRegistro;
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idDispositivo")
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
 	
@@ -45,6 +45,8 @@ public class DispositivoInteligente extends Dispositivo {
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
+		registrosConsumo.stream()
+		.filter(registro -> registro.estaEntreFechas(inicio, fin)).forEach(r -> System.out.println("REGISTO " + r.kwConsumidos())); //TODO
 		return 	registrosConsumo.stream()
 				.filter(registro -> registro.estaEntreFechas(inicio, fin))
 				.mapToDouble(registro -> registro.kwConsumidos())

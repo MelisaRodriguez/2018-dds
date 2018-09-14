@@ -1,5 +1,6 @@
 package edu.dominio.empresa;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +24,14 @@ public class Transformador {
 	
 	@Id
 	@GeneratedValue
-	public Long idTransformador;
+	public int idTransformador;
 	
 
 	@Embedded
 	private Punto lugar;
 	
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idTransformador")
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
@@ -56,15 +57,19 @@ public class Transformador {
 		return this.clientes.stream().mapToDouble(c->c.consumoTotal()).sum();
 	}
 	
+	public double consumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
+		return this.clientes.stream().mapToDouble(c->c.consumoTotalEnPeriodo(inicio, fin)).sum();
+	}
+	
 	public Punto getLugar()
 	{
 		return this.lugar;
 	}
-	public Long getIdTransformador() {
+	public int getIdTransformador() {
 		return idTransformador;
 	}
 	
-	public void setIdTransformador(Long idTransformador) {
+	public void setIdTransformador(int idTransformador) {
 		this.idTransformador = idTransformador;
 	}
 	

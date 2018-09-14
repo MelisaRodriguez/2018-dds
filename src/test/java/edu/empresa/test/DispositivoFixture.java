@@ -28,7 +28,7 @@ public class DispositivoFixture {
 
 		@Override
 		public double cuantoConsume(DispositivoInteligente d) {
-			return 0;
+			return 100;
 		}
 
 		@Override

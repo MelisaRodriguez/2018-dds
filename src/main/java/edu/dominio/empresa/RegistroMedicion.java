@@ -53,4 +53,36 @@ public class RegistroMedicion
 		return "RegistroMedicion [idRegistro=" + idRegistro + ", fecha=" + fecha + ", kwConsumidos=" + kwConsumidos
 				+ ", horasEncendido=" + horasEncendido + "]";
 	}
+
+	public int getIdRegistro() {
+		return idRegistro;
+	}
+
+	public void setIdRegistro(int idRegistro) {
+		this.idRegistro = idRegistro;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+	public double getKwConsumidos() {
+		return kwConsumidos;
+	}
+
+	public void setKwConsumidos(double kwConsumidos) {
+		this.kwConsumidos = kwConsumidos;
+	}
+
+	public double getHorasEncendido() {
+		return horasEncendido;
+	}
+
+	public void setHorasEncendido(double horasEncendido) {
+		this.horasEncendido = horasEncendido;
+	}
 }

@@ -13,6 +13,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,7 +31,7 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private int idCliente;
 	private String nombre;
 	private String apellido;
 	@Enumerated(EnumType.ORDINAL)
@@ -42,8 +43,10 @@ public class Cliente {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Categoria categoria;
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idCliente")
 	private List<DispositivoInteligente> dispositivosInteligentes;
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idCliente")
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
@@ -93,6 +96,14 @@ public class Cliente {
 	public double consumoTotal() {
 		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
 	}	
+	
+	public double consumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
+		return dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotalEnPeriodo(inicio, fin)).sum();
+	}
+	
+	public double cantRegistrosMedicion() {
+		return dispositivosInteligentes.stream().mapToDouble(d -> d.getRegistrosConsumo().size()).sum();
+	}
 
 	private List<DispositivoInteligente> filtrarDispositivos(Predicate<DispositivoInteligente> unaCondicion) {
 		return dispositivosInteligentes.stream().filter(unaCondicion).collect(Collectors.toList());
@@ -161,6 +172,69 @@ public class Cliente {
 	}
 	public List<DispositivoInteligente> getDispositivosInteligentes() {
 		return dispositivosInteligentes;
+	}
+	public int getId() {
+		return idCliente;
+	}
+	public void setId(int id) {
+		this.idCliente = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+	public String getNroDocumento() {
+		return nroDocumento;
+	}
+	public void setNroDocumento(String nroDocumento) {
+		this.nroDocumento = nroDocumento;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getDomicilioServicio() {
+		return domicilioServicio;
+	}
+	public void setDomicilioServicio(String domicilioServicio) {
+		this.domicilioServicio = domicilioServicio;
+	}
+	public LocalDate getFechaDeAltaServicio() {
+		return fechaDeAltaServicio;
+	}
+	public void setFechaDeAltaServicio(LocalDate fechaDeAltaServicio) {
+		this.fechaDeAltaServicio = fechaDeAltaServicio;
+	}
+	public List<DispositivoEstandar> getDispositivosEstandar() {
+		return dispositivosEstandar;
+	}
+	public void setDispositivosEstandar(List<DispositivoEstandar> dispositivosEstandar) {
+		this.dispositivosEstandar = dispositivosEstandar;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivosInteligentes) {
+		this.dispositivosInteligentes = dispositivosInteligentes;
+	}
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
 	}
 	
 	

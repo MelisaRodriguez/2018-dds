@@ -8,9 +8,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import edu.dominio.empresa.Administrador;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
@@ -29,57 +32,12 @@ import edu.dominio.usuario.TipoDocumento;
 import edu.repositorios.RepoZonaGeografica;
 import junit.framework.Assert;
 
-public class PersistenciaTests{
-	
-	public class Sony implements FabricanteMock{
-
-		public Sony() {}
-		@Override
-		public void apagar(DispositivoInteligente d) {}
-
-		@Override
-		public void encender(DispositivoInteligente d) {}
-
-		@Override
-		public void activarAhorroDeEnergia(DispositivoInteligente d) {}
-
-		@Override
-		public double cuantoConsume(DispositivoInteligente d) {
-			return 1;
-		}
-
-		@Override
-		public boolean estaEncendido(DispositivoInteligente d) {
-			return true;
-		}
-
-		@Override
-		public boolean estaApagado(DispositivoInteligente d) {
-			return false;
-		}
-
-		@Override
-		public boolean estaModoAhorroEnergia(DispositivoInteligente d) {
-			return false;
-		}
-
-		@Override
-		public double getPotencia(DispositivoInteligente d) {
-			return 0;
-		}
-
-		@Override
-		public double getHorasEncendido(DispositivoInteligente d) {
-			return 0;
-		}
-	}
-	
-	public Sony s;
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class PersistenciaTests extends PersistenciaFixture{
 	
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testCasoDePruebaUno() {
-		
+	public void testCasoDePrueba1() {
 		Fabricante sony=new Fabricante("Sony",new Sony());
 		DispositivoInteligente dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), sony, 0, 0);
 		
@@ -92,8 +50,6 @@ public class PersistenciaTests{
 		dispositivosEstandares.add(dispositivoEstandar);
 		
 		Cliente unCliente = new Cliente ("Fede", "Perez", TipoDocumento.DNI ,"41919911", "23456379", "De la puerta para adentro", LocalDate.of(2018, 5, 20), dispositivosInteligentes, dispositivosEstandares, false, new Punto(-0.127512 , 51.507222) ) ;
-		
-		EntityManager manager = PerThreadEntityManagers.getEntityManager();
 		
 		manager.getTransaction().begin();
 		manager.persist(unCliente);
@@ -112,18 +68,13 @@ public class PersistenciaTests{
 		
 		Assert.assertEquals(supuestamenteElMismoClienteModificado, supuestamenteElMismoCliente);
 		manager.getTransaction().commit();
-		
-		manager.close();
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testCasoDePruebaDos() {
-		
+	public void testCasoDePrueba2() {
 		Fabricante sony=new Fabricante("Sony",null);
 		DispositivoInteligente dispositivoInteligente = new DispositivoInteligente("Televisor", LocalDate.of(2017, 3, 28), sony, 0, 0);
-		
-		EntityManager manager = PerThreadEntityManagers.getEntityManager();
 		
 		RegistroMedicion registro1=new RegistroMedicion(LocalDate.of(2018, 5, 18),80,10 );
 		RegistroMedicion registro2=new RegistroMedicion(LocalDate.of(2018, 5, 25),2000,22);
@@ -139,7 +90,7 @@ public class PersistenciaTests{
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		DispositivoInteligente televisor=manager.find(DispositivoInteligente.class, 1);
+		DispositivoInteligente televisor=manager.find(DispositivoInteligente.class, 3);
 		List<RegistroMedicion> registrosEncontrados=televisor.getRegistrosConsumo();
 		registrosEncontrados.stream().forEach(r->System.out.println(r.toString()));
 		
@@ -148,20 +99,15 @@ public class PersistenciaTests{
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		DispositivoInteligente plasma=manager.find(DispositivoInteligente.class, 1);
+		DispositivoInteligente plasma=manager.find(DispositivoInteligente.class, 3);
 		
 		Assert.assertEquals("Plasma", plasma.getNombre() );
 		manager.getTransaction().commit();
-		
-		manager.close();
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testCasoDePruebaTres() {
-		
-		EntityManager manager = PerThreadEntityManagers.getEntityManager();
-
+	public void testCasoDePrueba3() {
 		// Creamos un dispositivo al cual se le va a aplicar la regla
 		Fabricante fabricante = new Fabricante ("Samsung",null);
 		DispositivoInteligente dispositivo = new DispositivoInteligente("Smartphone", LocalDate.now(), fabricante, 150.0, 300.0);
@@ -203,29 +149,22 @@ public class PersistenciaTests{
 		reglaPersistida = manager.find(Regla.class, 1); // Recuperamos de nuevo la regla.
 		condicionPersistida = reglaPersistida.getCondiciones().get(0);
 		manager.getTransaction().commit();
-		manager.close();
 		
 		Assert.assertEquals(Operador.MAYOR_IGUAL + " 25.0", condicionPersistida.getOperador() + " " + condicionPersistida.getValor());
-		
 	}
 	
-	/*Caso de prueba 4:
-Recuperar todos los transformadores persistidos. Registrar la cantidad.
-Agregar una instancia de Transformador al JSON de entradas. Ejecutar el
-método de lectura y persistencia. Evaluar que la cantidad actual sea la anterior + 1.*/
 	@Test
-	public void testCasoDePruebaCuatro() {
+	public void testCasoDePrueba4() {
 		EntityManager manager = PerThreadEntityManagers.getEntityManager();
 		
 		List<Transformador> transformadores;
 		
 		List<ZonaGeografica> zona = RepoZonaGeografica.getSingletonInstance().getEntidades();
-		EntityManager e = PerThreadEntityManagers.getEntityManager();
 		transformadores = zona.get(0).getTransformadores();
 		
-		e.getTransaction().begin();
-		transformadores.forEach(t -> e.persist(t));
-		e.getTransaction().commit();
+		manager.getTransaction().begin();
+		transformadores.forEach(t -> manager.persist(t));
+		manager.getTransaction().commit();
 		
 		List<Transformador> ts;
 	
@@ -248,8 +187,74 @@ método de lectura y persistencia. Evaluar que la cantidad actual sea la anterio
 		ts.add(manager.find(Transformador.class, t.getIdTransformador()));
 		manager.getTransaction().commit();
 		
-		manager.close();
-		
 		assertEquals(2, ts.size());
+	}
+	
+	/*Caso de prueba 5:
+Dado un hogar y un período, mostrar por consola (interfaz de comandos) el
+consumo total. Dado un dispositivo y un período, mostrar por consola su
+consumo promedio. Dado un transformador y un período, mostrar su consumo
+promedio. Recuperar un dispositivo asociado a un hogar de ese transformador
+e incrementar un 1000 % el consumo para ese período. Persistir el dispositivo.
+Nuevamente mostrar el consumo para ese transformador.*/
+	@Test
+	public void testCasoDePrueba5() {
+		LocalDate inicio = LocalDate.of(2017, 4, 28);
+		LocalDate fin = LocalDate.of(2017, 5, 28);
+		
+		Fabricante sony=new Fabricante("Sony", fabricantemock);
+		
+		DispositivoInteligente aireAcondicionado = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2017, 4, 28), sony, 90.0, 360.0);
+
+		ArrayList<RegistroMedicion> mediciones = new ArrayList<RegistroMedicion>();
+		mediciones.add(new RegistroMedicion(LocalDate.of(2017, 4, 29), 10.0, 20));
+		mediciones.add(new RegistroMedicion(LocalDate.of(2017, 4, 30), 10.0, 20));
+		aireAcondicionado.setRegistrosConsumo(mediciones);
+		
+		ArrayList<DispositivoInteligente> inteligentes = new ArrayList<DispositivoInteligente>();
+		inteligentes.add(aireAcondicionado);
+		
+		DispositivoEstandar lavarropas = new DispositivoEstandar("Lavarropas", 0.1275, 5, sony, 6.0, 30.0);
+
+		ArrayList<DispositivoEstandar> dispositivosEstandar = new ArrayList<DispositivoEstandar>();
+		dispositivosEstandar.add(lavarropas);
+		
+		Cliente cliente = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, dispositivosEstandar, true,new Punto(-0.127512, 51.507222));
+	
+		manager.getTransaction().begin();
+		manager.persist(cliente); 
+		manager.getTransaction().commit();
+		
+		//Dado un hogar y un período, mostrar por consola (interfaz de comandos) el consumo total.
+		manager.getTransaction().begin();
+		cliente = manager.find(Cliente.class, 3);
+		System.out.println("Consumo hogar = " + cliente.consumoTotalEnPeriodo(inicio, fin));
+		manager.getTransaction().commit();
+		
+		//Dado un dispositivo y un período, mostrar por consola su consumo promedio.
+		manager.getTransaction().begin();
+		aireAcondicionado = manager.find(DispositivoInteligente.class, 8);
+		System.out.println("Promedio consumo dispositivo = " + aireAcondicionado.consumoTotalEnPeriodo(inicio, fin)/aireAcondicionado.getRegistrosConsumo().size());
+		manager.getTransaction().commit();
+		
+		//Dado un transformador y un período, mostrar su consumo promedio.
+		manager.getTransaction().begin();
+		Transformador transformador = manager.find(Transformador.class, 1);
+		System.out.println("NOMBRE: " + transformador.getClientes().get(0).getNombre()); //TODO
+		System.out.println("SIZE: " + transformador.getClientes().get(0).cantRegistrosMedicion()); // TODO
+		System.out.println("Promedio consumo transformador = " + transformador.consumoTotalEnPeriodo(inicio, fin)/transformador.getClientes().get(0).dispositivosInteligentes().get(0).getRegistrosConsumo().size());
+		manager.getTransaction().commit();
+		
+		//Recuperar un dispositivo asociado a un hogar de ese transformador e incrementar un 1000 % el consumo para ese período.
+		manager.getTransaction().begin();
+		transformador = manager.find(Transformador.class, 1);
+		transformador.getClientes().get(0).getDispositivosInteligentes().get(0).getRegistrosConsumo().stream().forEach(res -> res.setKwConsumidos(res.getKwConsumidos() * 10));
+		manager.getTransaction().commit();
+		
+		//Nuevamente mostrar el consumo para ese transformador.
+		manager.getTransaction().begin();
+		transformador = manager.find(Transformador.class, 1);
+		System.out.println("Consumo final: " + transformador.consumoTotalEnPeriodo(inicio, fin));
+		manager.getTransaction().commit();
 	}
 }

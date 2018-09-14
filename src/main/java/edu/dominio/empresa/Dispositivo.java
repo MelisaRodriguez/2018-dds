@@ -20,7 +20,7 @@ public abstract class Dispositivo
 	@GeneratedValue
 	protected int idDispositivo;
 	protected String nombre;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.ALL)
 	protected Fabricante fabricante;
 	protected double restriccionMinima;
 	protected double restriccionMaxima;
@@ -67,6 +67,10 @@ public abstract class Dispositivo
 		this.restriccionMaxima = restriccionMaxima;
 	}
 	
+	public int getId() {
+		return this.idDispositivo;
+
+	}
 
 	public abstract double getPotencia();
 	
