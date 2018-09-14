@@ -1,5 +1,7 @@
 package edu.usuario.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,8 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
+import edu.dominio.empresa.Transformador;
+import edu.dominio.empresa.ZonaGeografica;
 import edu.dominio.fabricante.Fabricante;
 import edu.dominio.fabricante.FabricanteMock;
 import edu.dominio.posicion.Punto;
@@ -22,9 +26,10 @@ import edu.dominio.usuario.Operador;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
 import edu.dominio.usuario.TipoDocumento;
+import edu.repositorios.RepoZonaGeografica;
 import junit.framework.Assert;
 
-public class PersistenciaTests {
+public class PersistenciaTests{
 	
 	public class Sony implements FabricanteMock{
 
@@ -71,6 +76,7 @@ public class PersistenciaTests {
 	
 	public Sony s;
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCasoDePruebaUno() {
 		
@@ -109,66 +115,8 @@ public class PersistenciaTests {
 		
 		manager.close();
 	}
-	/*public class Samsung extends Fabricante
-	{
-		public Samsung () {}
-		
-		public Samsung(String nombre)
-		{
-			this.nombre = nombre;
-		}
-		@Override
-		public void apagar() {
-			//MOCK
-		}
-
-		@Override
-		public void encender() {
-			//MOCK
-		}
-
-		@Override
-		public void activarAhorroDeEnergia() {
-			//MOCK
-		}
-		
-		@Override
-		public double cuantoConsume() {
-			return 1.0;
-			//MOCK
-		}
-		
-		@Override
-		public boolean estaEncendido() {
-			return true;
-			//MOCK
-		}
-		
-		@Override
-		public boolean estaApagado() {
-			return true;
-			//MOCK
-		}
-		
-		@Override
-		public boolean estaModoAhorroEnergia() {
-			return true;
-			//MOCK
-		}
-
-		@Override
-		public double getPotencia() {
-			return 1.0;
-			// MOCK
-		}
-		
-		@Override
-		public double getHorasEncendido() {
-			return 1.0;
-			// MOCK
-		}
-	}*/
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCasoDePruebaDos() {
 		
@@ -208,6 +156,7 @@ public class PersistenciaTests {
 		manager.close();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCasoDePruebaTres() {
 		
@@ -260,4 +209,47 @@ public class PersistenciaTests {
 		
 	}
 	
+	/*Caso de prueba 4:
+Recuperar todos los transformadores persistidos. Registrar la cantidad.
+Agregar una instancia de Transformador al JSON de entradas. Ejecutar el
+método de lectura y persistencia. Evaluar que la cantidad actual sea la anterior + 1.*/
+	@Test
+	public void testCasoDePruebaCuatro() {
+		EntityManager manager = PerThreadEntityManagers.getEntityManager();
+		
+		List<Transformador> transformadores;
+		
+		List<ZonaGeografica> zona = RepoZonaGeografica.getSingletonInstance().getEntidades();
+		EntityManager e = PerThreadEntityManagers.getEntityManager();
+		transformadores = zona.get(0).getTransformadores();
+		
+		e.getTransaction().begin();
+		transformadores.forEach(t -> e.persist(t));
+		e.getTransaction().commit();
+		
+		List<Transformador> ts;
+	
+		manager.getTransaction().begin();
+		ts = manager.createQuery("from Transformador", Transformador.class).getResultList();
+		manager.getTransaction().commit();
+		
+		System.out.println(ts.get(0).toString());
+		
+		assertEquals(transformadores.size(), ts.size());
+		
+		Transformador t = new Transformador(new Punto(3.5, 4.7));
+		transformadores.add(t);
+		
+		manager.getTransaction().begin();
+		manager.persist(t);
+		manager.getTransaction().commit();
+		
+		manager.getTransaction().begin();
+		ts.add(manager.find(Transformador.class, t.getIdTransformador()));
+		manager.getTransaction().commit();
+		
+		manager.close();
+		
+		assertEquals(2, ts.size());
+	}
 }
