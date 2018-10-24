@@ -2,16 +2,17 @@
 	<body>
 		Sesión iniciada como: {{cliente.usuario}}
 		
-		<button type="button">Cerrar Sesión</button>
+		<button type="button" >Cerrar Sesión</button>
 		<h1>ANDUVO</h1>
 	<table class="table">
             <thead>
               <tr>
                 <th>Nombre</th>
-                <!-- <th contenteditable="true">Estado</th> -->
-                <th contenteditable="true">Ultima Medicion</th>
+                <th>Estado</th>
+                <th>Ultima medición</th>
               </tr>
             </thead>
+            
             <tbody>
               
 			{{#each dispositivos}}

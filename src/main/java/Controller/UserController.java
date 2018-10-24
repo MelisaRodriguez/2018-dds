@@ -13,15 +13,15 @@ import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
 import edu.dominio.fabricante.Fabricante;
+import edu.dominio.fabricante.Sony;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.TipoDocumento;
-import edu.usuario.test.PersistenciaFixture.Sony;
 import spark.ModelAndView;
 
 public class UserController {
 
-	
+	// Borrar después de que esté implementado el login!
 	public static Cliente inicializarCliente()
 	{
 		LocalDate inicio = LocalDate.of(2017, 4, 28);
