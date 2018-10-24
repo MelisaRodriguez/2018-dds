@@ -31,8 +31,9 @@ public class DispositivoInteligente extends Dispositivo {
 	@Override
 	public double calcularConsumo() 
 	{
-		return 15;
-		// OJOTA! CAMBIAR -> TODO return this.fabricante.cuantoConsume(this);
+		//return 15;
+		// OJOTA! CAMBIAR -> TODO 
+		return this.fabricante.cuantoConsume(this);
 	}
 
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.

@@ -11,14 +11,13 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import edu.dominio.empresa.Administrador;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
 import edu.dominio.empresa.Transformador;
 import edu.dominio.empresa.ZonaGeografica;
 import edu.dominio.fabricante.Fabricante;
-import edu.dominio.fabricante.FabricanteMock;
+import edu.dominio.fabricante.Sony;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Cliente;

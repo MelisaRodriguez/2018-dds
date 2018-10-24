@@ -21,18 +21,16 @@ public class ZonaTest extends ZonaFixture {
 		Assert.assertEquals( 8000.0 , zona.get(0).getRadio() );
 	}
 	
-	
-	//ROTISIMOS
 	@Test
 	public void testTransformadorConsumidor() {
 		
 		zona.get(0).getTransformadores().get(0).getClientes().get(0).getDispositivosInteligentes().stream().forEach(x->x.getFabricante().setFabricanteMock(s));
 		//System.out.println(zona.get(0).getTransformadores().get(0).calcularConsumo());
-		Assert.assertEquals( 676.0 , zona.get(0).getTransformadores().get(0).calcularConsumo() );
+		Assert.assertEquals( 723.6375 , zona.get(0).getTransformadores().get(0).calcularConsumo() );
 	}
 	
 	@Test
 	public void testZonaGeograficaConsumo() {
-		Assert.assertEquals( 676.0 , zona.get(0).verConsumo() );
+		Assert.assertEquals( 723.6375 , zona.get(0).verConsumo() );
 	}	
 }
