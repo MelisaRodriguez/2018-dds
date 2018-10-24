@@ -74,4 +74,5 @@ public abstract class Dispositivo
 
 	public abstract double getPotencia();
 	
+	
 }

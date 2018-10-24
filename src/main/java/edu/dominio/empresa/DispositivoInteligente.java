@@ -117,6 +117,11 @@ public class DispositivoInteligente extends Dispositivo {
 		return fabricante.getPotencia(this);
 	}
 	
+	public String getEstado() {
+		return this.fabricante.getEstado(this);
+	}
 	
-
+	public double getUltimaMedicion() {
+		return registrosConsumo.get(registrosConsumo.size()-1).getKwConsumidos();
+	}
 }

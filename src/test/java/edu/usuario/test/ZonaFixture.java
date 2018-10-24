@@ -58,6 +58,11 @@ public class ZonaFixture{
 		public double getHorasEncendido(DispositivoInteligente d) {
 			return 0;
 		}
+		
+		@Override
+		public String getEstado(DispositivoInteligente d) {
+			return "Encencido";
+		}
 	}
 	
 	public Sony s;

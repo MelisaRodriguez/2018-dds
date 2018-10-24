@@ -26,7 +26,6 @@ public class Fabricante {
 	public Fabricante(){}
 	
 	public Fabricante(String nombre,FabricanteMock fabricanteMock){
-		//this.idFabricante=idFabricante;
 		this.nombre=nombre;
 		this.fabricanteMock=fabricanteMock;
 	}
@@ -57,5 +56,9 @@ public class Fabricante {
 	}
 	public double getHorasEncendido(DispositivoInteligente d) {
 		return fabricanteMock.getHorasEncendido(d);
+	}
+	
+	public String getEstado(DispositivoInteligente d) {
+		return fabricanteMock.getEstado(d);
 	}
 }

@@ -6,7 +6,9 @@ import spark.Response;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
@@ -14,6 +16,7 @@ import edu.dominio.fabricante.Fabricante;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.TipoDocumento;
+import edu.usuario.test.PersistenciaFixture.Sony;
 import spark.ModelAndView;
 
 public class UserController {
@@ -24,8 +27,11 @@ public class UserController {
 		LocalDate inicio = LocalDate.of(2017, 4, 28);
 		LocalDate fin = LocalDate.of(2017, 5, 28);
 				
+		Sony fabricantemock = new Sony();
 		
-		DispositivoInteligente aireAcondicionado = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2017, 4, 28), null, 90.0, 360.0);
+		Fabricante sony = new Fabricante("Sony", fabricantemock);
+
+		DispositivoInteligente aireAcondicionado = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2017, 4, 28), sony, 90.0, 360.0);
 
 		ArrayList<RegistroMedicion> mediciones = new ArrayList<RegistroMedicion>();
 		mediciones.add(new RegistroMedicion(LocalDate.of(2017, 4, 29), 10.0, 20));
@@ -43,9 +49,13 @@ public class UserController {
 	public static ModelAndView user(Request req, Response res) {
 		
 		//Cliente hardcodeado, acá reemplazar por el usuario obtenido del login!
-		Cliente viewModel = inicializarCliente();
-	//	HashMap<String,Object> viewModel = new HashMap<>(); 
-	//	viewModel.put("usuario", user);
+		Cliente cliente = inicializarCliente();
+		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+		dispositivos = cliente.todosSusDispositivos();
+		HashMap<String,Object> viewModel = new HashMap<>(); 
+		viewModel.put("cliente", cliente);
+		viewModel.put("dispositivos", dispositivos);
+		
 		return new ModelAndView(viewModel, "user.hbs");
 		
 	}

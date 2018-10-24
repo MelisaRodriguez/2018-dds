@@ -1,9 +1,28 @@
 <html>
 	<body>
-		Sesión iniciada como: {{usuario}}
+		Sesión iniciada como: {{cliente.usuario}}
 		
 		<button type="button">Cerrar Sesión</button>
 		<h1>ANDUVO</h1>
-	
+	<table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <!-- <th contenteditable="true">Estado</th> -->
+                <th contenteditable="true">Ultima Medicion</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+			{{#each dispositivos}}
+				<tr>
+					<td> {{ nombre }} </td>
+					<td> {{ estado }} </td>
+					<td> {{ ultimaMedicion }}</td>
+				</tr>
+			{{/each}}
+			  
+            </tbody>
+          </table>
 	</body>
 </html>

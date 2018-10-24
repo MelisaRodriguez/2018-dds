@@ -55,6 +55,11 @@ public class DispositivoFixture {
 		public double getHorasEncendido(DispositivoInteligente d) {
 			return 0;
 		}
+		
+		@Override
+		public String getEstado(DispositivoInteligente d) {
+			return "Encencido";
+		}
 	}
 	
 	
