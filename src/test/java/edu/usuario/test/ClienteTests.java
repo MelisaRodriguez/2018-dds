@@ -15,7 +15,56 @@ public class ClienteTests extends ClienteFixture {
 		// .json)
 		Assert.assertEquals(3, clientes.size() );
 	}
+	
+	@Test
+	public void testPuntosEnConvetirDispositivoEstandarInteligente()
+	{
+		Cliente unCliente = clientes.get(2);
+		unCliente.convertirDispositivo(0);
+		Assert.assertEquals(10, unCliente.getPuntos());
+	}
 
+	@Test
+	public void testCuantosDispositivosTieneCliente() 
+	{
+		Cliente unCliente = clientes.get(0);
+		Assert.assertEquals(2, unCliente.cantDispositivosEnTotal());
+	}	
+	
+	@Test
+	public void testRegistrarDispositivo()
+	{
+		Cliente unCliente = clientes.get(1);
+		unCliente.agregarDispositivo(dispositivoInteligente);
+		Assert.assertEquals(15, unCliente.getPuntos());
+	}	
+	
+	
+	
+	///ROTOSSSSSSSSSSSSSSSs
+	
+	
+	
+	@Test
+	public void testCantidadDispositivosEncendidos() 
+	{
+		Cliente unCliente = clientes.get(0);	
+		//System.out.println(unCliente.getDispositivosInteligentes().get(0).estaEncendido()  );
+		
+    	//dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new Fabricante("SONY",s),0,0);
+
+		
+		//System.out.println(s.estaApagado(dispositivoInteligente));
+		//System.out.println(unCliente.getDispositivosInteligentes().get(0));
+		Assert.assertEquals(1, unCliente.cantDispositivosEncendidos());
+	}
+	
+	///ROTOS
+	
+
+
+	
+	
 	@Test
 	public void testClienteCuantosKwConsume() 
 	{
@@ -23,20 +72,8 @@ public class ClienteTests extends ClienteFixture {
 		Assert.assertEquals(676.0, unCliente.consumoTotal());
 	}
 	
-	@Test
-	public void testCuantosDispositivosTieneCliente() 
-	{
-		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(2, unCliente.cantDispositivosEnTotal());
-	}
-	
 
-	@Test
-	public void testCantidadDispositivosEncendidos() 
-	{
-		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(1, unCliente.cantDispositivosEncendidos());
-	}
+	
 
 	@Test
 	public void testCantidadDispositivosApagados() 
@@ -58,9 +95,9 @@ public class ClienteTests extends ClienteFixture {
 		Cliente unCliente = clientes.get(0);
 		unCliente.recategorizar();
 		Assert.assertEquals(RepoCategorias.getSingletonInstance().getEntidades().get(6), unCliente.getCategoria());
-		// No se puede poner en el valor esperado new Categor�a(par�metros) porque
-		// tendr�a una categoria
-		// con los mismos par�metros pero en otra direcci�n de memoria, es decir, no
+		// No se puede poner en el valor esperado new Categor?a(par?metros) porque
+		// tendr?a una categoria
+		// con los mismos par?metros pero en otra direcci?n de memoria, es decir, no
 		// serian equivalentes
 	}
 	
@@ -72,19 +109,5 @@ public class ClienteTests extends ClienteFixture {
 		Assert.assertEquals(1018.866, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
 	}
 	
-	@Test
-	public void testRegistrarDispositivo()
-	{
-		Cliente unCliente = clientes.get(1);
-		unCliente.agregarDispositivo(dispositivoInteligente);
-		Assert.assertEquals(15, unCliente.getPuntos());
-	}	
-	
-	@Test
-	public void testPuntosEnConvetirDispositivoEstandarInteligente()
-	{
-		Cliente unCliente = clientes.get(2);
-		unCliente.convertirDispositivo(0);
-		Assert.assertEquals(10, unCliente.getPuntos());
-	}
+
 }

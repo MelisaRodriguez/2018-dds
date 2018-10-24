@@ -2,25 +2,28 @@ package edu.dominio.empresa;
 
 import java.time.LocalDate;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import edu.dominio.fabricante.Fabricante;
 
+@Entity
 public class DispositivoEstandar extends Dispositivo {
 
-	private String nombre;
+	
+	
 	private double kW;
 	private double horasUsoxDiaSegunUsuario;
-	private Fabricante fabricante;
-	private double restriccionMinima;
-	private double restriccionMaxima;
 
 	public DispositivoEstandar(String nombre, double kW, double horasUso, Fabricante fabricante, double restriccionMinima, double restriccionMaxima) {
-		this.nombre = nombre;
+		super(nombre, fabricante, restriccionMinima, restriccionMaxima);
 		this.kW = kW;
 		this.horasUsoxDiaSegunUsuario = horasUso;
-		this.fabricante = fabricante;
-		this.restriccionMinima = restriccionMinima;
-		this.restriccionMaxima = restriccionMaxima;
 	}
+	
+	public DispositivoEstandar() {}
 	
 	public void actualizarHorasUso(double horas)
 	{
@@ -38,27 +41,21 @@ public class DispositivoEstandar extends Dispositivo {
 		return new DispositivoInteligente(this.nombre, LocalDate.now(), fabricante, restriccionMinima, restriccionMaxima);
 	}
 
-	@Override
-	public double getRestriccionMinima()
-	{
-		return this.restriccionMinima;
+	public void setkW(double kW) {
+		this.kW = kW;
+	}
+
+	public double getHorasUsoxDiaSegunUsuario() {
+		return horasUsoxDiaSegunUsuario;
+	}
+
+	public void setHorasUsoxDiaSegunUsuario(double horasUsoxDiaSegunUsuario) {
+		this.horasUsoxDiaSegunUsuario = horasUsoxDiaSegunUsuario;
 	}
 	
-	@Override
-	public double getRestriccionMaxima()
-	{
-		return this.restriccionMaxima;
-	}
 	
 	@Override
-	public double getPotencia()
-	{ 
-		return this.kW;
-	}
-	
-	@Override
-	public String getNombre()
-	{
-		return nombre;
+	public double getPotencia() {
+		return kW;
 	}
 }

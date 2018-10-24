@@ -1,22 +1,21 @@
 package edu.usuario.test;
 
-import java.io.FileNotFoundException;
-import java.util.List;
 
+import static org.mockito.Mockito.mock;
+
+import javax.persistence.EntityManager;
+
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
-
-import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
-import edu.dominio.empresa.ZonaGeografica;
 import edu.dominio.fabricante.FabricanteMock;
-import edu.repositorios.RepoZonaGeografica;
+import edu.empresa.test.DispositivoFixture.Sony;
 
-public class ZonaFixture{
-	
-	
+
+public class PersistenciaFixture {
 	public class Sony implements FabricanteMock{
 
 		public Sony() {}
@@ -31,7 +30,7 @@ public class ZonaFixture{
 
 		@Override
 		public double cuantoConsume(DispositivoInteligente d) {
-			return 1;
+			return 0;
 		}
 
 		@Override
@@ -60,21 +59,18 @@ public class ZonaFixture{
 		}
 	}
 	
-	public Sony s;
+	protected static EntityManager manager;
+	protected Sony fabricantemock = new Sony();
+	
+	@BeforeClass
+	public static void fixture(){
+		manager = PerThreadEntityManagers.getEntityManager();
+	}
+	
+	@AfterClass
+	public static void end() {
+		manager.close();
+	}
 	
 	
-	protected DispositivoEstandar dispositivoEstandar;
-	protected DispositivoInteligente dispositivoInteligente;
-	public List<ZonaGeografica> zona;
-	@Before
-	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
-	{
-		s=new Sony();
-        zona = RepoZonaGeografica.getSingletonInstance().getEntidades();
-		zona.get(0).getTransformadores().get(0).getClientes().get(0).getDispositivosInteligentes().stream().forEach(x->x.getFabricante().setFabricanteMock(s));
-        
-	}
-	public List<ZonaGeografica> getClientes() {
-		return zona;
-	}
 }
