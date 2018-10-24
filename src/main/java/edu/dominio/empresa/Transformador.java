@@ -24,7 +24,7 @@ public class Transformador {
 	
 	@Id
 	@GeneratedValue
-	public int idTransformador;
+	private int idTransformador;
 	
 
 	@Embedded
