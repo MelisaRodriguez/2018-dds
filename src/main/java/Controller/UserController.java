@@ -47,43 +47,26 @@ public class UserController {
 		
 		
 		ArrayList<DispositivoEstandar> estandar = new ArrayList<DispositivoEstandar>();
-		estandar.add(new DispositivoEstandar("Lampara", 10, 5, null, 0, 1550));
 		return new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, estandar, true,new Punto(-0.127512, 51.507222), "usuario123"); 
 	}
 	
 	
-	public static Cliente usuario = inicializarCliente();
 	
 	public static ModelAndView user(Request req, Response res) {
-
+		
+		//Cliente hardcodeado, acá reemplazar por el usuario obtenido del login!
+		Cliente cliente = inicializarCliente();
+		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+		dispositivos = cliente.todosSusDispositivos();
+		Simplex simplex = new Simplex(220.0);
+		
 		HashMap<String,Object> viewModel = new HashMap<>(); 
-
-		viewModel.put("cliente", usuario);
-		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
-		viewModel.put("dispositivosEstandar", usuario.getDispositivosEstandar());
+		
+		viewModel.put("cliente", cliente);
+		viewModel.put("dispositivos", dispositivos);
+		viewModel.put("simplex", simplex);
+		
 		return new ModelAndView(viewModel, "user.hbs");
 		
-	}
-	
-	
-	public static ModelAndView consumoRecomendado(Request req, Response res) {
-
-		HashMap<String, Object> viewModel = new HashMap<>();
-		List<OptimizacionRecomendada> dispositivos = new ArrayList<OptimizacionRecomendada>();
-		dispositivos.add(new OptimizacionRecomendada("Aire Acondicionado", 500.0));
-		dispositivos.add(new OptimizacionRecomendada("Smart TV", 400.0));
-		viewModel.put("optimizacionRecomendada", dispositivos);
-		return new ModelAndView(viewModel, "simplex.hbs");
-
-	}
-
-	public static ModelAndView consumoEnPeriodo(Request req, Response res) {
-
-		HashMap<String, Object> viewModel = new HashMap<>();
-		System.out.println(req.queryParams("periodo"));
-		double consumo = usuario.getConsumoTotalEnPeriodo(LocalDate.of(2017, 1, 1), LocalDate.of(2018, 12, 31));
-		viewModel.put("consumo", consumo);
-		return new ModelAndView(viewModel, "consumo.hbs");
-
 	}
 }

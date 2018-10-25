@@ -19,29 +19,18 @@
 		
 		<br/>
 		<br/>
+		<div class="container-fluid">
 		
-		<div class="row">
-			<div class="col-md-12 block-center">
-				<ul class="list-group">
-					{{#each optimizacionRecomendada}}
-					<div class="list-group-item">
-						<tr>
-							<h4> <td> {{ nombreDispositivo }} </td> </h4>
-							<p> 
-								<h6> Consumo optimo: {{ consumoRecomendado }} <h6>
-							</p>
-						</tr>
-					</div>
-					{{/each}}
-				</ul>
-			</div>
+			<h4> El consumo recomendado es </h4>
+			Un numero
+			{{simplex.recomendacion}} <!--Esto no anda al proposito, ver-->	
 		</div>
 		
 		<div class="py-3">
     		<div class="container-fluid">
       			<div class="row">
         			<div class="col-md-9 form">
-          				<a href=".">		
+          				<a href="./Clientes/{{id}}">		
 							<button type="button" class="btn btn-sm ">
 							Volver atras
 							</button>
@@ -51,6 +40,7 @@
 	    	</div>
   		</div>
 			
+		<!--Se me hace que esta no es la mejor forma de separar, pero bueno-->
 		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> 
 		<div class="py-3">
     		<div class="container">

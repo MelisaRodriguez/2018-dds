@@ -1,7 +1,5 @@
 package edu.dominio.empresa;
 
-import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -36,7 +34,7 @@ public abstract class Dispositivo
 	
 	public Dispositivo() {}
 	
-	public abstract double getCalcularConsumo();	
+	public abstract double calcularConsumo();	
 
 	public Fabricante getFabricante() {
 		return fabricante;
@@ -75,10 +73,6 @@ public abstract class Dispositivo
 	}
 
 	public abstract double getPotencia();
-	
-	public abstract double getConsumoUltimoMes();
-	
-	
 	
 	
 }

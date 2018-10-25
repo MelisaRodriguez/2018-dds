@@ -10,7 +10,7 @@ public class DispositivoTests extends DispositivoFixture{
 	@Test
 	public void testConsumoEstandar() 
 	{
-		Assert.assertEquals(50.0, dispositivoEstandar.getCalcularConsumo());	
+		Assert.assertEquals(50.0, dispositivoEstandar.calcularConsumo());	
 	}
 
 	@Test

@@ -29,21 +29,21 @@ public class DispositivoInteligente extends Dispositivo {
 	public DispositivoInteligente() {}
 	
 	@Override
-	public double getCalcularConsumo() 
+	public double calcularConsumo() 
 	{
+		//return 15;
+		// OJOTA! CAMBIAR -> TODO 
 		return this.fabricante.cuantoConsume(this);
 	}
 
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
 	public void agregarNuevoRegistroDeConsumo()
 	{
-		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.getCalcularConsumo(), this.getHorasEncendido() ) );
+		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo(), this.getHorasEncendido() ) );
 	}
 	
-	public double getConsumoUltimoMes() {
-		LocalDate today = LocalDate.now();
-		return this.consumoTotalEnPeriodo(LocalDate.of(today.getYear(), today.getMonth(), 1), today);
-	}
+
+	
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros

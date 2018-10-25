@@ -95,7 +95,7 @@ public class Cliente {
 	}
 
 	public double getConsumoTotal() {
-		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getCalcularConsumo()).sum();
+		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
 	}	
 	
 	public double getConsumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {

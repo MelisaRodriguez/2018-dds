@@ -35,33 +35,20 @@
         <br/>
             
     	<div class="form-group">
-			<a href="./consumoRecomendado">	
+			<a href="./Clientes/{{id}}">	
 				<button type="button" class="btn btn-block btn-primary">
 				Consumo recomendado
 				</button>
 			</a> 
 		</div>		
 		
-		<form>
-			
-		</form>
-		
-		
-		<br/>
-		
-		<form action="./consumoEnPeriodo" method="POST" >					
-					<div>
-						Elija el rango de fechas
-						<input id="Fechas" type="text" name="periodo" />
-					</div>		
-		
-				<button type="submit" formmethod="post"class="btn btn-block btn-primary">
-					Consumo en el periodo
+		<div class="form">
+			<div>
+				Elija el rango de fechas
+				<input id="Fechas" type="text" />
 				</button>
+			</div>
 		</form>
-
-		<br/>
-		
 		
 		<script>
 			$('#Fechas').daterangepicker({ "autoApply": true,  autoUpdateInput: false,
@@ -76,30 +63,30 @@
 
  			$('#Fechas').on('cancel.daterangepicker', function(ev, picker) { $(this).val(''); });
 		</script>	
+		
+		<br/>
+		
+		<div class="form">					
+			<a href="./Clientes/{{id}}">
+							
+				<button type="button" class="btn btn-block btn-primary">
+				Consumo actual
+				</button>
+			</a> 
+		</div>
+
+		<br/>
 	 
 		<div class="row">
 			<div class="col-md-12 block-center">
 				<ul class="list-group">
-					{{#each dispositivosInteligentes}}
+					{{#each dispositivos}}
 					<div class="list-group-item">
 						<tr>
 							<h4> <td> {{ nombre }} </td> </h4>
 							<p> 
 								<h6> Estado: {{ estado }} </h6>
-								<h6> Consumo en el último período: {{ consumoUltimoMes }} <h6>
 								<h6> Ultima Medicion: {{ ultimaMedicion }} </h6>
-							</p>
-						</tr>
-					</div>
-					{{/each}}
-					
-					{{#each dispositivosEstandar}}
-					<div class="list-group-item">
-						<tr>
-							<h4> <td> {{ nombre }} </td> </h4>
-							<p> 
-								<h6> Consumo en el último período: {{ consumoUltimoMes }} <h6>
-								<h6> Ultima Medicion: {{ calcularConsumo }} </h6>
 							</p>
 						</tr>
 					</div>
@@ -109,6 +96,30 @@
 		</div>
 		
 		<br/>
+		
+		<div class="container">
+			<div class="table-responsive"> <!--no se porque no me cambia-->
+				<table class="table">
+            		<thead>
+              			<tr class="active"> <!--no se porque no me cambia-->
+                			<th>Nombre</th>
+                			<th>Estado</th>
+                			<th>Ultima medición</th>
+             			</tr>
+            		</thead>
+            
+            		<tbody>
+              		{{#each dispositivos}}
+						<tr>
+							<td> {{ nombre }} </td>
+							<td> {{ estado }} </td>
+							<td> {{ ultimaMedicion }} </td>
+						</tr>
+					{{/each}}
+			  		</tbody>
+          		</table>
+			</table>
+		</div>
 			
 		<div class="py-3">
     		<div class="container">

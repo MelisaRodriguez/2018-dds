@@ -35,7 +35,7 @@ public class Simplex {
 		PointValuePair resultado = this.ejecutarSimplex(cliente);
 		
 		List<Double> resultados = new ArrayList<>();
-		for(double d : resultado.getPoint()) resultados.add(d); // necesitamos el array
+		for(double d : resultado.getPoint()) resultados.add(d);
 		resultados.add(resultado.getValue());
 		
 		return resultados;

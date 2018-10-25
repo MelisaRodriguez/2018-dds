@@ -13,9 +13,8 @@ public class Router {
 		
 		Spark.staticFiles.location("/public");	
 		
-		Spark.get("/userPanel/", UserController::user, transformer);	
-		Spark.get("/userPanel/consumoRecomendado", UserController::consumoRecomendado, transformer);
-		Spark.post("/userPanel/consumoEnPeriodo", UserController::consumoEnPeriodo, transformer);
+		Spark.get("/", UserController::user, transformer);	// Hay que cambiar por el INDEX de la página!!!	
+		
 		
 	}
 }
