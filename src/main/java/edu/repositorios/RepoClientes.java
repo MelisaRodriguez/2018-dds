@@ -14,15 +14,16 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		return repo;
 	}
 	
+	 public List<Cliente> traerClientesDeBD() {
+		 return this.getFromDB(Cliente.class);
+	 }
+	
+	public void agregarUsuario(Cliente cliente) {
+		this.addInstanceToDB(Cliente.class,  cliente);
+	}
+	
 	public static void cargarClientes(List<Cliente> clientes)
 	{
 		repo.entidades = clientes;
-	}
-	
-	
-	public Cliente getClienteID(Long id) {
-		return (Cliente)this.getEntidades().stream().filter( cliente-> cliente.getId()==id ).findFirst().get();
-	}
-	
-	
+	}	
 }

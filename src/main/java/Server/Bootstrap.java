@@ -38,9 +38,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		inteligentes.add(aireAcondicionado);
 		
 		ArrayList<DispositivoEstandar> estandar = new ArrayList<DispositivoEstandar>();
+		estandar.add(new DispositivoEstandar("Licuadora",80,10,null,8,15));
 		
-		RepoClientes repositorioClientes=new RepoClientes();
-		repositorioClientes.agregar( new Cliente("Jorge", "Perez", TipoDocumento.DNI, 
+		
+		new RepoClientes().agregarUsuario(new Cliente("Jorge", "Perez", TipoDocumento.DNI, 
 				"1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, estandar, 
 				true,new Punto(-0.127512, 51.507222),"cachocachondo"));
 		

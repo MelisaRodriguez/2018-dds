@@ -31,11 +31,15 @@ public class DispositivoInteligente extends Dispositivo {
 	@Override
 	public double calcularConsumo() 
 	{
-		return this.fabricante.cuantoConsume(this);
-		//return 15; //GONZA LO DIJO
+		//return this.fabricante.cuantoConsume(this);
+		return 15; //GONZA LO DIJO
 		//return this.fabricante.cuantoConsume(this);
 	}
 
+	public double getConsumo() {
+		return this.calcularConsumo();
+	}
+	
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
 	public void agregarNuevoRegistroDeConsumo()
 	{

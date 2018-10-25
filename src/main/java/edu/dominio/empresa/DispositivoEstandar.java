@@ -30,6 +30,10 @@ public class DispositivoEstandar extends Dispositivo {
 		this.horasUsoxDiaSegunUsuario = horas;
 	}
 
+	public double getConsumo() {
+		return calcularConsumo();
+	}
+	
 	@Override
 	public double calcularConsumo()
 	{
