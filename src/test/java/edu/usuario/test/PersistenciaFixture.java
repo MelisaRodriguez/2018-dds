@@ -60,7 +60,8 @@ public class PersistenciaFixture {
 	}
 	
 	protected static EntityManager manager;
-	protected Sony fabricantemock = new Sony();
+	public Sony fabricantemock = new Sony();
+	
 	
 	@BeforeClass
 	public static void fixture(){

@@ -93,6 +93,10 @@ public class Cliente {
 		this.dispositivosEstandar.add(unDispositivo);
 	}
 
+	public double getConsumoTotal() {
+		return this.consumoTotal();
+	}
+	
 	public double consumoTotal() {
 		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
 	}	

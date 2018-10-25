@@ -27,7 +27,6 @@ public class ClienteFixture {
 	protected DispositivoEstandar dispositivoEstandar;
 	protected DispositivoInteligente dispositivoInteligente;
 	
-	
 	public class Sony implements FabricanteMock{
 
 		public Sony() {}
@@ -80,7 +79,6 @@ public class ClienteFixture {
 	public void fixture() throws JsonIOException, JsonSyntaxException, FileNotFoundException
 	{
 		s=new Sony();
-       
 		final RuntimeTypeAdapterFactory<FabricanteMock> typeFabricante = RuntimeTypeAdapterFactory
                 .of(FabricanteMock.class, "type")
                 .registerSubtype(Sony.class);//AGREGAR 1 X 1
@@ -108,13 +106,8 @@ public class ClienteFixture {
 		}
     	clientes = gson.fromJson( br, clienteListType.getType());
     	dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new Fabricante("SONY",s),0,0);
-	
     	clientes.get(0).getDispositivosInteligentes().stream().forEach(x->x.getFabricante().setFabricanteMock(s));
-
-	
-	
 	}
-
 
 	public List<Cliente> getClientes() {
 		return clientes;

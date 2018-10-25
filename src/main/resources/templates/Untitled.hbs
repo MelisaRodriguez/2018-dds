@@ -33,27 +33,33 @@
   </nav>
   <div class="py-5">
     <div class="container">
-      <h1 class="">Hogares</h1>
+      <h1 class="">Clientes afiliados</h1>
       <div class="row">
         <div class="col-md-12">
           <table class="table">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th contenteditable="true">Apellido</th>
-				<th contenteditable="true">Agregar Dispositivo</th>
+                <th contenteditable="true">Nombre y Apellido </th>
+                <th>Documento</th>
+                <th>Consumo del mes</th>
+				<th contenteditable="true">Ver datos</th>
               </tr>
             </thead>
             <tbody>
               
 			{{#each user}}
 				<tr>
-					<td> {{ nombre }} </td>
-					<td> {{ apellido }} </td>
+					<td> {{ nombre}} {{apellido}} </td>
+					<td> {{ nroDocumento }} </td>
+					<td> {{ consumoTotal }} </td>
 					<td>
-						<button type="button" class="btn btn-default btn-sm">
-						<span class="glyphicon glyphicon-plus"></span> +
-						</button>
+					
+						<a href="./Clientes/{{id}}">
+						
+								<button type="button" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-plus"></span> +
+								</button>
+						</a>
 					</td>
 				</tr>
 			{{/each}}
