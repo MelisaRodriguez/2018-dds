@@ -18,4 +18,11 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 	{
 		repo.entidades = clientes;
 	}
+	
+	
+	public Cliente getClienteID(Long id) {
+		return (Cliente)this.getEntidades().stream().filter( cliente-> cliente.getId()==id ).findFirst().get();
+	}
+	
+	
 }

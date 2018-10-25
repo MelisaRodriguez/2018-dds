@@ -14,4 +14,5 @@ public interface FabricanteMock {
 	public boolean estaModoAhorroEnergia(DispositivoInteligente d) ;
 	public double getPotencia(DispositivoInteligente d);
 	public double getHorasEncendido(DispositivoInteligente d);
+	String getEstado(DispositivoInteligente d);
 }

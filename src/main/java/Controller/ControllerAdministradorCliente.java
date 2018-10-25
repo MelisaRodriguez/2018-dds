@@ -11,19 +11,22 @@ import spark.Response;
 public class ControllerAdministradorCliente {
 	public static ModelAndView index(Request req, Response res) {
 		///EN EL OTRO CONTROLLER
-		Long.parseLong(req.params(":idCliente"));//ID  le pego repo conseguir user x id 
-
 		
+		Long id=Long.parseLong(req.params(":idCliente"));//ID  le pego repo conseguir user x id 
+		
+		//Cliente cliente=Repo.BuscarCliente(id);
 		
 		
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		
-		
 
+		viewModel.put("id", id);
+		
+		//viewModel.put("cliente", cliente);
 		
 		return new ModelAndView(
 				viewModel, 
-				"Untitled.hbs");
+				"AdministradorCliente.hbs");
 	}
 }

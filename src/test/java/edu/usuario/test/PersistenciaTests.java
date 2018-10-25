@@ -11,14 +11,13 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import edu.dominio.empresa.Administrador;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.empresa.RegistroMedicion;
 import edu.dominio.empresa.Transformador;
 import edu.dominio.empresa.ZonaGeografica;
 import edu.dominio.fabricante.Fabricante;
-import edu.dominio.fabricante.FabricanteMock;
+import edu.dominio.fabricante.Sony;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Cliente;
@@ -46,7 +45,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		List<DispositivoEstandar> dispositivosEstandares = new ArrayList<>();
 		dispositivosEstandares.add(dispositivoEstandar);
 		
-		Cliente unCliente = new Cliente ("Fede", "Perez", TipoDocumento.DNI ,"41919911", "23456379", "De la puerta para adentro", LocalDate.of(2018, 5, 20), dispositivosInteligentes, dispositivosEstandares, false, new Punto(-0.127512 , 51.507222) ) ;
+		Cliente unCliente = new Cliente ("Fede", "Perez", TipoDocumento.DNI ,"41919911", "23456379", "De la puerta para adentro", LocalDate.of(2018, 5, 20), dispositivosInteligentes, dispositivosEstandares, false, new Punto(-0.127512 , 51.507222), null ) ;
 		
 		manager.getTransaction().begin();
 		manager.persist(unCliente);
@@ -209,7 +208,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		ArrayList<DispositivoEstandar> dispositivosEstandar = new ArrayList<DispositivoEstandar>();
 		dispositivosEstandar.add(lavarropas);
 		
-		Cliente cliente = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, dispositivosEstandar, true,new Punto(-0.127512, 51.507222));
+		Cliente cliente = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, dispositivosEstandar, true,new Punto(-0.127512, 51.507222), null);
 	
 		Transformador t = new Transformador();
 		t.setClientes(new ArrayList<Cliente>());

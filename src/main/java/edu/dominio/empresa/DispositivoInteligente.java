@@ -31,8 +31,8 @@ public class DispositivoInteligente extends Dispositivo {
 	@Override
 	public double calcularConsumo() 
 	{
-		
-		return 15; //GONZA LO DIJO
+		return this.fabricante.cuantoConsume(this);
+		//return 15; //GONZA LO DIJO
 		//return this.fabricante.cuantoConsume(this);
 	}
 

@@ -38,43 +38,21 @@ public class ClienteTests extends ClienteFixture {
 		unCliente.agregarDispositivo(dispositivoInteligente);
 		Assert.assertEquals(15, unCliente.getPuntos());
 	}	
-	
-	
-	
-	///ROTOSSSSSSSSSSSSSSSs
-	
-	
-	
+
 	@Test
 	public void testCantidadDispositivosEncendidos() 
 	{
 		Cliente unCliente = clientes.get(0);	
-		//System.out.println(unCliente.getDispositivosInteligentes().get(0).estaEncendido()  );
-		
-    	//dispositivoInteligente = new DispositivoInteligente("Smart TV",LocalDate.now(), new Fabricante("SONY",s),0,0);
-
-		
-		//System.out.println(s.estaApagado(dispositivoInteligente));
-		//System.out.println(unCliente.getDispositivosInteligentes().get(0));
 		Assert.assertEquals(1, unCliente.cantDispositivosEncendidos());
 	}
-	
-	///ROTOS
-	
-
-
-	
-	
+		
 	@Test
 	public void testClienteCuantosKwConsume() 
 	{
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(676.0, unCliente.consumoTotal());
+		Assert.assertEquals(685.0, unCliente.consumoTotal());
 	}
 	
-
-	
-
 	@Test
 	public void testCantidadDispositivosApagados() 
 	{
@@ -101,13 +79,10 @@ public class ClienteTests extends ClienteFixture {
 		// serian equivalentes
 	}
 	
-
 	@Test
 	public void testCalculaTarifaEstimadaCliente() 
 	{
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(1018.866, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
+		Assert.assertEquals(1026.525, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
 	}
-	
-
 }

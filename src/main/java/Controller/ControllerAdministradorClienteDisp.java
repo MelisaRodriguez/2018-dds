@@ -12,9 +12,6 @@ public class ControllerAdministradorClienteDisp {
 		Long.parseLong(req.params(":idCliente/Dispositivos"));//ID  le pego repo conseguir user x id 
 
 		
-		
-		
-		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		
 		

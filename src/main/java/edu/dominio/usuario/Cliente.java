@@ -1,3 +1,4 @@
+
 package edu.dominio.usuario;
 
 import java.time.LocalDate;
@@ -52,11 +53,12 @@ public class Cliente {
 	private boolean ahorroAutomatico;
 	@Embedded
 	private Punto ubicacion;
+	private String usuario;
 
 	public Cliente() {}
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Punto ubicacion) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Punto ubicacion, String usuario) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -71,7 +73,7 @@ public class Cliente {
 		this.ahorroAutomatico = ahorroAutomatico;
 		this.ubicacion = ubicacion;		
 		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
-
+		this.usuario = usuario;
 	}
 
 	public void recategorizar() {
@@ -92,11 +94,9 @@ public class Cliente {
 	public void agregarDispositivo(DispositivoEstandar unDispositivo) {
 		this.dispositivosEstandar.add(unDispositivo);
 	}
-
 	public double getConsumoTotal() {
 		return this.consumoTotal();
 	}
-	
 	public double consumoTotal() {
 		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
 	}	
@@ -240,6 +240,13 @@ public class Cliente {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 }
+

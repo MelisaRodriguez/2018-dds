@@ -13,6 +13,11 @@ public class Router {
 		HandlebarsTemplateEngine transformer = 
 				new HandlebarsTemplateEngine();
 		
+		
+		ControllerAdministrador adminController=new ControllerAdministrador();
+		ControllerAdministradorCliente cliController=new ControllerAdministradorCliente();
+		ControllerAdministradorClienteDisp disController=new ControllerAdministradorClienteDisp();
+		
 		Spark.staticFiles.location("/public");	
 		
 		Spark.get("/", ControllerAdministrador::index, transformer);	
