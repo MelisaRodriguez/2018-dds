@@ -222,7 +222,7 @@ public class PersistenciaTests extends PersistenciaFixture{
 		//Dado un hogar y un período, mostrar por consola (interfaz de comandos) el consumo total.
 		manager.getTransaction().begin();
 		cliente = manager.find(Cliente.class, cliente.getId());
-		System.out.println("Consumo hogar = " + cliente.consumoTotalEnPeriodo(inicio, fin));
+		System.out.println("Consumo hogar = " + cliente.getConsumoTotalEnPeriodo(inicio, fin));
 		manager.getTransaction().commit();
 		
 		//Dado un dispositivo y un período, mostrar por consola su consumo promedio.

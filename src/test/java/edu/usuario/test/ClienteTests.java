@@ -50,7 +50,7 @@ public class ClienteTests extends ClienteFixture {
 	public void testClienteCuantosKwConsume() 
 	{
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(685.0, unCliente.consumoTotal());
+		Assert.assertEquals(685.0, unCliente.getConsumoTotal());
 	}
 	
 	@Test
@@ -83,6 +83,6 @@ public class ClienteTests extends ClienteFixture {
 	public void testCalculaTarifaEstimadaCliente() 
 	{
 		Cliente unCliente = clientes.get(0);
-		Assert.assertEquals(1026.525, unCliente.getCategoria().calcularTarifaEstimada(unCliente.consumoTotal()));
+		Assert.assertEquals(1026.525, unCliente.getCategoria().calcularTarifaEstimada(unCliente.getConsumoTotal()));
 	}
 }

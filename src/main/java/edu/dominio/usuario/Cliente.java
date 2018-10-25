@@ -77,7 +77,7 @@ public class Cliente {
 
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()
-				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
+				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.getConsumoTotal()));
 	}
 
 	public List<Dispositivo> todosSusDispositivos() {
@@ -94,11 +94,11 @@ public class Cliente {
 		this.dispositivosEstandar.add(unDispositivo);
 	}
 
-	public double consumoTotal() {
+	public double getConsumoTotal() {
 		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
 	}	
 	
-	public double consumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
+	public double getConsumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
 		return dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotalEnPeriodo(inicio, fin)).sum();
 	}
 	
