@@ -12,8 +12,6 @@ import edu.dominio.fabricante.Fabricante;
 @Entity
 public class DispositivoEstandar extends Dispositivo {
 
-	
-	
 	private double kW;
 	private double horasUsoxDiaSegunUsuario;
 
@@ -31,9 +29,13 @@ public class DispositivoEstandar extends Dispositivo {
 	}
 
 	@Override
-	public double calcularConsumo()
+	public double getCalcularConsumo()
 	{
 		return horasUsoxDiaSegunUsuario*kW;
+	}
+	
+	public double getConsumoUltimoMes() {
+		return this.getCalcularConsumo() * LocalDate.now().getDayOfMonth();
 	}
 	
 	public DispositivoInteligente convertirAInteligente()
