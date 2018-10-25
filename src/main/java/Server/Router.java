@@ -25,6 +25,9 @@ public class Router {
 		Spark.get("/Clientes/:idCliente", ControllerAdministradorCliente::index, transformer);	
 		
 		Spark.get("/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministradorClienteDisp::index, transformer);	
+		
+		
+		Spark.post("/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministradorClienteDisp::registrarDispoInt);
 	}
 	
 }
