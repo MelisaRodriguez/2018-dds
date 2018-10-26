@@ -7,7 +7,7 @@ public class Server {
 	
 	public static void main(String[] args) {
 		//Bootstrap.init();
-		Spark.port(9001);
+		Spark.port(9002);
 		
 		DebugScreen.enableDebugScreen();
 		
