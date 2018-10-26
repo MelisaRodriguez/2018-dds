@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="./../../../Untitled2.css">
+  <link rel="stylesheet" href="./../../../Untitled.css">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
             </thead>
             <tbody>
 
-				{{#each estandares}}
+				{{#each cliente.dispositivosEstandar}}
 					<tr>
 						<td> {{ id }} </td>
 						<td> {{ nombre }} </td>
@@ -101,7 +101,7 @@
               </tr>
             </thead>
             <tbody>
-				{{#each inteligentes}}
+				{{#each cliente.dispositivosInteligentes}}
 					<tr>
 						<td> {{ id}} </td>
 						<td> {{ nombre }} </td>

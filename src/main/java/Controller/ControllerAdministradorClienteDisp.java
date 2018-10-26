@@ -1,24 +1,28 @@
 package Controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
-import model.Indicador;
-import model.Usuario;
-import model.Builders.IndicadorBuilder;
-import model.Excepciones.DuplicateExecption;
-import model.Excepciones.ParserException;
-import model.Excepciones.RecursiveException;
+import edu.dominio.empresa.DispositivoInteligente;
+import edu.dominio.fabricante.Fabricante;
+import edu.dominio.fabricante.Sony;
+import edu.dominio.usuario.Cliente;
+import edu.repositorios.RepoClientes;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
 
 public class ControllerAdministradorClienteDisp {
+	
+	public static int id;
+	public static String cadena;
+	
 	public static ModelAndView index(Request req, Response res) {
 		///EN EL OTRO CONTROLLER
 		
-		Long id=Long.parseLong(req.params(":idCliente"));//ID  le pego repo conseguir user x id 
-		
+		id=Integer.parseInt(req.params(":idCliente"));//ID  le pego repo conseguir user x id 
+		cadena=req.params(":idCliente");
 		
 		
 		
@@ -32,15 +36,35 @@ public class ControllerAdministradorClienteDisp {
 				"Inteligente.hbs");
 	}
 	
-	public Void registrarDispoInt(Request req, Response res) {
+	public static Void registrarDispoInt(Request req, Response res) {	
+		//res.
+		req.queryParams("nombreDispo");
+		req.queryParams("minima");
+		req.queryParams("maxima");
+
 		
-		res.
+		
+		RepoClientes repo=new RepoClientes();
+		Cliente buscado=repo.buscarPorId(id,Cliente.class);
+		
+		DispositivoInteligente dispositivo=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
+				new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
+		
+		buscado.agregarDispositivo(dispositivo);
 		
 		
 		
-		res.redirect("/../");
+		repo.borrar2(id,Cliente.class);
+		
+		
+		repo.agregarUsuario(buscado);
+		
+		
+		System.out.println("PRIMMMMMMMMMMMMMMMMMMMM "+repo.getEntidades().get(0).getId());
+		
+		
+		
+		res.redirect("/Clientes/"+cadena);
 		return null;
-	}
-	
-	
+	}	
 }

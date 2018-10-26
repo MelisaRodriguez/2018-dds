@@ -66,7 +66,7 @@ public class ControllerAdministrador {
 		//viewModel.put("consumo", consumo);
 		
 		
-		viewModel.put("names", repo.traerClientesDeBD().get(0).getNombre());
+		//viewModel.put("names", repo.traerClientesDeBD().get(0).getNombre());
 		viewModel.put("user", repo.traerClientesDeBD());
 		
 		return new ModelAndView(

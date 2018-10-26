@@ -30,7 +30,7 @@ public class GenericoRepos<T> {
 			EntityManager em = PerThreadEntityManagers.getEntityManager();
 			return em.createQuery("from " + clase.getName(), clase).getResultList();		
 	}
-	protected  <T> void  addInstanceToDB(Class<T> clase,T ObjetoAPersistir) {
+	public  <T> void  addInstanceToDB(Class<T> clase,T ObjetoAPersistir) {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 					
@@ -80,7 +80,21 @@ public class GenericoRepos<T> {
 		return buscarPorId(Long.valueOf(id).longValue(), clase);
 	}*/
 	
-	protected <T> void borrar(String nombre,Class<T> clase) {
+	
+	public <T> void borrar2(int id,Class<T> clase) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		T resultado = buscarPorId(id, clase);
+		if(resultado != null) {
+			em.getTransaction().begin();
+			em.remove(resultado);
+			em.getTransaction().commit();
+		}
+		em.close();
+		
+		System.out.println("EEEEEEEEEEEEEEEEEEEEEHHHHHHHHHHHHHHHHHHH");
+	}
+	
+	public <T> void borrar(String nombre,Class<T> clase) {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		T resultado = buscar(nombre, clase);
 		if(resultado != null) {
@@ -89,5 +103,7 @@ public class GenericoRepos<T> {
 			em.getTransaction().commit();
 		}
 		em.close();
+		
+		System.out.println("EEEEEEEEEEEEEEEEEEEEEHHHHHHHHHHHHHHHHHHH");
 	}
 }

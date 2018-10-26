@@ -23,11 +23,13 @@ public class ControllerAdministradorCliente {
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		
+		
+		
 
 		viewModel.put("id", id);
 		viewModel.put("cliente", buscado);
-		viewModel.put("inteligentes", buscado.getDispositivosInteligentes());
-		viewModel.put("estandares", buscado.getDispositivosEstandar());
+		/*viewModel.put("inteligentes", buscado.getDispositivosInteligentes());
+		viewModel.put("estandares", buscado.getDispositivosEstandar());*/
 		
 		
 		return new ModelAndView(
