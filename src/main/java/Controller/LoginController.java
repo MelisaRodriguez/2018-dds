@@ -24,7 +24,9 @@ public final class LoginController {
 		String password = Cifrado.Encrypt(req.queryParams("contraseña"));
 		EntityManager n = PerThreadEntityManagers.getEntityManager();
 		n.getTransaction().begin();
-		List<dummyUser> lista = n.createQuery("from dummyUser c where c.usuario = :u", dummyUser.class).setParameter("u", username).getResultList();
+		List<dummyUser> lista = n
+				.createQuery("from dummyUser c where c.usuario = :u and c.contraseña = :p", dummyUser.class)
+				.setParameter("u", username).setParameter("p", password).getResultList();
 		n.getTransaction().commit();
 		n.close();
 		if (lista.isEmpty() || lista == null) {
@@ -36,7 +38,7 @@ public final class LoginController {
 			if (u.isAdmin()) {
 				res.redirect("/admin");
 			} else {
-				// redireccionar cliente
+				res.redirect("/userPanel/");
 			}
 		}
 		return null;

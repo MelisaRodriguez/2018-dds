@@ -3,6 +3,7 @@ package Server;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -79,8 +80,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		
 		List<dummyUser> users = new ArrayList<dummyUser>();
 		
-		conCientes.stream().forEach(pInput->Cifrado.Encrypt(pInput));
-		conAdmin.stream().forEach(pInput->Cifrado.Encrypt(pInput));
+		conCientes = conCientes.stream().map(pInput->Cifrado.Encrypt(pInput)).collect(Collectors.toList());
+		conAdmin = conAdmin.stream().map(pInput->Cifrado.Encrypt(pInput)).collect(Collectors.toList());
 		
 		for(int i = 0;i<clientes.size();i++)
 		{
