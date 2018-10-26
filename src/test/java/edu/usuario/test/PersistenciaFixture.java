@@ -1,18 +1,14 @@
 package edu.usuario.test;
 
 
-import static org.mockito.Mockito.mock;
-
 import javax.persistence.EntityManager;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.FabricanteMock;
-import edu.empresa.test.DispositivoFixture.Sony;
 
 
 public class PersistenciaFixture {
