@@ -2,6 +2,7 @@ package Server;
 
 
 import Controller.ControllerAdministrador;
+import Controller.LoginController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -12,21 +13,23 @@ public class Router {
 				new HandlebarsTemplateEngine();
 		
 		
-		ControllerAdministrador adminController=new ControllerAdministrador();
-		
 		Spark.staticFiles.location("/public");	
 		
-		Spark.get("/", ControllerAdministrador::indexPrimero, transformer);	
+		Spark.get("/login", LoginController::init);
 		
-		Spark.get("/Clientes/:idCliente", ControllerAdministrador::indexMedio, transformer);	
+		Spark.post("/login", LoginController::processLogin);	
 		
-		Spark.get("/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::indexUltimoInteligente, transformer);	
-		Spark.post("/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::registrarDispoInt);
+		Spark.get("/admin", ControllerAdministrador::indexPrimero, transformer);	
 		
-		Spark.get("/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::indexUltimoEstandar, transformer);	
-		Spark.post("/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::registrarDispoEst);
+		Spark.get("/admin/Clientes/:idCliente", ControllerAdministrador::indexMedio, transformer);	
 		
-		Spark.post("/out", ControllerAdministrador::logOut);	
+		Spark.get("/admin/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::indexUltimoInteligente, transformer);	
+		Spark.post("/admin/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::registrarDispoInt);
+		
+		Spark.get("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::indexUltimoEstandar, transformer);	
+		Spark.post("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::registrarDispoEst);
+		
+		Spark.post("/admin/out", ControllerAdministrador::logOut);	
 	}
 	
 }
