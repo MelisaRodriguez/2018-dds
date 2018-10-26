@@ -22,37 +22,7 @@ import spark.ModelAndView;
 
 public class UserController {
 
-	// Borrar después de que esté implementado el login!
-	public static Cliente inicializarCliente()
-	{			
-		Sony fabricantemock = new Sony();
-		
-		Fabricante sony = new Fabricante("Sony", fabricantemock);
-
-		DispositivoInteligente aireAcondicionado = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2018, 4, 28), sony, 90.0, 360.0);
-		DispositivoInteligente televisor = new DispositivoInteligente("Televisor", LocalDate.of(2018, 4, 28), sony, 90.0, 360.0);
-		
-		ArrayList<RegistroMedicion> medicionesAire = new ArrayList<RegistroMedicion>();
-		medicionesAire.add(new RegistroMedicion(LocalDate.of(2018, 10, 15), 10.0, 20));
-		medicionesAire.add(new RegistroMedicion(LocalDate.of(2018, 10, 20), 10.0, 20));
-		aireAcondicionado.setRegistrosConsumo(medicionesAire);
-		
-		ArrayList<RegistroMedicion> medicionesTele = new ArrayList<RegistroMedicion>();
-		medicionesTele.add(new RegistroMedicion(LocalDate.of(2018, 10, 4), 15.0, 20));
-		televisor.setRegistrosConsumo(medicionesTele);
-		
-		ArrayList<DispositivoInteligente> inteligentes = new ArrayList<DispositivoInteligente>();
-		inteligentes.add(aireAcondicionado);
-		inteligentes.add(televisor);
-		
-		
-		ArrayList<DispositivoEstandar> estandar = new ArrayList<DispositivoEstandar>();
-		estandar.add(new DispositivoEstandar("Lampara", 10, 5, null, 0, 1550));
-		return new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2018, 4, 28), inteligentes, estandar, true,new Punto(-0.127512, 51.507222), "usuario123"); 
-	}
-	
-	
-	public static Cliente usuario = inicializarCliente();
+	public static Cliente usuario;
 	
 	public static ModelAndView user(Request req, Response res) {
 
