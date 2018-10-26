@@ -33,86 +33,98 @@ import edu.dominio.usuario.TipoDocumento;
 import edu.repositorios.RepoAdministrador;
 import edu.repositorios.RepoClientes;
 
-public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
+public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
-	
-	
 	public static void init() {
+
+		// Precargamos la base con clientes.
+
+		DispositivoInteligente aireAcondicionado1 = new DispositivoInteligente("Aire acondicionado",
+				LocalDate.of(2018, 4, 28), new Fabricante("Sony", new Sony()), 90.0, 360.0);
+		ArrayList<RegistroMedicion> medicionesAire = new ArrayList<RegistroMedicion>();
+		medicionesAire.add(new RegistroMedicion(LocalDate.of(2018, 10, 15), 10.0, 20));
+		medicionesAire.add(new RegistroMedicion(LocalDate.of(2018, 10, 20), 10.0, 20));
+		aireAcondicionado1.setRegistrosConsumo(medicionesAire);
+
+		DispositivoInteligente smartTV = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2018, 4, 28),
+				new Fabricante("Sony", new Sony()), 90.0, 360.0);
+		ArrayList<RegistroMedicion> medicionesTV = new ArrayList<RegistroMedicion>();
+		medicionesTV.add(new RegistroMedicion(LocalDate.of(2018, 10, 4), 15.0, 20));
+		smartTV.setRegistrosConsumo(medicionesTV);
+
+		ArrayList<DispositivoInteligente> dispositivosInteligentes1 = new ArrayList<DispositivoInteligente>();
+		ArrayList<DispositivoInteligente> dispositivosInteligentes2 = new ArrayList<DispositivoInteligente>();
+		ArrayList<DispositivoEstandar> dispositivosEstandar1 = new ArrayList<DispositivoEstandar>();
+		ArrayList<DispositivoEstandar> dispositivosEstandar2 = new ArrayList<DispositivoEstandar>();
+		dispositivosInteligentes1.add(aireAcondicionado1);
+		dispositivosEstandar1.add(new DispositivoEstandar("Lámpara", 10, 5, null, 0, 1550));
+		dispositivosInteligentes2.add(smartTV);
+		dispositivosEstandar2.add(new DispositivoEstandar("Plancha", 20, 1, null, 0, 1000));
+
+		Cliente cliente1 = new Cliente("Fede", "Perez", TipoDocumento.DNI, "41919911", "23456379", "Cerrito 1546, CABA",
+				LocalDate.of(2018, 5, 20), dispositivosInteligentes1, dispositivosEstandar1, false,
+				new Punto(-0.127512, 51.507222), "fedePrz10");
+		Cliente cliente2 = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156",
+				LocalDate.of(2017, 4, 28), dispositivosInteligentes2, dispositivosEstandar2, true,
+				new Punto(-0.127512, 51.507222), "jorgePerez");
+
+		addInstanceToDB(Cliente.class, cliente1);
+		addInstanceToDB(Cliente.class, cliente2);
 		
-		LocalDate inicio = LocalDate.of(2017, 4, 28);
-		LocalDate fin = LocalDate.of(2017, 5, 28);
-		DispositivoInteligente aireAcondicionado = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2017, 4, 28), new Fabricante("Sony",new Sony()), 90.0, 360.0);
- 		ArrayList<RegistroMedicion> mediciones = new ArrayList<RegistroMedicion>();
-		mediciones.add(new RegistroMedicion(LocalDate.of(2017, 4, 29), 10.0, 20));
-		mediciones.add(new RegistroMedicion(LocalDate.of(2017, 4, 30), 10.0, 20));
-		aireAcondicionado.setRegistrosConsumo(mediciones);
-		
-		ArrayList<DispositivoInteligente> inteligentes = new ArrayList<DispositivoInteligente>();
-		inteligentes.add(aireAcondicionado);
-		
-		ArrayList<DispositivoEstandar> estandar = new ArrayList<DispositivoEstandar>();
-		estandar.add(new DispositivoEstandar("Licuadora",80,10,null,8,15));
-		
-		Bootstrap.addInstanceToDB(Cliente.class,
-				new Cliente("Jorge", "Perez", TipoDocumento.DNI, 
-				"1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, estandar, 
-				true,new Punto(-0.127512, 51.507222),"cachocachondo") );
-		
+		// HAZ TU MAGIA, CASTIÑEIRA, YA TENES LOS CLIENTES EN LA BASE!
+
 		Parameters params = new Parameters();
-		FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
-		    new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-		    .configure(params.properties().setListDelimiterHandler(new DefaultListDelimiterHandler(','))
-		        .setFileName("usuarios.properties"));
+		FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
+				PropertiesConfiguration.class)
+						.configure(params.properties().setListDelimiterHandler(new DefaultListDelimiterHandler(','))
+								.setFileName("usuarios.properties"));
 		Configuration config = null;
 		try {
 			config = builder.getConfiguration();
 		} catch (org.apache.commons.configuration2.ex.ConfigurationException e) {
 
 		}
-		
-		List<String> clientes= config.getList(String.class, "clientes");
-		List<String> conCientes= config.getList(String.class, "con-clientes");
-		List<Integer> idCientes= config.getList(Integer.class, "id-clientes");
-		
-		List<String> admin= config.getList(String.class, "admin");
-		List<String> conAdmin= config.getList(String.class, "con-admin");
+
+		List<String> clientes = config.getList(String.class, "clientes");
+		List<String> conCientes = config.getList(String.class, "con-clientes");
+		List<Integer> idCientes = config.getList(Integer.class, "id-clientes");
+
+		List<String> admin = config.getList(String.class, "admin");
+		List<String> conAdmin = config.getList(String.class, "con-admin");
 		List<Integer> idAdmin = config.getList(Integer.class, "id-admin");
-		
+
 		List<dummyUser> users = new ArrayList<dummyUser>();
-		
-		conCientes = conCientes.stream().map(pInput->Cifrado.Encrypt(pInput)).collect(Collectors.toList());
-		conAdmin = conAdmin.stream().map(pInput->Cifrado.Encrypt(pInput)).collect(Collectors.toList());
-		
-		for(int i = 0;i<clientes.size();i++)
-		{
+		conCientes = conCientes.stream().map(pInput -> Cifrado.Encrypt(pInput)).collect(Collectors.toList());
+		conAdmin = conAdmin.stream().map(pInput -> Cifrado.Encrypt(pInput)).collect(Collectors.toList());
+
+		for (int i = 0; i < clientes.size(); i++) {
 			users.add(new dummyUser(clientes.get(i), conCientes.get(i), false, idCientes.get(i)));
 		}
-		for(int i = 0;i<admin.size();i++)
-		{
+		for (int i = 0; i < admin.size(); i++) {
 			users.add(new dummyUser(admin.get(i), conAdmin.get(i), true, idAdmin.get(i)));
 		}
-		
+
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction txn = entityManager.getTransaction();
 		txn.begin();
-		users.stream().forEach(user-> entityManager.persist(user));
+		users.stream().forEach(user -> entityManager.persist(user));
 		txn.commit();
 		entityManager.close();
+
 	}
-	
-	public static <T> void  addInstanceToDB(Class<T> clase,T ObjetoAPersistir) {
+
+	public static <T> void addInstanceToDB(Class<T> clase, T ObjetoAPersistir) {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-					
-			tx.begin();
-			try {
-				em.persist(ObjetoAPersistir);			
-				tx.commit();
-			}
-			catch (Exception ex) {
-				tx.rollback();
-			}
-			em.close();
-		}	
-	
+
+		tx.begin();
+		try {
+			em.persist(ObjetoAPersistir);
+			tx.commit();
+		} catch (Exception ex) {
+			tx.rollback();
+		}
+		em.close();
+	}
+
 }
