@@ -32,8 +32,8 @@
         <div class="col-md-12">
           <ul class="nav nav-pills">
             <li        class="nav-item"> <a href="./../../../" class="active nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="">Inteligente</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="./DispositivosEstandar" >Estandar</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="./DispositivosInteligentes">Inteligente</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="" >Estandar</a> </li>
           </ul>
         </div>
       </div>
@@ -45,11 +45,11 @@
       <div class="row">
         <div class="col-md-5 p-4" style="	box-shadow: 0px 0px 4px  black;	background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url(https://pingendo.com/site-assets/cover.jpg);	background-position: top left, top left;	background-size: 100%, 100%;	background-repeat: repeat, repeat;"></div>
         <div class="col-md-7 p-4">
-          <h3 class="mb-3">Ingrese el nuevo dispositivo inteligente</h3>
+          <h3 class="mb-3">Ingrese el nuevo dispositivo Estandar</h3>
          
          
          
-          <form      action="/Clientes/:idCliente/DispositivosInteligentes" method="post"     >
+          <form      action="/Clientes/:idCliente/DispositivosEstandar" method="post"     >
             <div class="form-row">
               <div class="form-group col-md-12">
               
@@ -61,6 +61,8 @@
               
             </div>
             
+            <input type="text" name="kw"  class="form-control" placeholder="KW por hora">
+            <input type="text" name="hsUso"   class="form-control" placeholder="horas de uso promedio">
             
             <input type="text" name="minima"  class="form-control" placeholder="Restriccion minima">
             <input type="text" name="maxima"   class="form-control" placeholder="Restriccion maxima">

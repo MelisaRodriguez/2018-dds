@@ -246,6 +246,12 @@ public class Cliente {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 	
 	
 }

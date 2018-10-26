@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -40,12 +44,24 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		ArrayList<DispositivoEstandar> estandar = new ArrayList<DispositivoEstandar>();
 		estandar.add(new DispositivoEstandar("Licuadora",80,10,null,8,15));
 		
-		
-		new RepoClientes().agregarUsuario(new Cliente("Jorge", "Perez", TipoDocumento.DNI, 
+		Bootstrap.addInstanceToDB(Cliente.class,
+				new Cliente("Jorge", "Perez", TipoDocumento.DNI, 
 				"1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, estandar, 
-				true,new Punto(-0.127512, 51.507222),"cachocachondo"));
-		
+				true,new Punto(-0.127512, 51.507222),"cachocachondo") );
 	}
 	
+	public static <T> void  addInstanceToDB(Class<T> clase,T ObjetoAPersistir) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+					
+			tx.begin();
+			try {
+				em.persist(ObjetoAPersistir);			
+				tx.commit();
+			}
+			catch (Exception ex) {
+				tx.rollback();
+			}
+		}	
 	
 }
