@@ -2,6 +2,7 @@ package Server;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,15 +64,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 		Cliente cliente1 = new Cliente("Fede", "Perez", TipoDocumento.DNI, "41919911", "23456379", "Cerrito 1546, CABA",
 				LocalDate.of(2018, 5, 20), dispositivosInteligentes1, dispositivosEstandar1, false,
-				new Punto(-0.127512, 51.507222), "fedePrz10");
+				new Punto(-0.127512, 51.507222), "Luci69");
 		Cliente cliente2 = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156",
 				LocalDate.of(2017, 4, 28), dispositivosInteligentes2, dispositivosEstandar2, true,
-				new Punto(-0.127512, 51.507222), "jorgePerez");
+				new Punto(-0.127512, 51.507222), "Facu96");
 
 		addInstanceToDB(Cliente.class, cliente1);
 		addInstanceToDB(Cliente.class, cliente2);
-		
-		// HAZ TU MAGIA, CASTIÑEIRA, YA TENES LOS CLIENTES EN LA BASE!
 
 		Parameters params = new Parameters();
 		FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
@@ -87,11 +86,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 		List<String> clientes = config.getList(String.class, "clientes");
 		List<String> conCientes = config.getList(String.class, "con-clientes");
-		List<Integer> idCientes = config.getList(Integer.class, "id-clientes");
+		List<Integer> idCientes = Arrays.asList(cliente1.getId(), cliente2.getId());
 
 		List<String> admin = config.getList(String.class, "admin");
 		List<String> conAdmin = config.getList(String.class, "con-admin");
-		List<Integer> idAdmin = config.getList(Integer.class, "id-admin");
 
 		List<dummyUser> users = new ArrayList<dummyUser>();
 		conCientes = conCientes.stream().map(pInput -> Cifrado.Encrypt(pInput)).collect(Collectors.toList());
@@ -101,7 +99,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			users.add(new dummyUser(clientes.get(i), conCientes.get(i), false, idCientes.get(i)));
 		}
 		for (int i = 0; i < admin.size(); i++) {
-			users.add(new dummyUser(admin.get(i), conAdmin.get(i), true, idAdmin.get(i)));
+			users.add(new dummyUser(admin.get(i), conAdmin.get(i), true, -1));
 		}
 
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();

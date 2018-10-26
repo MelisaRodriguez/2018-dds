@@ -8,6 +8,8 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import Server.Cifrado;
 import Server.dummyUser;
+import edu.dominio.fabricante.Fabricante;
+import edu.dominio.fabricante.Sony;
 import edu.dominio.usuario.Cliente;
 import spark.ModelAndView;
 import spark.Request;
@@ -39,7 +41,9 @@ public final class LoginController {
 				res.redirect("/admin");
 			} else {
 				UserController.usuario = n.find(Cliente.class, u.getId_user());
-				res.redirect("/userPanel/");
+				UserController.usuario.getDispositivosInteligentes().stream()
+						.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
+				res.redirect("/userPanel");
 			}
 		}
 		n.close();

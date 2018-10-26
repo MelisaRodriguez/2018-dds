@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import edu.dominio.fabricante.Fabricante;
+import edu.dominio.fabricante.Sony;
 
 @Entity
 public class DispositivoInteligente extends Dispositivo {
@@ -31,9 +32,7 @@ public class DispositivoInteligente extends Dispositivo {
 	@Override
 	public double getCalcularConsumo() 
 	{
-		//return this.fabricante.cuantoConsume(this);
-		return 15; //GONZA LO DIJO
-		//return this.fabricante.cuantoConsume(this);
+		return this.fabricante.cuantoConsume(this);
 	}
 
 	public double getConsumo() {

@@ -12,6 +12,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,10 +44,10 @@ public class Cliente {
 	private LocalDate fechaDeAltaServicio;
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Categoria categoria;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCliente")
 	private List<DispositivoInteligente> dispositivosInteligentes;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCliente")
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
