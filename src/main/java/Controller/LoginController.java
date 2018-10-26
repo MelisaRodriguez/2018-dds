@@ -8,6 +8,7 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import Server.Cifrado;
 import Server.dummyUser;
+import edu.dominio.usuario.Cliente;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -28,7 +29,6 @@ public final class LoginController {
 				.createQuery("from dummyUser c where c.usuario = :u and c.contraseña = :p", dummyUser.class)
 				.setParameter("u", username).setParameter("p", password).getResultList();
 		n.getTransaction().commit();
-		n.close();
 		if (lista.isEmpty() || lista == null) {
 			res.status(400);
 			res.redirect("login/Login-View.html");
@@ -38,10 +38,11 @@ public final class LoginController {
 			if (u.isAdmin()) {
 				res.redirect("/admin");
 			} else {
-				//sacar cliente de BD y pasarla
+				UserController.usuario = n.find(Cliente.class, u.getId_user());
 				res.redirect("/userPanel/");
 			}
 		}
+		n.close();
 		return null;
 	}
 }
