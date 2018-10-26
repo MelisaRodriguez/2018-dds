@@ -38,6 +38,7 @@ public final class LoginController {
 			if (u.isAdmin()) {
 				res.redirect("/admin");
 			} else {
+				//sacar cliente de BD y pasarla
 				res.redirect("/userPanel/");
 			}
 		}

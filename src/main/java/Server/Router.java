@@ -3,6 +3,7 @@ package Server;
 
 import Controller.ControllerAdministrador;
 import Controller.LoginController;
+import Controller.UserController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -30,6 +31,10 @@ public class Router {
 		Spark.post("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::registrarDispoEst);
 		
 		Spark.post("/admin/out", ControllerAdministrador::logOut);	
+		
+		Spark.get("/userPanel/", UserController::user, transformer);	
+		Spark.get("/userPanel/consumoRecomendado", UserController::consumoRecomendado, transformer);
+		Spark.post("/userPanel/consumoEnPeriodo", UserController::consumoEnPeriodo, transformer);
 	}
-	
 }
+

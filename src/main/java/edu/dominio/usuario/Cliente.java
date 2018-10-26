@@ -78,7 +78,7 @@ public class Cliente {
 
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()
-				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
+				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.getConsumoTotal()));
 	}
 
 	public List<Dispositivo> todosSusDispositivos() {
@@ -94,14 +94,12 @@ public class Cliente {
 	public void agregarDispositivo(DispositivoEstandar unDispositivo) {
 		this.dispositivosEstandar.add(unDispositivo);
 	}
+
 	public double getConsumoTotal() {
-		return this.consumoTotal();
-	}
-	public double consumoTotal() {
-		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
+		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getCalcularConsumo()).sum();
 	}	
 	
-	public double consumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
+	public double getConsumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
 		return dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotalEnPeriodo(inicio, fin)).sum();
 	}
 	
@@ -151,9 +149,9 @@ public class Cliente {
 		return this.puntos;
 	}
 	
-	public void solicitarRecomendacion(double restriccionMaxima)
+	public List<Double> solicitarRecomendacion(double restriccionMaxima)
 	{
-		new Simplex(restriccionMaxima).generarRecomendacion(this);
+		return new Simplex(restriccionMaxima).generarRecomendacion(this);
 	} 
 
 	public void setAhorroAutomatico(boolean ahorro)
@@ -252,7 +250,6 @@ public class Cliente {
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-	
 	
 }
 

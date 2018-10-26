@@ -29,7 +29,7 @@ public class DispositivoInteligente extends Dispositivo {
 	public DispositivoInteligente() {}
 	
 	@Override
-	public double calcularConsumo() 
+	public double getCalcularConsumo() 
 	{
 		//return this.fabricante.cuantoConsume(this);
 		return 15; //GONZA LO DIJO
@@ -37,17 +37,19 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 
 	public double getConsumo() {
-		return this.calcularConsumo();
+		return this.getCalcularConsumo();
 	}
 	
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
 	public void agregarNuevoRegistroDeConsumo()
 	{
-		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo(), this.getHorasEncendido() ) );
+		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.getCalcularConsumo(), this.getHorasEncendido() ) );
 	}
 	
-
-	
+	public double getConsumoUltimoMes() {
+		LocalDate today = LocalDate.now();
+		return this.consumoTotalEnPeriodo(LocalDate.of(today.getYear(), today.getMonth(), 1), today);
+	}
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
@@ -122,6 +124,11 @@ public class DispositivoInteligente extends Dispositivo {
 		return fabricante.getPotencia(this);
 	}
 	
+	public String getEstado() {
+		return this.fabricante.getEstado(this);
+	}
 	
-
+	public double getUltimaMedicion() {
+		return registrosConsumo.get(registrosConsumo.size()-1).getKwConsumidos();
+	}
 }

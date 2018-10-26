@@ -24,7 +24,7 @@ public class Transformador {
 	
 	@Id
 	@GeneratedValue
-	public int idTransformador;
+	private int idTransformador;
 	
 
 	@Embedded
@@ -54,11 +54,11 @@ public class Transformador {
 
 	public double calcularConsumo()
 	{
-		return this.clientes.stream().mapToDouble(c->c.consumoTotal()).sum();
+		return this.clientes.stream().mapToDouble(c->c.getConsumoTotal()).sum();
 	}
 	
 	public double consumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
-		return this.clientes.stream().mapToDouble(c->c.consumoTotalEnPeriodo(inicio, fin)).sum();
+		return this.clientes.stream().mapToDouble(c->c.getConsumoTotalEnPeriodo(inicio, fin)).sum();
 	}
 	
 	public Punto getLugar()
