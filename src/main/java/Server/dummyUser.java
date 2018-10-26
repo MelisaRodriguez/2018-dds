@@ -1,12 +1,16 @@
 package Server;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="Usuario")
-class dummyUser
+@Entity
+@Table(name="Usuario")
+public class dummyUser
 {
 	@Id
+	@GeneratedValue
 	int ID;
 	String usuario;
 	String contraseña;
@@ -14,9 +18,7 @@ class dummyUser
 	int id_user;
 	
 	public dummyUser() {}
-	public dummyUser(int iD, String usuario, String contraseña, boolean admin, int id_user) {
-		super();
-		ID = iD;
+	public dummyUser(String usuario, String contraseña, boolean admin, int id_user) {
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.admin = admin;

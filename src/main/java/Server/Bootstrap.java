@@ -84,11 +84,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		
 		for(int i = 0;i<clientes.size();i++)
 		{
-			users.add(new dummyUser(i, clientes.get(i), conCientes.get(i), false, idCientes.get(i)));
+			users.add(new dummyUser(clientes.get(i), conCientes.get(i), false, idCientes.get(i)));
 		}
 		for(int i = 0;i<admin.size();i++)
 		{
-			users.add(new dummyUser(i, admin.get(i), conAdmin.get(i), true, idAdmin.get(i)));
+			users.add(new dummyUser(admin.get(i), conAdmin.get(i), true, idAdmin.get(i)));
 		}
 		
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();

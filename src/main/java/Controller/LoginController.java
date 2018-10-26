@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import Server.Cifrado;
+import Server.dummyUser;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -13,7 +15,7 @@ import spark.Response;
 public final class LoginController {
 
 	public static ModelAndView init(Request req, Response res) {
-		res.redirect("Login-View.html");
+		res.redirect("login/Login-View.html");
 		return null;
 	}
 
@@ -22,13 +24,12 @@ public final class LoginController {
 		String password = Cifrado.Encrypt(req.queryParams("contraseña"));
 		EntityManager n = PerThreadEntityManagers.getEntityManager();
 		n.getTransaction().begin();
-		List<dummyUser> lista = n.createQuery("select * from Usuario where usuario = :u and contraseña = :c")
-				.setParameter("u", username).setParameter("c", password).getResultList();
+		List<dummyUser> lista = n.createQuery("from dummyUser c where c.usuario = :u", dummyUser.class).setParameter("u", username).getResultList();
 		n.getTransaction().commit();
 		n.close();
 		if (lista.isEmpty() || lista == null) {
 			res.status(400);
-			res.redirect("/");
+			res.redirect("login/Login-View.html");
 		} else {
 			dummyUser u = lista.get(0);
 			res.status(200);

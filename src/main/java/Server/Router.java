@@ -15,9 +15,9 @@ public class Router {
 		
 		Spark.staticFiles.location("/public");	
 		
-		Spark.get("/login", LoginController::init);
+		Spark.get("/", LoginController::init);
 		
-		Spark.post("/login", LoginController::processLogin);	
+		Spark.post("/", LoginController::processLogin);	
 		
 		Spark.get("/admin", ControllerAdministrador::indexPrimero, transformer);	
 		
