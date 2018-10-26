@@ -148,9 +148,9 @@ public class Cliente {
 		return this.puntos;
 	}
 	
-	public void solicitarRecomendacion(double restriccionMaxima)
+	public List<Double> solicitarRecomendacion(double restriccionMaxima)
 	{
-		new Simplex(restriccionMaxima).generarRecomendacion(this);
+		return new Simplex(restriccionMaxima).generarRecomendacion(this);
 	} 
 
 	public void setAhorroAutomatico(boolean ahorro)
