@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
@@ -17,7 +18,7 @@ import edu.dominio.fabricante.Sony;
 public class DispositivoInteligente extends Dispositivo {
 	
 	private LocalDate fechaDeRegistro;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "idDispositivo")
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
 	

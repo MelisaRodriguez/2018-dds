@@ -42,6 +42,8 @@ public class ControllerAdministrador {
 		
 		
 		clientes = ControllerAdministrador.getFromDB(Cliente.class);
+		clientes.stream().forEach(c->c.getDispositivosInteligentes().stream()
+				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony()))));
 		
 		viewModel.put("user", clientes);
 		
@@ -55,6 +57,10 @@ public class ControllerAdministrador {
 		if (clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
 			clienteSeleccionado = ControllerAdministrador.buscarPorId(id,Cliente.class);	
+			clienteSeleccionado.getDispositivosInteligentes().stream()
+					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
+				
+			
 		}
 		
 		HashMap<String, Object> viewModel = new HashMap<>();

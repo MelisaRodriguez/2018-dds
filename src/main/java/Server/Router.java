@@ -33,8 +33,8 @@ public class Router {
 		Spark.post("/admin/out", ControllerAdministrador::logOut);	
 		
 		Spark.get("/userPanel", UserController::user, transformer);	
-		Spark.get("/userPanel/consumoRecomendado", UserController::consumoRecomendado, transformer);
-		Spark.post("/userPanel/consumoEnPeriodo", UserController::consumoEnPeriodo, transformer);
+		Spark.get("/consumoRecomendado", UserController::consumoRecomendado, transformer);
+		Spark.post("/consumoEnPeriodo", UserController::consumoEnPeriodo, transformer);
 	}
 }
 
