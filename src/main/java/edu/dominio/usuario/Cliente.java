@@ -1,3 +1,4 @@
+
 package edu.dominio.usuario;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -42,21 +44,22 @@ public class Cliente {
 	private LocalDate fechaDeAltaServicio;
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Categoria categoria;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCliente")
 	private List<DispositivoInteligente> dispositivosInteligentes;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCliente")
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
 	private boolean ahorroAutomatico;
 	@Embedded
 	private Punto ubicacion;
+	private String usuario;
 
 	public Cliente() {}
 	public Cliente(String nombre, String apellido, TipoDocumento documento, String nroDocumento, String telefono,
 			String domicilioServicio, LocalDate fechaDeAltaServicio, List<DispositivoInteligente> dispositivosI,
-			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Punto ubicacion) {
+			List<DispositivoEstandar> dispositivosEstandar, boolean ahorroAutomatico, Punto ubicacion, String usuario) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = documento;
@@ -71,12 +74,12 @@ public class Cliente {
 		this.ahorroAutomatico = ahorroAutomatico;
 		this.ubicacion = ubicacion;		
 		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
-
+		this.usuario = usuario;
 	}
 
 	public void recategorizar() {
 		this.categoria = RepoCategorias.getSingletonInstance()
-				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.consumoTotal()));
+				.solicitarCategoria(Categoria -> Categoria.estaEnCategoria(this.getConsumoTotal()));
 	}
 
 	public List<Dispositivo> todosSusDispositivos() {
@@ -93,11 +96,11 @@ public class Cliente {
 		this.dispositivosEstandar.add(unDispositivo);
 	}
 
-	public double consumoTotal() {
-		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.calcularConsumo()).sum();
+	public double getConsumoTotal() {
+		return this.todosSusDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getCalcularConsumo()).sum();
 	}	
 	
-	public double consumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
+	public double getConsumoTotalEnPeriodo(LocalDate inicio, LocalDate fin) {
 		return dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotalEnPeriodo(inicio, fin)).sum();
 	}
 	
@@ -147,9 +150,9 @@ public class Cliente {
 		return this.puntos;
 	}
 	
-	public void solicitarRecomendacion(double restriccionMaxima)
+	public List<Double> solicitarRecomendacion(double restriccionMaxima)
 	{
-		new Simplex(restriccionMaxima).generarRecomendacion(this);
+		return new Simplex(restriccionMaxima).generarRecomendacion(this);
 	} 
 
 	public void setAhorroAutomatico(boolean ahorro)
@@ -236,6 +239,18 @@ public class Cliente {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
-	
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 	
 }
+

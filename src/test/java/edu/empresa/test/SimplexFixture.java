@@ -90,8 +90,8 @@ public class SimplexFixture {
 		inteligentes2 = new ArrayList<DispositivoInteligente>();
 		inteligentes2.add(heladera);
 		
-		cliente = new Cliente("Melisa", "Rodriguez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, dispositivosEstandar, true,new Punto(-0.127512, 51.507222));	
-		cliente2 = new Cliente("Facundo", "Fraguaga", TipoDocumento.DNI, "1110", "464", "Calle Falsa 123", LocalDate.of(2017,4,27),inteligentes2,dispositivosEstandar, true,new Punto(-0.127512, 51.507222));
+		cliente = new Cliente("Melisa", "Rodriguez", TipoDocumento.DNI, "1111", "4444", "Nazca 156", LocalDate.of(2017, 4, 28), inteligentes, dispositivosEstandar, true,new Punto(-0.127512, 51.507222), null);	
+		cliente2 = new Cliente("Facundo", "Fraguaga", TipoDocumento.DNI, "1110", "464", "Calle Falsa 123", LocalDate.of(2017,4,27),inteligentes2,dispositivosEstandar, true,new Punto(-0.127512, 51.507222), null);
 
 		llamarSimplex = new Simplex(612);
 	}

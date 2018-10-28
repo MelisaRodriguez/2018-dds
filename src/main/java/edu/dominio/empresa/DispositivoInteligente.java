@@ -7,16 +7,18 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import edu.dominio.fabricante.Fabricante;
+import edu.dominio.fabricante.Sony;
 
 @Entity
 public class DispositivoInteligente extends Dispositivo {
 	
 	private LocalDate fechaDeRegistro;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "idDispositivo")
 	private List<RegistroMedicion> registrosConsumo; //Se asume ordenada por fecha
 	
@@ -29,19 +31,25 @@ public class DispositivoInteligente extends Dispositivo {
 	public DispositivoInteligente() {}
 	
 	@Override
-	public double calcularConsumo() 
+	public double getCalcularConsumo() 
 	{
 		return this.fabricante.cuantoConsume(this);
 	}
 
+	public double getConsumo() {
+		return this.getCalcularConsumo();
+	}
+	
 	// Este metodo se ejecutara automaticamente con un cron programado cuando se acabe la memoria del dispositivo.
 	public void agregarNuevoRegistroDeConsumo()
 	{
-		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.calcularConsumo(), this.getHorasEncendido() ) );
+		registrosConsumo.add(new RegistroMedicion(LocalDate.now(),this.getCalcularConsumo(), this.getHorasEncendido() ) );
 	}
 	
-
-	
+	public double getConsumoUltimoMes() {
+		LocalDate today = LocalDate.now();
+		return this.consumoTotalEnPeriodo(LocalDate.of(today.getYear(), today.getMonth(), 1), today);
+	}
 
 	public double consumoTotalEnPeriodo (LocalDate inicio, LocalDate fin) { 
 		// se asume, y se van a guardar de manera ordenada los registros
@@ -116,6 +124,11 @@ public class DispositivoInteligente extends Dispositivo {
 		return fabricante.getPotencia(this);
 	}
 	
+	public String getEstado() {
+		return this.fabricante.getEstado(this);
+	}
 	
-
+	public double getUltimaMedicion() {
+		return registrosConsumo.get(registrosConsumo.size()-1).getKwConsumidos();
+	}
 }

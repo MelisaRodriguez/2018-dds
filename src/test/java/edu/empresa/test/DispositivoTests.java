@@ -10,7 +10,7 @@ public class DispositivoTests extends DispositivoFixture{
 	@Test
 	public void testConsumoEstandar() 
 	{
-		Assert.assertEquals(50.0, dispositivoEstandar.calcularConsumo());	
+		Assert.assertEquals(50.0, dispositivoEstandar.getCalcularConsumo());	
 	}
 
 	@Test
@@ -21,7 +21,7 @@ public class DispositivoTests extends DispositivoFixture{
 	
 		//System.out.println(fabricantemock.cuantoConsume(dispositivoInteligente));
 		
-		Assert.assertEquals(10.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018, 8, 9), LocalDate.of(2018, 10, 15)));		
+		Assert.assertEquals(10.0, dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018, 8, 9), LocalDate.of(2018, 11, 15)));		
 	}
 	
 	@Test

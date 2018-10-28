@@ -3,6 +3,11 @@ package edu.repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 public class GenericoRepos<T> {
 	protected List<T> entidades = new ArrayList<>();
 
@@ -14,4 +19,6 @@ public class GenericoRepos<T> {
 	{
 		entidades.add(entidad);
 	}
+	
+
 }

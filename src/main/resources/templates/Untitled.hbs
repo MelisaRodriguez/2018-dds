@@ -1,0 +1,77 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="Untitled.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="#">
+          <i class="fa d-inline fa-lg fa-circle"></i>
+          <b> SSG      {{names}}       </b>
+        </a>
+        <ul class="navbar-nav mx-auto">
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"> <a class="nav-link text-primary" href="./out" contenteditable="true">Log Out</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <h1 class="">Clientes afiliados</h1>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th contenteditable="true">Nombre y Apellido </th>
+                <th>Documento</th>
+                <th>Consumo del mes</th>
+				<th contenteditable="true">Ver datos</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+			{{#each user}}
+				<tr>
+					<td> {{ nombre}} {{apellido}} </td>
+					<td> {{ nroDocumento }} </td>
+					<td> {{ consumoTotal }} </td>
+					<td>
+					
+						<a href="./admin/Clientes/{{id}}">
+						
+								<button type="button" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-plus"></span> +
+								</button>
+						</a>
+					</td>
+				</tr>
+			{{/each}}
+			  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="mb-0">© 2014-2018 SSG. All rights reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

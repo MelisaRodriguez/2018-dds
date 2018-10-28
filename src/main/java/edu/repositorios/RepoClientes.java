@@ -14,8 +14,5 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		return repo;
 	}
 	
-	public static void cargarClientes(List<Cliente> clientes)
-	{
-		repo.entidades = clientes;
-	}
+
 }
