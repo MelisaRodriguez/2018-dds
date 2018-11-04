@@ -10,20 +10,17 @@ public class Sensor {
 	@GeneratedValue
 	private int idSensor;
 	private double medida;
-	
-	public void tomarMedicion(double medida)
-	{
+
+	public void tomarMedicion(double medida) {
 		this.medida = medida;
 	}
-	
-	public double getMedida()
-	{
+
+	public double getMedida() {
 		return medida;
 	}
 
 	public void setMedida(double medida) {
 		this.medida = medida;
-	}	
-	
-	
+	}
+
 }

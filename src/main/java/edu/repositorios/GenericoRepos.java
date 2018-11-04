@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
@@ -14,11 +13,18 @@ public class GenericoRepos<T> {
 	public List<T> getEntidades() {
 		return entidades;
 	}
-	
-	public void agregar(T entidad)
-	{
+
+	public void agregar(T entidad) {
 		entidades.add(entidad);
 	}
-	
+
+	public void persistirEntidades() {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		em.getTransaction().begin();
+		entidades.stream().forEach(e -> em.persist(e));
+		em.getTransaction().commit();
+		em.close();
+		entidades = null; // Para la entrega, para que vean que lavanta las cosas de la BD
+	}
 
 }
