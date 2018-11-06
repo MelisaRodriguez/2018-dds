@@ -113,6 +113,8 @@ public class ControllerAdministrador {
 	public static Void registrarDispo(Request req, Response res) {	
 		
 		
+		String id=req.params("idCliente");
+		
 		String q=req.queryParams("tipo");
 		
 		if(q.equals("inteligente")) {
@@ -129,7 +131,7 @@ public class ControllerAdministrador {
 			
 			clienteSeleccionado.agregarDispositivo(d);
 		}
-		res.redirect("/Clientes/"+cadena);
+		res.redirect("/admin/Clientes/"+id+"");
 		return null;
 	}
 	
