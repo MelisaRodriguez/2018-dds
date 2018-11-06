@@ -75,35 +75,60 @@ public class ControllerAdministrador {
 				"AdministradorCliente.hbs");
 	}
 	
-	public static ModelAndView indexUltimoInteligente(Request req, Response res) {
+	public static ModelAndView indexUltimo(Request req, Response res) {
 		///EN EL OTRO CONTROLLER
 		
 		id=Integer.parseInt(req.params(":idCliente"));
 		cadena=req.params(":idCliente");
 		
+		String q=req.queryParams("tipo");
 		
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		
+		
+		viewModel.put("id", cadena );
 		viewModel.put("wea", clienteSeleccionado.getId() );
+		
+		if(q != null && q.equals("inteligente")) {
+			return new ModelAndView(
+					viewModel, 
+					"Inteligente.hbs");
+		}
+		else {
+			return new ModelAndView(
+					viewModel, 
+					"estandars.hbs");
+		}
+		
+		//System.out.println(req.queryParams("dispositivo"));
+		
+		
+
 
 		
-		return new ModelAndView(
-				viewModel, 
-				"Inteligente.hbs");
+		
 	}
 	
-	public static Void registrarDispoInt(Request req, Response res) {	
-		req.queryParams("nombreDispo");
-		req.queryParams("minima");
-		req.queryParams("maxima");
-		
-		DispositivoInteligente dispositivo=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
-				new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
-		
-		clienteSeleccionado.agregarDispositivo(dispositivo);
+	public static Void registrarDispo(Request req, Response res) {	
 		
 		
+		String q=req.queryParams("tipo");
+		
+		if(q.equals("inteligente")) {
+			DispositivoInteligente d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
+					new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
+			
+			clienteSeleccionado.agregarDispositivo(d);
+			
+		}
+		else {
+			DispositivoEstandar d=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
+					Double.parseDouble(req.queryParams("hsUso")),new Fabricante("Sony",new Sony()),  
+					Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
+			
+			clienteSeleccionado.agregarDispositivo(d);
+		}
 		res.redirect("/Clientes/"+cadena);
 		return null;
 	}
@@ -118,6 +143,8 @@ public class ControllerAdministrador {
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		
+		
+		viewModel.put("id", cadena );
 		viewModel.put("wea", clienteSeleccionado.getId() );
 
 		

@@ -24,11 +24,11 @@ public class Router {
 		
 		Spark.get("/admin/Clientes/:idCliente", ControllerAdministrador::indexMedio, transformer);	
 		
-		Spark.get("/admin/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::indexUltimoInteligente, transformer);	
-		Spark.post("/admin/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::registrarDispoInt);
 		
-		Spark.get("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::indexUltimoEstandar, transformer);	
-		Spark.post("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::registrarDispoEst);
+		
+		
+		Spark.get("/admin/clientes/:idCliente/dispositivos", ControllerAdministrador::indexUltimo, transformer);	
+		Spark.post("/admin/clientes/:idCliente/dispositivos", ControllerAdministrador::registrarDispo);
 		
 		Spark.post("/admin/out", ControllerAdministrador::logOut);	
 		
