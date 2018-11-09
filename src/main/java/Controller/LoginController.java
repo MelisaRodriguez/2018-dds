@@ -30,6 +30,8 @@ public final class LoginController {
 		List<dummyUser> lista = n
 				.createQuery("from dummyUser c where c.usuario = :u and c.contraseña = :p", dummyUser.class)
 				.setParameter("u", username).setParameter("p", password).getResultList();
+		
+		System.out.println("listaaaaaaaaaaaaaaaaa " + lista.size()); //TODO
 		n.getTransaction().commit();
 		if (lista.isEmpty() || lista == null) {
 			res.status(400);
@@ -41,6 +43,10 @@ public final class LoginController {
 				res.redirect("/admin");
 			} else {
 				UserController.usuario = n.find(Cliente.class, u.getId_user());
+				
+				System.out.println("ACAAAAAAAAAAAAAAAAA " + n.find(Cliente.class, u.getId_user()).getDispositivosInteligentes().size()); //TODO
+				System.out.println("ACAAAAAAAAAAAAAAAAA " + n.find(Cliente.class, u.getId_user()).getDispositivosEstandar().size()); //TODO
+				
 				UserController.usuario.getDispositivosInteligentes().stream()
 						.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 				res.redirect("/userPanel");

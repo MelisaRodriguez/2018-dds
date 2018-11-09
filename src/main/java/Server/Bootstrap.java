@@ -47,7 +47,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		medicionesAire.add(new RegistroMedicion(LocalDate.of(2018, 10, 20), 10.0, 20));
 		aireAcondicionado1.setRegistrosConsumo(medicionesAire);
 
-		DispositivoInteligente smartTV = new DispositivoInteligente("Aire acondicionado", LocalDate.of(2018, 4, 28),
+		DispositivoInteligente smartTV = new DispositivoInteligente("Televisor", LocalDate.of(2018, 4, 28),
 				new Fabricante("Sony", new Sony()), 90.0, 360.0);
 		ArrayList<RegistroMedicion> medicionesTV = new ArrayList<RegistroMedicion>();
 		medicionesTV.add(new RegistroMedicion(LocalDate.of(2018, 10, 4), 15.0, 20));
@@ -65,12 +65,23 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		Cliente cliente1 = new Cliente("Fede", "Perez", TipoDocumento.DNI, "41919911", "23456379", "Cerrito 1546, CABA",
 				LocalDate.of(2018, 5, 20), dispositivosInteligentes1, dispositivosEstandar1, false,
 				new Punto(-0.127512, 51.507222), "Luci69");
+		
+		//System.out.println("ACAAAAAAAAAAAAAAAAA " + dispositivosInteligentes1.size()); //TODO
+		//System.out.println("ACAAAAAAAAAAAAAAAAA " + cliente1.getDispositivosEstandar().size()); //TODO
+		
 		Cliente cliente2 = new Cliente("Jorge", "Perez", TipoDocumento.DNI, "1111", "4444", "Nazca 156",
 				LocalDate.of(2017, 4, 28), dispositivosInteligentes2, dispositivosEstandar2, true,
 				new Punto(-0.127512, 51.507222), "Facu96");
 
+		dispositivosInteligentes1.stream().forEach(d -> addInstanceToDB(DispositivoInteligente.class, d));
+		dispositivosEstandar1.stream().forEach(d -> addInstanceToDB(DispositivoEstandar.class, d));
+		//dispositivosInteligentes2.stream().forEach(d -> addInstanceToDB(DispositivoInteligente.class, d));
+		//dispositivosEstandar2.stream().forEach(d -> addInstanceToDB(DispositivoEstandar.class, d));
+		
 		addInstanceToDB(Cliente.class, cliente1);
-		addInstanceToDB(Cliente.class, cliente2);
+		//addInstanceToDB(Cliente.class, cliente2);
+		
+		
 
 		Parameters params = new Parameters();
 		FileBasedConfigurationBuilder<FileBasedConfiguration> builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
@@ -102,12 +113,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			users.add(new dummyUser(admin.get(i), conAdmin.get(i), true, -1));
 		}
 
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		/*EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction txn = entityManager.getTransaction();
-		txn.begin();
-		users.stream().forEach(user -> entityManager.persist(user));
-		txn.commit();
-		entityManager.close();
+		txn.begin();*/
+		users.stream().forEach(user -> addInstanceToDB(dummyUser.class, user));
+		
+		/*txn.commit();
+		entityManager.close();*/
 
 	}
 

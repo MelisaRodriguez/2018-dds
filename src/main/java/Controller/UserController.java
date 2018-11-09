@@ -29,6 +29,8 @@ public class UserController {
 		HashMap<String,Object> viewModel = new HashMap<>(); 
 
 		viewModel.put("cliente", usuario);
+		//System.out.println("ACAAAAAAAAAAAAAAAAA " + usuario.getDispositivosInteligentes().size()); //TODO
+		//System.out.println("ACAAAAAAAAAAAAAAAAA " + usuario.getDispositivosEstandar().size()); //TODO
 		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
 		viewModel.put("dispositivosEstandar", usuario.getDispositivosEstandar());
 		return new ModelAndView(viewModel, "user.hbs");
@@ -37,23 +39,22 @@ public class UserController {
 	
 	
 	public static ModelAndView consumoRecomendado(Request req, Response res) {
-
 		HashMap<String, Object> viewModel = new HashMap<>();
+		HashMap<String, Double> recomendaciones = new HashMap<>();
 
 		List<Double> optimizaciones = usuario.solicitarRecomendacion(620);
-		List<OptimizacionRecomendada> recomendaciones = new ArrayList<OptimizacionRecomendada>();
 		
 		int i = 0;
 		for(Dispositivo dispositivo : usuario.todosSusDispositivos())
 		{
-			recomendaciones.add(new OptimizacionRecomendada(dispositivo.getNombre(), optimizaciones.get(i)));
+			recomendaciones.put(dispositivo.getNombre(), optimizaciones.get(i));
 			i++;
 		}
 		
-		viewModel.put("optimizacionRecomendada", recomendaciones);
+		viewModel.put("recomendaciones", recomendaciones);
+		viewModel.put("cliente", usuario);
 		
 		return new ModelAndView(viewModel, "simplex.hbs");
-
 	}
 
 	public static ModelAndView consumoEnPeriodo(Request req, Response res) {
@@ -64,6 +65,7 @@ public class UserController {
 		
 		double consumo = usuario.getConsumoTotalEnPeriodo(LocalDate.parse(fechas[0], formatter), LocalDate.parse(fechas[1], formatter));
 		
+		viewModel.put("cliente", usuario);
 		viewModel.put("consumo", consumo);
 		
 		return new ModelAndView(viewModel, "consumo.hbs");

@@ -44,10 +44,12 @@ public class Cliente {
 	private LocalDate fechaDeAltaServicio;
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Categoria categoria;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) TODO
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCliente")
 	private List<DispositivoInteligente> dispositivosInteligentes;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) TODO
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCliente")
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos;
