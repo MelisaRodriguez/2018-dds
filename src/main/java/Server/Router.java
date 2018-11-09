@@ -20,14 +20,11 @@ public class Router {
 		
 		Spark.post("/", LoginController::processLogin);	
 		
-		Spark.get("/admin", ControllerAdministrador::indexPrimero, transformer);	
+		Spark.get("/admin", ControllerAdministrador::indexViewDatosGenerales, transformer);	
 		
-		Spark.get("/admin/Clientes/:idCliente", ControllerAdministrador::indexMedio, transformer);	
+		Spark.get("/admin/Clientes/:idCliente", ControllerAdministrador::indexViewDatosDeUnCliente, transformer);	
 		
-		
-		
-		
-		Spark.get("/admin/clientes/:idCliente/dispositivos", ControllerAdministrador::indexUltimo, transformer);	
+		Spark.get("/admin/clientes/:idCliente/dispositivos", ControllerAdministrador::indexViewAgregarDispositivo, transformer);	
 		Spark.post("/admin/clientes/:idCliente/dispositivos", ControllerAdministrador::registrarDispo);
 		
 		Spark.post("/admin/out", ControllerAdministrador::logOut);	

@@ -23,7 +23,7 @@ import spark.Response;
 
 public class ControllerAdministrador {
 	
-	public static Administrador admin; //TODO gas, hace tu brujeria
+	public static Administrador admin; 
 	public static int id;
 	public static String cadena;
 	public static List <Cliente> clientes;
@@ -36,12 +36,12 @@ public class ControllerAdministrador {
 
 	
 	
-	public static ModelAndView indexPrimero(Request req, Response res) {
+	public static ModelAndView indexViewDatosGenerales(Request req, Response res) {
 	
 		HashMap<String, Object> viewModel = new HashMap<>();
-		
-		
-		clientes = ControllerAdministrador.getFromDB(Cliente.class);
+			
+		clientes = repo.getFromDB(Cliente.class);
+		//clientes = ControllerAdministrador.getFromDB(Cliente.class);
 		clientes.stream().forEach(c->c.getDispositivosInteligentes().stream()
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony()))));
 		
@@ -49,10 +49,10 @@ public class ControllerAdministrador {
 		
 		return new ModelAndView(
 				viewModel, 
-				"Untitled.hbs");
+				"Untitled.hbs"); // TODO tenemos que cambiar ese nombre y todos los intitled
 	}
 	
-	public static ModelAndView indexMedio(Request req, Response res) {
+	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
 		
 		if (clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
@@ -75,8 +75,8 @@ public class ControllerAdministrador {
 				"AdministradorCliente.hbs");
 	}
 	
-	public static ModelAndView indexUltimo(Request req, Response res) {
-		///EN EL OTRO CONTROLLER
+	public static ModelAndView indexViewAgregarDispositivo(Request req, Response res) {
+	
 		
 		id=Integer.parseInt(req.params(":idCliente"));
 		cadena=req.params(":idCliente");
@@ -88,7 +88,7 @@ public class ControllerAdministrador {
 		
 		
 		viewModel.put("id", cadena );
-		viewModel.put("wea", clienteSeleccionado.getId() );
+		viewModel.put("wea", clienteSeleccionado.getId() ); // TODO como es que ese wea sigue en ese lugar? re pende que lo habia sacado, hay que cambiarlo
 		
 		if(q != null && q.equals("inteligente")) {
 			return new ModelAndView(
@@ -115,7 +115,7 @@ public class ControllerAdministrador {
 		
 		String id=req.params("idCliente");
 		
-		String q=req.queryParams("tipo");
+		String q=req.queryParams("tipo"); // TODO decir a luci que deje de poner letras por nombre de variables
 		
 		if(q.equals("inteligente")) {
 			DispositivoInteligente d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
@@ -135,8 +135,8 @@ public class ControllerAdministrador {
 		return null;
 	}
 	
+	// TODO preguntar a luci donde se usa esto
 	public static ModelAndView indexUltimoEstandar(Request req, Response res) {
-		///EN EL OTRO CONTROLLER
 		
 		id=Integer.parseInt(req.params(":idCliente"));
 		cadena=req.params(":idCliente");
