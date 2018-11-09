@@ -13,14 +13,14 @@ public class dummyUser
 	@GeneratedValue
 	int ID;
 	String usuario;
-	String contraseña;
+	String contrasena;
 	boolean admin;
 	int id_user;
 	
 	public dummyUser() {}
-	public dummyUser(String usuario, String contraseña, boolean admin, int id_user) {
+	public dummyUser(String usuario, String contrasena, boolean admin, int id_user) {
 		this.usuario = usuario;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.admin = admin;
 		this.id_user = id_user;
 	}
@@ -37,11 +37,11 @@ public class dummyUser
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	public boolean isAdmin() {
 		return admin;

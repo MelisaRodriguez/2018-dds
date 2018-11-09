@@ -33,64 +33,42 @@ public class ControllerAdministrador {
 	public static void setAdmin(Administrador admin) {
 		ControllerAdministrador.admin = admin;
 	}
-
-	
 	
 	public static ModelAndView indexViewDatosGenerales(Request req, Response res) {
 	
 		HashMap<String, Object> viewModel = new HashMap<>();
 			
 		clientes = repo.getFromDB(Cliente.class);
-		//clientes = ControllerAdministrador.getFromDB(Cliente.class);
 		clientes.stream().forEach(c->c.getDispositivosInteligentes().stream()
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony()))));
-		
 		viewModel.put("user", clientes);
-		
 		return new ModelAndView(
 				viewModel, 
-				"Untitled.hbs"); // TODO tenemos que cambiar ese nombre y todos los intitled
+				"Administrador.hbs"); 
 	}
 	
 	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
-		
 		if (clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
-			clienteSeleccionado = ControllerAdministrador.buscarPorId(id,Cliente.class);	
+			clienteSeleccionado = repo.buscarPorId(id,Cliente.class);	
 			clienteSeleccionado.getDispositivosInteligentes().stream()
 					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
-				
-			
 		}
-		
 		HashMap<String, Object> viewModel = new HashMap<>();
-		
-
 		viewModel.put("id", clienteSeleccionado.getId() );
 		viewModel.put("cliente", clienteSeleccionado);
-		
-		
 		return new ModelAndView(
 				viewModel, 
 				"AdministradorCliente.hbs");
 	}
 	
 	public static ModelAndView indexViewAgregarDispositivo(Request req, Response res) {
-	
-		
 		id=Integer.parseInt(req.params(":idCliente"));
 		cadena=req.params(":idCliente");
-		
-		String q=req.queryParams("tipo");
-		
-		
+		String tipo=req.queryParams("tipo");
 		HashMap<String, Object> viewModel = new HashMap<>();
-		
-		
-		viewModel.put("id", cadena );
-		viewModel.put("wea", clienteSeleccionado.getId() ); // TODO como es que ese wea sigue en ese lugar? re pende que lo habia sacado, hay que cambiarlo
-		
-		if(q != null && q.equals("inteligente")) {
+		viewModel.put("id", cadena ); 
+		if(tipo != null && tipo.equals("inteligente")) {
 			return new ModelAndView(
 					viewModel, 
 					"Inteligente.hbs");
@@ -99,30 +77,17 @@ public class ControllerAdministrador {
 			return new ModelAndView(
 					viewModel, 
 					"estandars.hbs");
-		}
-		
-		//System.out.println(req.queryParams("dispositivo"));
-		
-		
-
-
-		
-		
+		}		
 	}
 	
 	public static Void registrarDispo(Request req, Response res) {	
+		String id=req.params("idCliente");	
+		String tipo=req.queryParams("tipo"); 
 		
-		
-		String id=req.params("idCliente");
-		
-		String q=req.queryParams("tipo"); // TODO decir a luci que deje de poner letras por nombre de variables
-		
-		if(q.equals("inteligente")) {
+		if(tipo.equals("inteligente")) {
 			DispositivoInteligente d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
 					new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
-			
 			clienteSeleccionado.agregarDispositivo(d);
-			
 		}
 		else {
 			DispositivoEstandar d=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
@@ -135,79 +100,13 @@ public class ControllerAdministrador {
 		return null;
 	}
 	
-	// TODO preguntar a luci donde se usa esto
-	public static ModelAndView indexUltimoEstandar(Request req, Response res) {
-		
-		id=Integer.parseInt(req.params(":idCliente"));
-		cadena=req.params(":idCliente");
-		
-		
-		
-		HashMap<String, Object> viewModel = new HashMap<>();
-		
-		
-		viewModel.put("id", cadena );
-		viewModel.put("wea", clienteSeleccionado.getId() );
-
-		
-		return new ModelAndView(
-				viewModel, 
-				"estandars.hbs");
-	}
-	
-	public static Void registrarDispoEst(Request req, Response res) {	
-		req.queryParams("nombreDispo");
-		req.queryParams("kw");
-		req.queryParams("hsUso");
-		req.queryParams("minima");
-		req.queryParams("maxima");
-		
-		DispositivoEstandar dispositivo=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
-				Double.parseDouble(req.queryParams("hsUso")),new Fabricante("Sony",new Sony()),  
-				Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
-			
-		clienteSeleccionado.agregarDispositivo(dispositivo);
-		
-		res.redirect("/Clientes/"+cadena);
-		return null;
-	}
 	
 	public static Void logOut (Request req, Response res) {
 		
-		ControllerAdministrador.addInstanceToDB(Cliente.class, clienteSeleccionado);
+		repo.addInstanceToDB(Cliente.class, clienteSeleccionado);
 		
 		res.redirect(" "); //TODO aca tiene que ir la path del menu de login
 		return null;
 	}
 	
-	
-	
-	
-	protected static <T> List<T>  getFromDB(Class<T> clase) {		
-		//Por suerte la tabla se llama igual que la clase, por eso en el from puedo poner clase.getName(), asi solo paso un parametro
-			EntityManager em = PerThreadEntityManagers.getEntityManager();
-			return em.createQuery("from " + clase.getName(), clase).getResultList();		
-	}
-	
-	public static  <T> void  addInstanceToDB(Class<T> clase,T ObjetoAPersistir) {
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
-					
-			tx.begin();
-			try {
-				em.persist(ObjetoAPersistir);			
-				tx.commit();
-			}
-			catch (Exception ex) {
-				tx.rollback();
-			}
-		}
-
-	public static <T> T buscarPorId(int id, Class <T> clase){
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		List <T> resultado = em.createQuery("from " + clase.getName() + " c where c.id = :id", clase) //
-		        .setParameter("id", id) //
-		        .getResultList();
-		return (resultado.isEmpty()) ? null : resultado.get(0);
-	}
 }
