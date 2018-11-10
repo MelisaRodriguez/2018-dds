@@ -13,6 +13,11 @@ public class Router {
 
 		Spark.staticFiles.location("/public");
 
+		Spark.before("/admin", LoginController::validarLogin);
+		Spark.before("/userPanel", LoginController::validarLogin);
+		Spark.before("/consumoRecomendado", LoginController::validarLogin);
+		Spark.before("/consumoEnPeriodo", LoginController::validarLogin);
+
 		Spark.get("/", LoginController::init);
 
 		Spark.post("/login", LoginController::processLogin);

@@ -24,7 +24,7 @@ public class GenericoRepos<T> {
 		entidades.stream().forEach(e -> em.persist(e));
 		em.getTransaction().commit();
 		em.close();
-		entidades = null; // Para la entrega, para que vean que lavanta las cosas de la BD
+		entidades = new ArrayList<>();
 	}
 
 }

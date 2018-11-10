@@ -1,5 +1,6 @@
 package edu.repositorios;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -20,7 +21,8 @@ public class RepoUsuarios extends GenericoRepos<Usuario> {
 
 	public boolean existeUsuario(String username, String password) {
 		Optional<Usuario> usuario = entidades.stream()
-				.filter(c -> c.getContraseña() == password && c.getUsuario() == username).findFirst();
+				.filter(c -> Objects.equals(c.getContraseña(), password) && Objects.equals(c.getUsuario(), username))
+				.findFirst();
 		if (!usuario.isPresent()) {
 			try {
 				EntityManager em = PerThreadEntityManagers.getEntityManager();
@@ -37,7 +39,8 @@ public class RepoUsuarios extends GenericoRepos<Usuario> {
 	}
 
 	public Usuario getUsuario(String password, String username) {
-		return this.entidades.stream().filter(u -> u.getContraseña() == password && u.getUsuario() == username)
+		return this.entidades.stream()
+				.filter(c -> Objects.equals(c.getContraseña(), password) && Objects.equals(c.getUsuario(), username))
 				.findFirst().get();
 	}
 }

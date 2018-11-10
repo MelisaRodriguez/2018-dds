@@ -127,7 +127,8 @@ public class ControllerAdministrador {
 
 		ControllerAdministrador.addInstanceToDB(Cliente.class, clienteSeleccionado);
 
-		res.redirect(" "); // TODO aca tiene que ir la path del menu de login
+		req.session().removeAttribute("username");
+		res.redirect("/login/loginView.html"); // TODO aca tiene que ir la path del menu de login
 		return null;
 	}
 
