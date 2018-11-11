@@ -11,14 +11,14 @@ public class Punto {
 	private double x;
 	private double y;
 
-	public Punto() {}
-	
-	public Punto(double x, double y)
-	{
+	public Punto() {
+	}
+
+	public Punto(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public double getX() {
 		return x;
 	}
@@ -26,7 +26,7 @@ public class Punto {
 	public double getY() {
 		return y;
 	}
-	
+
 	public void setX(double x) {
 		this.x = x;
 	}
@@ -34,14 +34,12 @@ public class Punto {
 	public void setY(double y) {
 		this.y = y;
 	}
-	
-	private Point2D getPunto()
-	{
+
+	private Point2D getPunto() {
 		return new Point2D.Double(x, y);
 	}
 
-	public static double calcularDistancia(Punto p1, Punto p2)
-	{
+	public static double calcularDistancia(Punto p1, Punto p2) {
 		GeodeticCalculator calc = new GeodeticCalculator();
 		calc.setStartingGeographicPoint(p1.getPunto());
 		calc.setDestinationGeographicPoint(p2.getPunto());

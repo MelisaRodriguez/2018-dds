@@ -2,15 +2,14 @@ package edu.dominio.empresa;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Entity;
 
 @Entity
-@Table(name="RegistrosMedicion")
-public class RegistroMedicion
-{
+@Table(name = "RegistrosMedicion")
+public class RegistroMedicion {
 
 	@Id
 	@GeneratedValue
@@ -19,35 +18,31 @@ public class RegistroMedicion
 	private double kwConsumidos;
 	private double horasEncendido;
 
-	public RegistroMedicion(LocalDate fecha, double kwConsumidos, double horasEncendido )
-	{
+	public RegistroMedicion(LocalDate fecha, double kwConsumidos, double horasEncendido) {
 		this.fecha = fecha;
 		this.kwConsumidos = kwConsumidos;
 		this.horasEncendido = horasEncendido;
 	}
-	
-	public RegistroMedicion() {}
 
-	public boolean estaEntreFechas(LocalDate inicio, LocalDate fin)
-	{
+	public RegistroMedicion() {
+	}
+
+	public boolean estaEntreFechas(LocalDate inicio, LocalDate fin) {
 		return inicio.isBefore(fecha) && fin.isAfter(fecha);
 	}
-	
-	public LocalDate fecha()
-	{
+
+	public LocalDate fecha() {
 		return fecha;
 	}
-	
-	public double horasEncendido()
-	{
+
+	public double horasEncendido() {
 		return horasEncendido;
 	}
 
-	public double kwConsumidos()
-	{
+	public double kwConsumidos() {
 		return kwConsumidos;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "RegistroMedicion [idRegistro=" + idRegistro + ", fecha=" + fecha + ", kwConsumidos=" + kwConsumidos

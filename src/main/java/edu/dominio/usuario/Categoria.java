@@ -16,8 +16,9 @@ public class Categoria {
 	private int limiteInferior;
 	private long limiteSuperior;
 
-	public Categoria() {}
-	
+	public Categoria() {
+	}
+
 	public Categoria(String nombre, double cargoFijo, double cargoVariable, int limiteInferior, long limiteSuperior) {
 		this.nombre = nombre;
 		this.cargoFijo = cargoFijo;
