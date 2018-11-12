@@ -1,0 +1,23 @@
+[
+    {
+        "usuario": "raptor123",
+        "contraseña": "contraseña",
+        "admin": true,
+        "id_user": -1
+    },
+    {
+        "usuario": "luci69",
+        "contraseña": "asd123",
+        "admin": false
+    },
+    {
+        "usuario": "Meli83",
+        "contraseña": "qwe456",
+        "admin": false
+    },
+    {
+        "usuario": "Facu96",
+        "contraseña": "zxc789",
+        "admin": false
+    }
+]

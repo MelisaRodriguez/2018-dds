@@ -1,13 +1,9 @@
-package Controller;
+package main.controller;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import edu.dominio.empresa.Administrador;
 import edu.dominio.empresa.DispositivoEstandar;
@@ -16,7 +12,6 @@ import edu.dominio.fabricante.Fabricante;
 import edu.dominio.fabricante.Sony;
 import edu.dominio.usuario.Cliente;
 import edu.repositorios.RepoClientes;
-
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -26,13 +21,15 @@ public class ControllerAdministrador {
 	public static Administrador admin; 
 	public static int id;
 	public static String cadena;
-	public static List <Cliente> clientes;
-	static RepoClientes repo=new RepoClientes();
+	public static List<Cliente> clientes;
+	static RepoClientes repo = new RepoClientes();
 	public static Cliente clienteSeleccionado = null;
-	
+
 	public static void setAdmin(Administrador admin) {
 		ControllerAdministrador.admin = admin;
 	}
+	
+
 	
 	public static ModelAndView indexViewDatosGenerales(Request req, Response res) {
 	
@@ -101,11 +98,12 @@ public class ControllerAdministrador {
 	}
 	
 	
-	public static Void logOut (Request req, Response res) {
-		
+	public static Void logOut(Request req, Response res) {
+
 		repo.addInstanceToDB(Cliente.class, clienteSeleccionado);
-		
-		res.redirect(" "); //TODO aca tiene que ir la path del menu de login
+
+		req.session().removeAttribute("username");
+		res.redirect("/login/loginView.html"); 
 		return null;
 	}
 	
