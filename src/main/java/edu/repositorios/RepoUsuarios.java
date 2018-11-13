@@ -18,6 +18,7 @@ public class RepoUsuarios extends GenericoRepos<Usuario> {
 			repo = new RepoUsuarios();
 		return repo;
 	}
+	
 
 	public boolean existeUsuario(String username, String password) {
 		Optional<Usuario> usuario = entidades.stream()

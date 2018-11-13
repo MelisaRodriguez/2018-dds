@@ -21,6 +21,16 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		return repo;
 	}
 
+	// los 2 methodos de abajo hacen lo mismo, los deje para comparar cual es el mas powah de los 2
+	
+	public static Cliente buscarPorId(int id){
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		List <Cliente> resultado = em.createQuery("from Cliente c where c.id = :id", Cliente.class) 
+		        .setParameter("id", id) 
+		        .getResultList();
+		return (resultado.isEmpty()) ? null : resultado.get(0);
+	}
+	
 	public Cliente getCliente(int id) {
 		// TODO En el LoginView había que hardcodear un new Fabricante. Ver
 		Optional<Cliente> cliente = entidades.stream().filter(c -> c.getId() == id).findFirst();
@@ -38,21 +48,21 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 
 	}
 	
-	// logica para preguntar a la DB
-	
-	public static <T> List<T>  getFromDB(Class<T> clase) {		
-		//Por suerte la tabla se llama igual que la clase, por eso en el from puedo poner clase.getName(), asi solo paso un parametro
-			EntityManager em = PerThreadEntityManagers.getEntityManager();
-			return em.createQuery("from " + clase.getName(), clase).getResultList();		
+	@Override
+	public List<Cliente> getEntidades() {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		this.entidades = em.createQuery("from Cliente", Cliente.class).getResultList(); 
+		
+		return entidades;
 	}
 	
-	public static  <T> void  addInstanceToDB(Class<T> clase,T ObjetoAPersistir) {
+	public static  <T> void  persistirCliente(Cliente Cliente) {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 					
 			tx.begin();
 			try {
-				em.persist(ObjetoAPersistir);			
+				em.persist(Cliente);			
 				tx.commit();
 			}
 			catch (Exception ex) {
@@ -60,13 +70,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 			}
 	}
 
-	public static <T> T buscarPorId(int id, Class <T> clase){
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		List <T> resultado = em.createQuery("from " + clase.getName() + " c where c.id = :id", clase) //
-		        .setParameter("id", id) //
-		        .getResultList();
-		return (resultado.isEmpty()) ? null : resultado.get(0);
-	}
+
 	
 	
 }

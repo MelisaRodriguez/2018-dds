@@ -47,16 +47,16 @@
         }
     },
     {
-        "nombre": "Lucas",
-        "apellido": "Perez",
+        "nombre": "Gabriel",
+        "apellido": "Gonzales",
         "tipoDocumento": "DNI",
-        "nroDocumento": "36892011",
-        "telefono": "42172304",
-        "domicilioServicio": "Av EverViva 254",
+        "nroDocumento": "32185437",
+        "telefono": "20946785",
+        "domicilioServicio": "Av Tucuman 244",
         "fechaDeAltaServicio": {
             "year": 2018,
-            "month": 5,
-            "day": 18
+            "month": 3,
+            "day": 22
         },
         "categoria": {
             "nombre": "R7",
@@ -67,11 +67,11 @@
         },
         "dispositivosInteligentes": [
             {
-                "nombre": "plancha",
+                "nombre": "Parlante",
                 "fechaDeRegistro": {
                     "year": 2018,
-                    "month": 5,
-                    "day": 18
+                    "month": 1,
+                    "day": 11
                 },
                 "fabricante": {
                     "idFabricante": 0,
@@ -82,9 +82,9 @@
         ],
         "dispositivosEstandar": [
             {
-                "nombre": "celular",
-                "kW": 45.0,
-                "horasUsoxDiaSegunUsuario": 15.0
+                "nombre": "PlayStation2",
+                "kW": 25.0,
+                "horasUsoxDiaSegunUsuario": 4.0
             }
         ],
         "ahorroAutomatico": false,

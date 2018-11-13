@@ -18,12 +18,11 @@ import spark.Response;
 
 public class ControllerAdministrador {
 	
-	public static Administrador admin; 
-	public static int id;
-	public static String cadena;
-	public static List<Cliente> clientes;
-	static RepoClientes repo = new RepoClientes();
-	public static Cliente clienteSeleccionado = null;
+	private static Administrador admin; 
+	private static int id;
+	private static String cadena;
+	private static List<Cliente> clientes;
+	private static Cliente clienteSeleccionado = null;
 
 	public static void setAdmin(Administrador admin) {
 		ControllerAdministrador.admin = admin;
@@ -35,7 +34,7 @@ public class ControllerAdministrador {
 	
 		HashMap<String, Object> viewModel = new HashMap<>();
 			
-		clientes = repo.getFromDB(Cliente.class);
+		clientes = RepoClientes.getInstanceOfSingleton().getEntidades();
 		clientes.stream().forEach(c->c.getDispositivosInteligentes().stream()
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony()))));
 		viewModel.put("user", clientes);
@@ -47,7 +46,7 @@ public class ControllerAdministrador {
 	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
 		if (clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
-			clienteSeleccionado = repo.buscarPorId(id,Cliente.class);	
+			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().getCliente(id);	
 			clienteSeleccionado.getDispositivosInteligentes().stream()
 					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 		}
@@ -98,12 +97,12 @@ public class ControllerAdministrador {
 	}
 	
 	
-	public static Void logOut(Request req, Response res) {
+	public static ModelAndView logOut(Request req, Response res) {
 
-		repo.addInstanceToDB(Cliente.class, clienteSeleccionado);
+		RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado);
 
 		req.session().removeAttribute("username");
-		res.redirect("/login/loginView.html"); 
+		res.redirect("/"); 
 		return null;
 	}
 	
