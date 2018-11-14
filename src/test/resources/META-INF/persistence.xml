@@ -9,6 +9,7 @@
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	
     	<class>edu.dominio.usuario.Cliente</class>
+    	<class>edu.dominio.usuario.Usuario</class>
     	<class>edu.dominio.usuario.Categoria</class>
     	<class>edu.dominio.empresa.Dispositivo</class>
     	<class>edu.dominio.empresa.DispositivoEstandar</class>

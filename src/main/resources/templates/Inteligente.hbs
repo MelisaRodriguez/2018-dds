@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="./../../../Untitled.css">
+  <link rel="stylesheet" href="./../../../MainDesign.css">
 </head>
 
 <body>
@@ -21,7 +21,11 @@
           
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"> <a class="nav-link text-primary" href="./out" contenteditable="true">Log Out</a> </li>
+           
+ 			<li class="nav-item"> <a href="/out">			
+				<button type="button" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-plus"></span> Log Out
+				</button></a> </li>
         </ul>
       </div>
     </div>
@@ -31,9 +35,12 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="nav nav-pills">
-            <li        class="nav-item"> <a href="./../../../" class="active nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="">Inteligente</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="./DispositivosEstandar" >Estandar</a> </li>
+            <li        class="nav-item"> <a href="/admin" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a> </li>
+           
+           
+           
+            <li class="nav-item"> <a class="nav-link active" href="#">Inteligente</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/admin/clientes/{{id}}/dispositivos?tipo=estandar" >Estandar</a> </li>
           </ul>
         </div>
       </div>
@@ -49,10 +56,10 @@
          
          
          
-          <form      action="/Clientes/:idCliente/DispositivosInteligentes" method="post"     >
+          <form      action="/admin/clientes/{{id}}/dispositivos" method="post"     >
             <div class="form-row">
               <div class="form-group col-md-12">
-              
+              <input type="hidden" name="tipo" value="inteligente">
               
               <input type="text" name="nombreDispo" class="form-control" placeholder="Nombre">
               
@@ -74,9 +81,7 @@
           
           
           
-          	<a href="./../../../">
-          		<button type="submit" class="btn btn-primary">Cancelar</button>
-          	</a>	
+          		<button type="submit" class="btn btn-primary" onclick="location.href='/admin/Clientes/{{id}}'" >Cancelar</button>
 
 
 

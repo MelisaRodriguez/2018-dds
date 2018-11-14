@@ -22,22 +22,18 @@ public class Router {
 
 		Spark.post("/login", LoginController::processLogin);
 
-		Spark.get("/admin", ControllerAdministrador::indexPrimero, transformer);
-
-		Spark.get("/admin/Clientes/:idCliente", ControllerAdministrador::indexMedio, transformer);
-
-		Spark.get("/admin/Clientes/:idCliente/DispositivosInteligentes",
-				ControllerAdministrador::indexUltimoInteligente, transformer);
-		Spark.post("/admin/Clientes/:idCliente/DispositivosInteligentes", ControllerAdministrador::registrarDispoInt);
-
-		Spark.get("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::indexUltimoEstandar,
-				transformer);
-		Spark.post("/admin/Clientes/:idCliente/DispositivosEstandar", ControllerAdministrador::registrarDispoEst);
-
-		Spark.post("/admin/out", ControllerAdministrador::logOut);
+		Spark.path("/admin", () -> { 
+		Spark.get("", ControllerAdministrador::indexViewDatosGenerales, transformer);	
+		Spark.get("/Clientes/:idCliente", ControllerAdministrador::indexViewDatosDeUnCliente, transformer);	
+		Spark.get("/clientes/:idCliente/dispositivos", ControllerAdministrador::indexViewAgregarDispositivo, transformer);	
+		Spark.post("/clientes/:idCliente/dispositivos", ControllerAdministrador::registrarDispo);
+		});
+		
+		Spark.get("/out", ControllerAdministrador::logOut, transformer);
 
 		Spark.get("/userPanel", UserController::user, transformer);
 		Spark.get("/consumoRecomendado", UserController::consumoRecomendado, transformer);
 		Spark.post("/consumoEnPeriodo", UserController::consumoEnPeriodo, transformer);
+		
 	}
 }

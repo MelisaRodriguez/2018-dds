@@ -51,6 +51,10 @@ public class Usuario {
 	public boolean isAdmin() {
 		return admin;
 	}
+	
+	public boolean getAdmin() {
+		return admin;
+	}
 
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
@@ -63,4 +67,6 @@ public class Usuario {
 	public void setId_user(int id_user) {
 		this.id_user = id_user;
 	}
+
+	
 }
