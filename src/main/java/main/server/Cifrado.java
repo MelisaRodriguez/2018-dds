@@ -1,4 +1,4 @@
-package Server;
+package main.server;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -8,7 +8,6 @@ public class Cifrado {
 
 	private static String KEY = "LaWeaHTTP1234567";
 
-	
 	public static String Encrypt(String pInput) {
 		String encryptedtext = null;
 		try {
@@ -30,18 +29,18 @@ public class Cifrado {
 	}
 
 	public static String Decrypt(String pInput) {
-		
+
 		byte[] encrypted;
-		
+
 		String decrypted = null;
-		
+
 		try {
 
 			SecretKeySpec aesKey = new SecretKeySpec(KEY.getBytes(), "AES");
 			Cipher cipher = Cipher.getInstance("AES");
 
 			cipher.init(Cipher.DECRYPT_MODE, aesKey);
-			
+
 			encrypted = DatatypeConverter.parseBase64Binary(pInput);
 			decrypted = new String(cipher.doFinal(encrypted));
 

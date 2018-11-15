@@ -2,17 +2,22 @@ package edu.dominio.fabricante;
 
 import edu.dominio.empresa.DispositivoInteligente;
 
-public class Sony implements FabricanteMock{
+public class Sony implements FabricanteMock {
 
-	public Sony() {}
-	@Override
-	public void apagar(DispositivoInteligente d) {}
-
-	@Override
-	public void encender(DispositivoInteligente d) {}
+	public Sony() {
+	}
 
 	@Override
-	public void activarAhorroDeEnergia(DispositivoInteligente d) {}
+	public void apagar(DispositivoInteligente d) {
+	}
+
+	@Override
+	public void encender(DispositivoInteligente d) {
+	}
+
+	@Override
+	public void activarAhorroDeEnergia(DispositivoInteligente d) {
+	}
 
 	@Override
 	public double cuantoConsume(DispositivoInteligente d) {
@@ -43,7 +48,7 @@ public class Sony implements FabricanteMock{
 	public double getHorasEncendido(DispositivoInteligente d) {
 		return 0;
 	}
-	
+
 	@Override
 	public String getEstado(DispositivoInteligente d) {
 		return "Encendido";

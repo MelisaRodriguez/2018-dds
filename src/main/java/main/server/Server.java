@@ -1,4 +1,4 @@
-package Server;
+package main.server;
 
 import spark.Spark;
 import spark.debug.DebugScreen;

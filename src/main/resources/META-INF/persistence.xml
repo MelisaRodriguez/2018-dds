@@ -10,6 +10,7 @@
     	
     	<class>edu.dominio.usuario.Cliente</class>
     	<class>edu.dominio.usuario.Categoria</class>
+    	<class>edu.dominio.usuario.Usuario</class>
     	<class>edu.dominio.empresa.Dispositivo</class>
     	<class>edu.dominio.empresa.DispositivoEstandar</class>
     	<class>edu.dominio.empresa.DispositivoInteligente</class>    	
@@ -20,7 +21,7 @@
     	<class>edu.dominio.usuario.Sensor</class>
     	<class>edu.dominio.usuario.Condicion</class>
     	<class>edu.dominio.empresa.Transformador</class>
-    	<class>Server.dummyUser</class>
+    	
 
         <properties> 
 	    	<property name="hibernate.archive.autodetection" value="class"/>        

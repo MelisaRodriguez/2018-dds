@@ -1,4 +1,4 @@
-package Controller;
+package main.controller;
 
 import spark.Request;
 import spark.Response;
@@ -29,8 +29,6 @@ public class UserController {
 		HashMap<String,Object> viewModel = new HashMap<>(); 
 
 		viewModel.put("cliente", usuario);
-		//System.out.println("ACAAAAAAAAAAAAAAAAA " + usuario.getDispositivosInteligentes().size()); //TODO
-		//System.out.println("ACAAAAAAAAAAAAAAAAA " + usuario.getDispositivosEstandar().size()); //TODO
 		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
 		viewModel.put("dispositivosEstandar", usuario.getDispositivosEstandar());
 		return new ModelAndView(viewModel, "user.hbs");
@@ -43,7 +41,6 @@ public class UserController {
 		HashMap<String, Double> recomendaciones = new HashMap<>();
 
 		List<Double> optimizaciones = usuario.solicitarRecomendacion(620);
-		
 		int i = 0;
 		for(Dispositivo dispositivo : usuario.todosSusDispositivos())
 		{
@@ -70,5 +67,11 @@ public class UserController {
 		
 		return new ModelAndView(viewModel, "consumo.hbs");
 
+	}
+	
+	public static ModelAndView logOut(Request req, Response res) {
+		req.session().removeAttribute("username");
+		res.redirect("/"); 
+		return null;
 	}
 }

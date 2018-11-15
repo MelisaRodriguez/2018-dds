@@ -20,7 +20,7 @@
         },
         "dispositivosInteligentes": [
             {
-                "nombre": "Televisor",
+                "nombre": "Smart TV",
                 "fechaDeRegistro": {
                     "year": 2018,
                     "month": 5,
@@ -30,14 +30,79 @@
                     "idFabricante": 0,
                     "nombre": "SONY"
                 },
-                "registrosConsumo": []
+                "registrosConsumo": [
+                	{
+                		"fecha": {
+                  			   "year": 2018,
+                    		   "month": 11,
+                    		   "day": 2
+                			} ,
+                		"kwConsumidos": 100,
+                		"horasEncendido": 3	
+                	}            	
+                ],
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "dispositivosEstandar": [
             {
-                "nombre": "celular",
+                "nombre": "Microondas",
                 "kW": 45.0,
-                "horasUsoxDiaSegunUsuario": 15.0
+                "horasUsoxDiaSegunUsuario": 15.0,
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
+            }
+        ],
+        "ahorroAutomatico": false,
+        "ubicacion": {
+            "x": -0.127512,
+            "y": 51.507222
+        }
+    },
+    {
+        "nombre": "Gabriel",
+        "apellido": "Gonzales",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "32185437",
+        "telefono": "20946785",
+        "domicilioServicio": "Av Tucuman 244",
+        "fechaDeAltaServicio": {
+            "year": 2018,
+            "month": 3,
+            "day": 22
+        },
+        "categoria": {
+            "nombre": "R7",
+            "cargoFijo": 443.59,
+            "cargoVariable": 0.851,
+            "limiteInferior": 601,
+            "limiteSuperior": 700
+        },
+        "dispositivosInteligentes": [
+            {
+                "nombre": "Parlante",
+                "fechaDeRegistro": {
+                    "year": 2018,
+                    "month": 1,
+                    "day": 11
+                },
+                "fabricante": {
+                    "idFabricante": 0,
+                    "nombre": "SONY"
+                },
+                "registrosConsumo": [],
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
+            }
+        ],
+        "dispositivosEstandar": [
+            {
+                "nombre": "PlayStation2",
+                "kW": 25.0,
+                "horasUsoxDiaSegunUsuario": 4.0 ,
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "ahorroAutomatico": false,
@@ -66,7 +131,7 @@
             "limiteSuperior": 700
         },
         "dispositivosInteligentes": [
-            {
+            {	
                 "nombre": "plancha",
                 "fechaDeRegistro": {
                     "year": 2018,
@@ -77,61 +142,18 @@
                     "idFabricante": 0,
                     "nombre": "SONY"
                 },
-                "registrosConsumo": []
-            }
-        ],
-        "dispositivosEstandar": [
-            {
-                "nombre": "celular",
-                "kW": 45.0,
-                "horasUsoxDiaSegunUsuario": 15.0
-            }
-        ],
-        "ahorroAutomatico": false,
-        "ubicacion": {
-            "x": -0.127512,
-            "y": 51.507222
-        }
-    },
-    {
-        "nombre": "Lucas",
-        "apellido": "Perez",
-        "tipoDocumento": "DNI",
-        "nroDocumento": "36892011",
-        "telefono": "42172304",
-        "domicilioServicio": "Av EverViva 254",
-        "fechaDeAltaServicio": {
-            "year": 2018,
-            "month": 5,
-            "day": 18
-        },
-        "categoria": {
-            "nombre": "R7",
-            "cargoFijo": 443.59,
-            "cargoVariable": 0.851,
-            "limiteInferior": 601,
-            "limiteSuperior": 700
-        },
-        "dispositivosInteligentes": [
-            {
-                "nombre": "plancha",
-                "fechaDeRegistro": {
-                    "year": 2018,
-                    "month": 5,
-                    "day": 18
-                },
-                "fabricante": {
-                    "idFabricante": 0,
-                    "nombre": "SONY"
-                },
-                "registrosConsumo": []
+                "registrosConsumo": [],
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "dispositivosEstandar": [
             {
                 "nombre": "heladera",
                 "kW": 45.0,
-                "horasUsoxDiaSegunUsuario": 15.0
+                "horasUsoxDiaSegunUsuario": 15.0,
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "ahorroAutomatico": false,

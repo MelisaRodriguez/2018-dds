@@ -63,6 +63,5 @@ public class Administrador {
 	public void setFechaDeAlta(LocalDate fechaDeAlta) {
 		this.fechaDeAlta = fechaDeAlta;
 	}
-	
-	
+
 }
