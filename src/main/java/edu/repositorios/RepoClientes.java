@@ -46,7 +46,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 			em.getTransaction().commit();
 			em.close();
 			agregar(unCliente);
-			unCliente.dispositivosInteligentes().stream().forEach(d -> d.getFabricante().setFabricanteMock(new Sony()));
+			unCliente.dispositivosInteligentes().stream().forEach(d -> d.getFabricante().setFabricanteMock(new Sony()
 			return unCliente;
 		}
 
