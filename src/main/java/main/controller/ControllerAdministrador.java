@@ -19,7 +19,6 @@ import spark.Response;
 public class ControllerAdministrador {
 	
 	private static Administrador admin; 
-	private static int id;
 	private static String cadena;
 	private static List<Cliente> clientes;
 	private static Cliente clienteSeleccionado = null;
@@ -37,6 +36,7 @@ public class ControllerAdministrador {
 		clientes = RepoClientes.getInstanceOfSingleton().getEntidades();
 		clientes.stream().forEach(c->c.getDispositivosInteligentes().stream()
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony()))));
+		clienteSeleccionado = null;
 		viewModel.put("user", clientes);
 		return new ModelAndView(
 				viewModel, 
@@ -46,7 +46,7 @@ public class ControllerAdministrador {
 	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
 		if (clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
-			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().getCliente(id);	
+			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().buscarPorId(id);	
 			clienteSeleccionado.getDispositivosInteligentes().stream()
 					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 		}
@@ -59,7 +59,6 @@ public class ControllerAdministrador {
 	}
 	
 	public static ModelAndView indexViewAgregarDispositivo(Request req, Response res) {
-		id=Integer.parseInt(req.params(":idCliente"));
 		cadena=req.params(":idCliente");
 		String tipo=req.queryParams("tipo");
 		HashMap<String, Object> viewModel = new HashMap<>();
@@ -80,6 +79,10 @@ public class ControllerAdministrador {
 		String id=req.params("idCliente");	
 		String tipo=req.queryParams("tipo"); 
 		
+		clienteSeleccionado = RepoClientes.getInstanceOfSingleton().buscarPorId( Integer.parseInt(id) );	
+		clienteSeleccionado.getDispositivosInteligentes().stream()
+				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
+		
 		if(tipo.equals("inteligente")) {
 			DispositivoInteligente d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
 					new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
@@ -92,14 +95,14 @@ public class ControllerAdministrador {
 			
 			clienteSeleccionado.agregarDispositivo(d);
 		}
+		
+		RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado);
 		res.redirect("/admin/Clientes/"+id+"");
 		return null;
 	}
 	
 	
 	public static ModelAndView logOut(Request req, Response res) {
-
-		RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado);
 
 		req.session().removeAttribute("username");
 		res.redirect("/"); 
