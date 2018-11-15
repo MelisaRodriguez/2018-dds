@@ -20,7 +20,7 @@
         },
         "dispositivosInteligentes": [
             {
-                "nombre": "Televisor",
+                "nombre": "Smart TV",
                 "fechaDeRegistro": {
                     "year": 2018,
                     "month": 5,
@@ -30,14 +30,28 @@
                     "idFabricante": 0,
                     "nombre": "SONY"
                 },
-                "registrosConsumo": []
+                "registrosConsumo": [
+                	{
+                		"fecha": {
+                  			   "year": 2018,
+                    		   "month": 11,
+                    		   "day": 2
+                			} ,
+                		"kwConsumidos": 100,
+                		"horasEncendido": 3	
+                	}            	
+                ],
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "dispositivosEstandar": [
             {
-                "nombre": "celular",
+                "nombre": "Microondas",
                 "kW": 45.0,
-                "horasUsoxDiaSegunUsuario": 15.0
+                "horasUsoxDiaSegunUsuario": 15.0,
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "ahorroAutomatico": false,
@@ -77,14 +91,18 @@
                     "idFabricante": 0,
                     "nombre": "SONY"
                 },
-                "registrosConsumo": []
+                "registrosConsumo": [],
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "dispositivosEstandar": [
             {
                 "nombre": "PlayStation2",
                 "kW": 25.0,
-                "horasUsoxDiaSegunUsuario": 4.0
+                "horasUsoxDiaSegunUsuario": 4.0 ,
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "ahorroAutomatico": false,
@@ -113,7 +131,7 @@
             "limiteSuperior": 700
         },
         "dispositivosInteligentes": [
-            {
+            {	
                 "nombre": "plancha",
                 "fechaDeRegistro": {
                     "year": 2018,
@@ -124,14 +142,18 @@
                     "idFabricante": 0,
                     "nombre": "SONY"
                 },
-                "registrosConsumo": []
+                "registrosConsumo": [],
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "dispositivosEstandar": [
             {
                 "nombre": "heladera",
                 "kW": 45.0,
-                "horasUsoxDiaSegunUsuario": 15.0
+                "horasUsoxDiaSegunUsuario": 15.0,
+                "restriccionMinima": 0,
+                "restriccionMaxima":300
             }
         ],
         "ahorroAutomatico": false,

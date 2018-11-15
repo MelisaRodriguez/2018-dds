@@ -126,6 +126,8 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 
 	public double getUltimaMedicion() {
-		return registrosConsumo.get(registrosConsumo.size() - 1).getKwConsumidos();
+		if (registrosConsumo.size() > 0)
+			return registrosConsumo.get(registrosConsumo.size() - 1).getKwConsumidos();
+		return 0;
 	}
 }

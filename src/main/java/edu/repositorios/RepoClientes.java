@@ -9,6 +9,9 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import javax.persistence.EntityTransaction;
 
+import edu.dominio.empresa.DispositivoInteligente;
+import edu.dominio.fabricante.FabricanteMock;
+import edu.dominio.fabricante.Sony;
 import edu.dominio.usuario.Cliente;
 
 public class RepoClientes extends GenericoRepos<Cliente> {
@@ -43,6 +46,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 			em.getTransaction().commit();
 			em.close();
 			agregar(unCliente);
+			unCliente.dispositivosInteligentes().stream().forEach(d -> d.getFabricante().setFabricanteMock(new Sony()
 			return unCliente;
 		}
 

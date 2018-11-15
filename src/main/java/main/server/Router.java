@@ -30,8 +30,9 @@ public class Router {
 		});
 		
 		Spark.get("/out", ControllerAdministrador::logOut, transformer);
-
+		
 		Spark.get("/userPanel", UserController::user, transformer);
+		Spark.get("/userLogout", UserController::logOut,transformer);
 		Spark.get("/consumoRecomendado", UserController::consumoRecomendado, transformer);
 		Spark.post("/consumoEnPeriodo", UserController::consumoEnPeriodo, transformer);
 		

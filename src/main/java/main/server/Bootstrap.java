@@ -30,7 +30,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		final RuntimeTypeAdapterFactory<FabricanteMock> typeFabricante = RuntimeTypeAdapterFactory
 				.of(FabricanteMock.class, "type").registerSubtype(Sony.class);
 		final Gson gson = new GsonBuilder().registerTypeAdapterFactory(typeFabricante)
-				// .registerTypeAdapterFactory(typeDispositivo)
 				.create();
 
 		final TypeToken<List<Cliente>> clienteListType = new TypeToken<List<Cliente>>() {
