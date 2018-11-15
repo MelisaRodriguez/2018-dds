@@ -44,7 +44,7 @@ public class ClienteFixture {
 
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("Clientes.json"));
+			br = new BufferedReader(new FileReader("src/main/resources/Clientes.json"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -42,7 +42,7 @@ public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
 
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("zonas.json"));
+			br = new BufferedReader(new FileReader("src/main/resources/Zonas.json"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

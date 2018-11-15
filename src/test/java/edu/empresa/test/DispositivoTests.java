@@ -20,10 +20,8 @@ public class DispositivoTests extends DispositivoFixture {
 		when(fabricantemock.cuantoConsume(dispositivoInteligente)).thenReturn(10.0);
 		dispositivoInteligente.agregarNuevoRegistroDeConsumo();
 
-		// System.out.println(fabricantemock.cuantoConsume(dispositivoInteligente));
-
 		Assert.assertEquals(10.0,
-				dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018, 8, 9), LocalDate.of(2018, 11, 15)));
+				dispositivoInteligente.consumoTotalEnPeriodo(LocalDate.of(2018, 8, 9), LocalDate.of(2019, 11, 15)));
 	}
 
 	@Test

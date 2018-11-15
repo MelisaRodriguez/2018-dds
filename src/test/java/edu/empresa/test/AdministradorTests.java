@@ -8,8 +8,8 @@ public class AdministradorTests extends AdministradorFixture {
 
 	@Test
 	public void testCuantoTiempoHaceQueEsAdmin() {
-		// Gaston Prieto es administrador desde hace 14 meses
-		Assert.assertEquals(17, admin.getMesesComoAdmin());
+		// Gaston Prieto es administrador desde hace 18 meses
+		Assert.assertEquals(18, admin.getMesesComoAdmin());
 	}
 
 }
