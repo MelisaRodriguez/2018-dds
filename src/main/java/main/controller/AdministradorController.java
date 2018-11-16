@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import edu.dominio.empresa.Administrador;
+import edu.dominio.empresa.Dispositivo;
 import edu.dominio.empresa.DispositivoEstandar;
 import edu.dominio.empresa.DispositivoInteligente;
 import edu.dominio.fabricante.Fabricante;
@@ -44,13 +45,12 @@ public class AdministradorController {
 	}
 	
 	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
-		//if (clienteSeleccionado == null) {
+		//if(clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
 			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().getCliente(id);	
 			clienteSeleccionado.getDispositivosInteligentes().stream()
 					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 		//}
-		System.out.println("NUMEROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + clienteSeleccionado.dispositivosInteligentes().size()); //TODO
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("id", clienteSeleccionado.getId() );
 		viewModel.put("cliente", clienteSeleccionado);
@@ -84,20 +84,21 @@ public class AdministradorController {
 		clienteSeleccionado.getDispositivosInteligentes().stream()
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 		
+		Dispositivo d;
 		if(tipo.equals("inteligente")) {
-			DispositivoInteligente d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
+			d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
 					new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
-			clienteSeleccionado.agregarDispositivo(d);
+			//clienteSeleccionado.agregarDispositivo(d);
 		}
 		else {
-			DispositivoEstandar d=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
+			d=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
 					Double.parseDouble(req.queryParams("hsUso")),new Fabricante("Sony",new Sony()),  
 					Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
 			
-			clienteSeleccionado.agregarDispositivo(d);
+			//clienteSeleccionado.agregarDispositivo(d);
 		}
 		
-		RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado);
+		RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado, d);
 		res.redirect("/admin/Clientes/"+id+"");
 		return null;
 	}
