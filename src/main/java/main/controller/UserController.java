@@ -31,8 +31,8 @@ public class UserController {
 		viewModel.put("cliente", usuario);
 		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
 		viewModel.put("dispositivosEstandar", usuario.getDispositivosEstandar());
+		//return new ModelAndView(viewModel, "user.hbs");
 		return new ModelAndView(viewModel, "user.hbs");
-		
 	}
 	
 	

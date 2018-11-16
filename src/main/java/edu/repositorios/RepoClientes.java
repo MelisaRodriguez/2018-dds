@@ -25,7 +25,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 	}
 
 	// los 2 methodos de abajo hacen lo mismo, los deje para comparar cual es el mas powah de los 2
-	
+	/*
 	public static Cliente buscarPorId(int id){
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		List <Cliente> resultado = em.createQuery("from Cliente c where c.id = :id", Cliente.class) 
@@ -33,7 +33,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 		        .getResultList();
 		return (resultado.isEmpty()) ? null : resultado.get(0);
 	}
-	
+	*/
 	public Cliente getCliente(int id) {
 		// TODO En el LoginView había que hardcodear un new Fabricante. Ver
 		Optional<Cliente> cliente = entidades.stream().filter(c -> c.getId() == id).findFirst();

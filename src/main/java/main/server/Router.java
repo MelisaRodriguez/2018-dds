@@ -1,6 +1,6 @@
 package main.server;
 
-import main.controller.ControllerAdministrador;
+import main.controller.AdministradorController;
 import main.controller.LoginController;
 import main.controller.UserController;
 import spark.Spark;
@@ -23,13 +23,13 @@ public class Router {
 		Spark.post("/login", LoginController::processLogin);
 
 		Spark.path("/admin", () -> { 
-		Spark.get("", ControllerAdministrador::indexViewDatosGenerales, transformer);	
-		Spark.get("/Clientes/:idCliente", ControllerAdministrador::indexViewDatosDeUnCliente, transformer);	
-		Spark.get("/clientes/:idCliente/dispositivos", ControllerAdministrador::indexViewAgregarDispositivo, transformer);	
-		Spark.post("/clientes/:idCliente/dispositivos", ControllerAdministrador::registrarDispo);
+		Spark.get("", AdministradorController::indexViewDatosGenerales, transformer);	
+		Spark.get("/Clientes/:idCliente", AdministradorController::indexViewDatosDeUnCliente, transformer);	
+		Spark.get("/clientes/:idCliente/dispositivos", AdministradorController::indexViewAgregarDispositivo, transformer);	
+		Spark.post("/clientes/:idCliente/dispositivos", AdministradorController::registrarDispo);
 		});
 		
-		Spark.get("/out", ControllerAdministrador::logOut, transformer);
+		Spark.get("/out", AdministradorController::logOut, transformer);
 		
 		Spark.get("/userPanel", UserController::user, transformer);
 		Spark.get("/userLogout", UserController::logOut,transformer);

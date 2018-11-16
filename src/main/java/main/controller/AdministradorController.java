@@ -16,7 +16,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class ControllerAdministrador {
+public class AdministradorController {
 	
 	private static Administrador admin; 
 	private static String cadena;
@@ -24,7 +24,7 @@ public class ControllerAdministrador {
 	private static Cliente clienteSeleccionado = null;
 
 	public static void setAdmin(Administrador admin) {
-		ControllerAdministrador.admin = admin;
+		AdministradorController.admin = admin;
 	}
 	
 
@@ -44,12 +44,13 @@ public class ControllerAdministrador {
 	}
 	
 	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
-		if (clienteSeleccionado == null) {
+		//if (clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
-			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().buscarPorId(id);	
+			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().getCliente(id);	
 			clienteSeleccionado.getDispositivosInteligentes().stream()
 					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
-		}
+		//}
+		System.out.println("NUMEROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + clienteSeleccionado.dispositivosInteligentes().size()); //TODO
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("id", clienteSeleccionado.getId() );
 		viewModel.put("cliente", clienteSeleccionado);
@@ -79,7 +80,7 @@ public class ControllerAdministrador {
 		String id=req.params("idCliente");	
 		String tipo=req.queryParams("tipo"); 
 		
-		clienteSeleccionado = RepoClientes.getInstanceOfSingleton().buscarPorId( Integer.parseInt(id) );	
+		clienteSeleccionado = RepoClientes.getInstanceOfSingleton().getCliente( Integer.parseInt(id) );	
 		clienteSeleccionado.getDispositivosInteligentes().stream()
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 		
