@@ -1,13 +1,12 @@
 package main.server;
 
-import spark.Spark;
-import spark.debug.DebugScreen;
-
-
-import java.io.IOException;
-
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
+import spark.Spark;
+import spark.debug.DebugScreen;
 
 
 public class Server {
@@ -18,14 +17,14 @@ public class Server {
 		{
 			try 
 			{
-				//int a=1/0;
 				Bootstrap.init();
 				DebugScreen.enableDebugScreen();
 				Spark.port(4444);
 				Router.configure();
+				escribirLog("./Logs.log","El servidor inició correctamente.");
 			}
 			catch(Exception e) {
-				escribirLog("No se ha podido iniciar el servidor:\n"+e.getStackTrace().toString());
+				escribirLog("./Logs.log","No se ha podido iniciar el servidor. CAUSA: "+ e);
 			}
 		}
 		else {
@@ -33,10 +32,11 @@ public class Server {
 		}
 	}
 	
-	public static void escribirLog(String cadena) {
+	public static void escribirLog(String archivo,String cadena) {
 		try {
-			FileWriter fw=new FileWriter("./Logs.log",true);
-			fw.write(cadena+"\r\n");
+			FileWriter fw=new FileWriter(archivo,true);
+			//DateFormat Formato = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
+			fw.write(LocalDateTime.now() + ": " + cadena+"\r\n");
 			fw.close();
 		}
 		catch(IOException x) {

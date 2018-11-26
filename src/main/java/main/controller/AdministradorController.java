@@ -13,22 +13,21 @@ import edu.dominio.fabricante.Fabricante;
 import edu.dominio.fabricante.Sony;
 import edu.dominio.usuario.Cliente;
 import edu.repositorios.RepoClientes;
+import main.server.Server;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class AdministradorController {
 	
-	private static Administrador admin; 
+//	private static Administrador admin; 
 	private static String cadena;
 	private static List<Cliente> clientes;
 	private static Cliente clienteSeleccionado = null;
 
-	public static void setAdmin(Administrador admin) {
-		AdministradorController.admin = admin;
-	}
-	
-
+//	public static void setAdmin(Administrador admin) {
+//		AdministradorController.admin = admin;
+//	}
 	
 	public static ModelAndView indexViewDatosGenerales(Request req, Response res) {
 	
@@ -45,12 +44,10 @@ public class AdministradorController {
 	}
 	
 	public static ModelAndView indexViewDatosDeUnCliente(Request req, Response res) {
-		//if(clienteSeleccionado == null) {
 			int id=Integer.parseInt(req.params(":idCliente"));
 			clienteSeleccionado = RepoClientes.getInstanceOfSingleton().getCliente(id);	
 			clienteSeleccionado.getDispositivosInteligentes().stream()
 					.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
-		//}
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("id", clienteSeleccionado.getId() );
 		viewModel.put("cliente", clienteSeleccionado);
@@ -85,29 +82,27 @@ public class AdministradorController {
 				.forEach(d -> d.setFabricante(new Fabricante("Sony", new Sony())));
 		
 		Dispositivo d;
-		if(tipo.equals("inteligente")) {
-			d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
-					new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
-			//clienteSeleccionado.agregarDispositivo(d);
-		}
-		else {
-			d=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
-					Double.parseDouble(req.queryParams("hsUso")),new Fabricante("Sony",new Sony()),  
-					Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
+		try {
+			if(req.queryParams("nombreDispo").length() == 0)
+				throw new Exception("No se ingresó nombre para el dispositivo a registrar.");
 			
-			//clienteSeleccionado.agregarDispositivo(d);
+			if(tipo.equals("inteligente")) {
+				d=new DispositivoInteligente(req.queryParams("nombreDispo"),LocalDate.now(),
+						new Fabricante("Sony",new Sony()),  Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
+			}
+			else {
+				d=new DispositivoEstandar(req.queryParams("nombreDispo"),Double.parseDouble(req.queryParams("kw")),
+						Double.parseDouble(req.queryParams("hsUso")),new Fabricante("Sony",new Sony()),  
+						Double.parseDouble(req.queryParams("minima")), Double.parseDouble(req.queryParams("maxima")) );
+			}
+			RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado, d);
+			Server.escribirLog("./Logs.log","DISPOSITIVOS: Se registró satisfactoriamente un nuevo dispositivo con el nombre " + d.getNombre());		
 		}
-		
-		RepoClientes.getInstanceOfSingleton().persistirCliente(clienteSeleccionado, d);
+		catch(Exception e)
+		{
+			Server.escribirLog("./Logs.log","ERROR: Se intentó crear un nuevo dispositivo, pero ha fallado. CAUSA: " + e);
+		}
 		res.redirect("/admin/Clientes/"+id+"");
-		return null;
-	}
-	
-	
-	public static ModelAndView logOut(Request req, Response res) {
-
-		req.session().removeAttribute("username");
-		res.redirect("/"); 
 		return null;
 	}
 	

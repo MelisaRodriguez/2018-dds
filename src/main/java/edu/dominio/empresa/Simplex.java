@@ -44,7 +44,7 @@ public class Simplex {
 			// le doy al cliente las horas de cada dispositivo, y el valor máximo Z.
 		}
 		catch(Exception e) {
-			Server.escribirLog("No se ha podido generar la recomendacion:\n"+e.getStackTrace().toString());
+			Server.escribirLog("./Logs.log","No se ha podido generar la recomendacion:\n"+e.getStackTrace().toString());
 			return null;
 		}
 	}

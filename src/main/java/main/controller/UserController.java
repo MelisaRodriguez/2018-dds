@@ -18,6 +18,7 @@ import edu.dominio.fabricante.Sony;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.TipoDocumento;
+import main.server.Server;
 import spark.ModelAndView;
 
 public class UserController {
@@ -27,11 +28,9 @@ public class UserController {
 	public static ModelAndView user(Request req, Response res) {
 
 		HashMap<String,Object> viewModel = new HashMap<>(); 
-
 		viewModel.put("cliente", usuario);
 		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
 		viewModel.put("dispositivosEstandar", usuario.getDispositivosEstandar());
-		//return new ModelAndView(viewModel, "user.hbs");
 		return new ModelAndView(viewModel, "user.hbs");
 	}
 	
@@ -66,12 +65,13 @@ public class UserController {
 		viewModel.put("consumo", consumo);
 		
 		return new ModelAndView(viewModel, "consumo.hbs");
-
 	}
 	
 	public static ModelAndView logOut(Request req, Response res) {
+		String user = req.session().attribute("username");
 		req.session().removeAttribute("username");
 		res.redirect("/"); 
+		Server.escribirLog("./Logs.log","LOGOUT: Cerró sesión el usuario " + user);
 		return null;
 	}
 }

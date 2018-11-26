@@ -25,8 +25,6 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 			repo = new RepoClientes();
 		return repo;
 	}
-
-	// los 2 methodos de abajo hacen lo mismo, los deje para comparar cual es el mas powah de los 2
 	
 	public static Cliente buscarPorId(int id){
 		EntityManager em = PerThreadEntityManagers.getEntityManager();

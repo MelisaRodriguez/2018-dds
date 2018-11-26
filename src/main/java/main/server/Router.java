@@ -29,8 +29,6 @@ public class Router {
 		Spark.post("/clientes/:idCliente/dispositivos", AdministradorController::registrarDispo);
 		});
 		
-		Spark.get("/out", AdministradorController::logOut, transformer);
-		
 		Spark.get("/userPanel", UserController::user, transformer);
 		Spark.get("/userLogout", UserController::logOut,transformer);
 		Spark.get("/consumoRecomendado", UserController::consumoRecomendado, transformer);
