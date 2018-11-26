@@ -20,6 +20,7 @@ import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
+import main.server.Server;
 
 public class Simplex {
 	private double restriccionMaxima;
@@ -30,16 +31,22 @@ public class Simplex {
 
 	// recomendacion que pide el cliente - MANUAL
 	public List<Double> generarRecomendacion(Cliente cliente) {
-
-		PointValuePair resultado = this.ejecutarSimplex(cliente);
-
-		List<Double> resultados = new ArrayList<>();
-		for (double d : resultado.getPoint())
-			resultados.add(d); // necesitamos el array
-		resultados.add(resultado.getValue());
-
-		return resultados;
-		// le doy al cliente las horas de cada dispositivo, y el valor máximo Z.
+		try {
+			
+			PointValuePair resultado = this.ejecutarSimplex(cliente);
+			
+			List<Double> resultados = new ArrayList<>();
+			for (double d : resultado.getPoint())
+				resultados.add(d); // necesitamos el array
+			resultados.add(resultado.getValue());
+			return resultados;
+			
+			// le doy al cliente las horas de cada dispositivo, y el valor máximo Z.
+		}
+		catch(Exception e) {
+			Server.escribirLog("No se ha podido generar la recomendacion:\n"+e.getStackTrace().toString());
+			return null;
+		}
 	}
 
 	// AUTOMATICA - CRON

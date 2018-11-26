@@ -18,7 +18,7 @@ public class Server {
 		{
 			try 
 			{
-				int a=1/0;
+				//int a=1/0;
 				Bootstrap.init();
 				DebugScreen.enableDebugScreen();
 				Spark.port(4444);

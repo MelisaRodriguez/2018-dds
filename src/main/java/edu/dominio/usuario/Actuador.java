@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import edu.dominio.empresa.DispositivoInteligente;
+import main.server.Server;
 
 @Entity
 public class Actuador {
@@ -24,7 +25,13 @@ public class Actuador {
 	}
 
 	public void enviarAccion() {
-		dispositivoInteligente.accionar();
+		try {
+			dispositivoInteligente.accionar();
+		}
+		catch(Exception e) {
+			Server.escribirLog("No se ha podido enviar la accion:\n"+e.getStackTrace().toString());
+		}
+		
 	}
 
 	public DispositivoInteligente getDispositivoInteligente() {
