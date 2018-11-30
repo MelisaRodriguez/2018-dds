@@ -25,13 +25,7 @@ public class Actuador {
 	}
 
 	public void enviarAccion() {
-		try {
-			dispositivoInteligente.accionar();
-		}
-		catch(Exception e) {
-			Server.escribirLog("./Logs.log","No se ha podido enviar la accion:\n"+e.getStackTrace().toString());
-		}
-		
+		dispositivoInteligente.accionar();
 	}
 
 	public DispositivoInteligente getDispositivoInteligente() {

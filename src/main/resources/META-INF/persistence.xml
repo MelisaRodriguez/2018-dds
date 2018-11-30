@@ -26,9 +26,9 @@
 	    	<property name="hibernate.archive.autodetection" value="class"/>        
         
             < property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/turbio" /> 
-            <property name="hibernate.connection.username" value="root" /> 
-            <property name="hibernate.connection.password" value="root" /> 
+            <property name="hibernate.connection.url" value="jdbc:mysql://mkvf0onye76wyou9:lylxapcy0ji47k3c@gk90usy5ik2otcvi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/uo8s0yhg5o5aksxj" /> 
+            <property name="hibernate.connection.username" value="mkvf0onye76wyou9" /> 
+            <property name="hibernate.connection.password" value="lylxapcy0ji47k3c" /> 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 
 

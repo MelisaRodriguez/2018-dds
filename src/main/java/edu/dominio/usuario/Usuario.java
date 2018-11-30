@@ -51,7 +51,7 @@ public class Usuario {
 	public boolean isAdmin() {
 		return admin;
 	}
-	
+
 	public boolean getAdmin() {
 		return admin;
 	}
@@ -68,5 +68,4 @@ public class Usuario {
 		this.id_user = id_user;
 	}
 
-	
 }

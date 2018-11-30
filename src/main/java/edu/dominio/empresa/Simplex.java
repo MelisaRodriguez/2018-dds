@@ -31,22 +31,16 @@ public class Simplex {
 
 	// recomendacion que pide el cliente - MANUAL
 	public List<Double> generarRecomendacion(Cliente cliente) {
-		try {
-			
-			PointValuePair resultado = this.ejecutarSimplex(cliente);
-			
-			List<Double> resultados = new ArrayList<>();
-			for (double d : resultado.getPoint())
-				resultados.add(d); // necesitamos el array
-			resultados.add(resultado.getValue());
-			return resultados;
-			
-			// le doy al cliente las horas de cada dispositivo, y el valor máximo Z.
-		}
-		catch(Exception e) {
-			Server.escribirLog("./Logs.log","No se ha podido generar la recomendacion:\n"+e.getStackTrace().toString());
-			return null;
-		}
+
+		PointValuePair resultado = this.ejecutarSimplex(cliente);
+
+		List<Double> resultados = new ArrayList<>();
+		for (double d : resultado.getPoint())
+			resultados.add(d); // necesitamos el array
+		resultados.add(resultado.getValue());
+		return resultados;
+
+		// le doy al cliente las horas de cada dispositivo, y el valor máximo Z.
 	}
 
 	// AUTOMATICA - CRON

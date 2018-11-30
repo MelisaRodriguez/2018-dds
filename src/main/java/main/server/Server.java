@@ -6,42 +6,22 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 import spark.Spark;
-import spark.debug.DebugScreen;
-
 
 public class Server {
 
 	public static void main(String[] args) {
-		File archivo=new File("./Logs.log");			
-		if(archivo.exists()) 
-		{
-			try 
-			{
-				Bootstrap.init();
-				DebugScreen.enableDebugScreen();
-				Spark.port(4444);
-				Router.configure();
-				escribirLog("./Logs.log","El servidor inició correctamente.");
-			}
-			catch(Exception e) {
-				escribirLog("./Logs.log","No se ha podido iniciar el servidor. CAUSA: "+ e);
-			}
-		}
-		else {
-			System.out.println("No existe archivo");
-		}
+		Bootstrap.init();
+		// DebugScreen.enableDebugScreen();
+		Spark.port(getHerokuAssignedPort());
+		Router.configure();
 	}
-	
-	public static void escribirLog(String archivo,String cadena) {
-		try {
-			FileWriter fw=new FileWriter(archivo,true);
-			//DateFormat Formato = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
-			fw.write(LocalDateTime.now() + ": " + cadena+"\r\n");
-			fw.close();
+
+	static int getHerokuAssignedPort() {
+		ProcessBuilder processBuilder = new ProcessBuilder();
+		if (processBuilder.environment().get("PORT") != null) {
+			return Integer.parseInt(processBuilder.environment().get("PORT"));
 		}
-		catch(IOException x) {
-			x.printStackTrace();
-		}
+		return 4567; // return default port if heroku-port isn't set (i.e. on localhost)
 	}
-	
+
 }

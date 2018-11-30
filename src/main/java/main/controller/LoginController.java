@@ -38,11 +38,9 @@ public final class LoginController {
 			req.session().attribute("username", username);
 			if (usuario.isAdmin()) {
 				res.redirect("/admin");
-				Server.escribirLog("./Logs.log", "LOGIN: Inició sesión el administrador " + usuario.getUsuario());
 			} else {
 				UserController.usuario = RepoClientes.getInstanceOfSingleton().getCliente(usuario.getId_user());
 				res.redirect("/userPanel");
-				Server.escribirLog("./Logs.log", "LOGIN: Inició sesión el cliente " + usuario.getUsuario());
 			}
 		}
 		return null;

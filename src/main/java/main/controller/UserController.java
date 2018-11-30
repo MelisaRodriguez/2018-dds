@@ -1,77 +1,66 @@
 package main.controller;
 
-import spark.Request;
-import spark.Response;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import edu.dominio.empresa.Dispositivo;
-import edu.dominio.empresa.DispositivoEstandar;
-import edu.dominio.empresa.DispositivoInteligente;
-import edu.dominio.empresa.RegistroMedicion;
-import edu.dominio.fabricante.Fabricante;
-import edu.dominio.fabricante.Sony;
-import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
-import edu.dominio.usuario.TipoDocumento;
 import main.server.Server;
 import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
 
 public class UserController {
 
 	public static Cliente usuario;
-	
+
 	public static ModelAndView user(Request req, Response res) {
 
-		HashMap<String,Object> viewModel = new HashMap<>(); 
+		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("cliente", usuario);
 		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
 		viewModel.put("dispositivosEstandar", usuario.getDispositivosEstandar());
 		return new ModelAndView(viewModel, "user.hbs");
 	}
-	
-	
+
 	public static ModelAndView consumoRecomendado(Request req, Response res) {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		HashMap<String, Double> recomendaciones = new HashMap<>();
 
 		List<Double> optimizaciones = usuario.solicitarRecomendacion(620);
 		int i = 0;
-		for(Dispositivo dispositivo : usuario.todosSusDispositivos())
-		{
+		for (Dispositivo dispositivo : usuario.todosSusDispositivos()) {
 			recomendaciones.put(dispositivo.getNombre(), optimizaciones.get(i));
 			i++;
 		}
-		
+
 		viewModel.put("recomendaciones", recomendaciones);
 		viewModel.put("cliente", usuario);
-		
+
 		return new ModelAndView(viewModel, "simplex.hbs");
 	}
 
 	public static ModelAndView consumoEnPeriodo(Request req, Response res) {
 
 		HashMap<String, Object> viewModel = new HashMap<>();
-		String[] fechas = req.queryParams("periodo").split(" - ");	
+		String[] fechas = req.queryParams("periodo").split(" - ");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
-		
-		double consumo = usuario.getConsumoTotalEnPeriodo(LocalDate.parse(fechas[0], formatter), LocalDate.parse(fechas[1], formatter));
-		
+
+		double consumo = usuario.getConsumoTotalEnPeriodo(LocalDate.parse(fechas[0], formatter),
+				LocalDate.parse(fechas[1], formatter));
+
 		viewModel.put("cliente", usuario);
 		viewModel.put("consumo", consumo);
-		
+
 		return new ModelAndView(viewModel, "consumo.hbs");
 	}
-	
+
 	public static ModelAndView logOut(Request req, Response res) {
 		String user = req.session().attribute("username");
 		req.session().removeAttribute("username");
-		res.redirect("/"); 
-		Server.escribirLog("./Logs.log","LOGOUT: Cerró sesión el usuario " + user);
+		res.redirect("/");
 		return null;
 	}
 }

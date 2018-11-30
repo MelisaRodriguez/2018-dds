@@ -1,52 +1,31 @@
 package main.server;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Cifrado {
 
-	private static String KEY = "LaWeaHTTP1234567";
-
 	public static String Encrypt(String pInput) {
-		String encryptedtext = null;
+		MessageDigest digest = null;
 		try {
-
-			String Input = pInput;
-
-			SecretKeySpec aesKey = new SecretKeySpec(KEY.getBytes(), "AES");
-			Cipher cipher = Cipher.getInstance("AES");
-
-			cipher.init(Cipher.ENCRYPT_MODE, aesKey);
-			byte[] encrypted = cipher.doFinal(Input.getBytes());
-			encryptedtext = DatatypeConverter.printBase64Binary(encrypted);
-
-		} catch (Exception e) {
+			digest = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return encryptedtext;
+		final byte[] encodedhash = digest.digest(pInput.getBytes(StandardCharsets.UTF_8));
+		return bytesToHex(encodedhash);
 	}
 
-	public static String Decrypt(String pInput) {
-
-		byte[] encrypted;
-
-		String decrypted = null;
-
-		try {
-
-			SecretKeySpec aesKey = new SecretKeySpec(KEY.getBytes(), "AES");
-			Cipher cipher = Cipher.getInstance("AES");
-
-			cipher.init(Cipher.DECRYPT_MODE, aesKey);
-
-			encrypted = DatatypeConverter.parseBase64Binary(pInput);
-			decrypted = new String(cipher.doFinal(encrypted));
-
-		} catch (Exception e) {
-			e.printStackTrace();
+	private static String bytesToHex(byte[] encodedhash) {
+		StringBuffer hexString = new StringBuffer();
+		for (int i = 0; i < encodedhash.length; i++) {
+			String hex = Integer.toHexString(0xff & encodedhash[i]);
+			if (hex.length() == 1)
+				hexString.append('0');
+			hexString.append(hex);
 		}
-		return decrypted;
+		return hexString.toString();
 	}
 }
