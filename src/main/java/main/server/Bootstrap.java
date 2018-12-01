@@ -1,7 +1,8 @@
 package main.server;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,11 +56,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	}
 
 	private static JsonReader abrirJSON(String nombre) {
-		String path = Bootstrap.class.getClassLoader().getResource(nombre).getPath();
+		InputStream stream = Bootstrap.class.getClassLoader().getResourceAsStream(nombre);
 		JsonReader br = null;
 		try {
-			br = new JsonReader(new FileReader(path));
-		} catch (FileNotFoundException e) {
+			br = new JsonReader(new InputStreamReader(stream, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -20,7 +20,6 @@ import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
-import main.server.Server;
 
 public class Simplex {
 	private double restriccionMaxima;

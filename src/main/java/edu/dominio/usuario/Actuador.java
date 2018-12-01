@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import edu.dominio.empresa.DispositivoInteligente;
-import main.server.Server;
 
 @Entity
 public class Actuador {

@@ -7,7 +7,6 @@ import java.util.List;
 
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.usuario.Cliente;
-import main.server.Server;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
