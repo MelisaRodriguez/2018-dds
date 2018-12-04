@@ -25,7 +25,7 @@ import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
 import edu.repositorios.RepoClientes;
 
-public class Simplex implements Job{
+public class Simplex {
 	private double restriccionMaxima;
 
 	public Simplex(double restriccionMaxima) {
