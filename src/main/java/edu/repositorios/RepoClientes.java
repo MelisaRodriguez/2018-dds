@@ -52,7 +52,7 @@ public class RepoClientes extends GenericoRepos<Cliente> {
 	}
 
 	@Override
-	public List<Cliente> getEntidades() {
+	public  List<Cliente> getEntidades() {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		this.entidades = em.createQuery("from Cliente", Cliente.class).getResultList();
 		em.close();

@@ -60,5 +60,4 @@ public class Regla {
 	public void setIdRegla(int idRegla) {
 		this.idRegla = idRegla;
 	}
-
 }
