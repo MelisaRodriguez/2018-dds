@@ -14,13 +14,16 @@ import org.apache.commons.math3.optim.linear.NonNegativeConstraint;
 import org.apache.commons.math3.optim.linear.Relationship;
 import org.apache.commons.math3.optim.linear.SimplexSolver;
 import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.Condicion;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
-import main.server.Server;
+import edu.repositorios.RepoClientes;
 
 public class Simplex {
 	private double restriccionMaxima;
@@ -42,13 +45,11 @@ public class Simplex {
 
 		// le doy al cliente las horas de cada dispositivo, y el valor máximo Z.
 	}
-
-	// AUTOMATICA - CRON
+	
+	
 	public void optimizacionAutomatica(Cliente cliente) {
 		PointValuePair resultado = this.ejecutarSimplex(cliente);
-		if (cliente.getAhorroAutomatico()) {
-			this.mejorarEficienciaHogar(cliente, resultado);
-		}
+		this.mejorarEficienciaHogar(cliente, resultado);
 	}
 
 	public void mejorarEficienciaHogar(Cliente cliente, PointValuePair resultado) {
@@ -120,5 +121,7 @@ public class Simplex {
 		}
 		return lista;
 	}
+
+	
 
 }

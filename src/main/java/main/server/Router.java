@@ -18,7 +18,7 @@ public class Router {
 		Spark.before("/consumoRecomendado", LoginController::validarLogin);
 		Spark.before("/consumoEnPeriodo", LoginController::validarLogin);
 
-		Spark.get("/", LoginController::init);
+		Spark.get("/", LoginController::init, transformer);
 
 		Spark.post("/login", LoginController::processLogin);
 

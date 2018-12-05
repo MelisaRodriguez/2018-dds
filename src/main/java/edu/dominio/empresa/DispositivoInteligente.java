@@ -10,6 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
 import edu.dominio.fabricante.Fabricante;
 
 @Entity
@@ -38,9 +42,7 @@ public class DispositivoInteligente extends Dispositivo {
 	public double getConsumo() {
 		return this.getCalcularConsumo();
 	}
-
-	// Este metodo se ejecutara automaticamente con un cron programado cuando se
-	// acabe la memoria del dispositivo.
+	
 	public void agregarNuevoRegistroDeConsumo() {
 		registrosConsumo
 				.add(new RegistroMedicion(LocalDate.now(), this.getCalcularConsumo(), this.getHorasEncendido()));
@@ -130,4 +132,5 @@ public class DispositivoInteligente extends Dispositivo {
 			return registrosConsumo.get(registrosConsumo.size() - 1).getKwConsumidos();
 		return 0;
 	}
+
 }
