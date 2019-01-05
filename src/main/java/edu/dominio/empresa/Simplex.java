@@ -21,6 +21,7 @@ import org.quartz.JobExecutionException;
 import edu.dominio.usuario.Actuador;
 import edu.dominio.usuario.Cliente;
 import edu.dominio.usuario.Condicion;
+import edu.dominio.usuario.Operador;
 import edu.dominio.usuario.Regla;
 import edu.dominio.usuario.Sensor;
 import edu.repositorios.RepoClientes;
@@ -68,9 +69,7 @@ public class Simplex {
 		Actuador actuador = new Actuador(dispositivo);
 		Sensor sensor = new Sensor();
 		sensor.tomarMedicion(dispositivo.horasTotalesEnPeriodo(this.primerDiaDelMes(LocalDate.now()), LocalDate.now()));
-		Condicion condicion = new Condicion(sensor, (Double valor) -> {
-			return valor >= horasConsumoOptimas;
-		});
+		Condicion condicion = new Condicion(sensor, Operador.MAYOR_IGUAL);
 		Regla regla = new Regla(Arrays.asList(condicion), Arrays.asList(actuador));
 		regla.ejecutar();
 	}
