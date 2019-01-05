@@ -8,40 +8,40 @@ import org.geotools.referencing.GeodeticCalculator;
 
 @Embeddable
 public class Punto {
-	private double x;
-	private double y;
+	private double latitud;
+	private double longitud;
 
 	public Punto() {
 	}
 
-	public Punto(double x, double y) {
-		this.x = x;
-		this.y = y;
+	public Punto(double latitud, double longitud) {
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
 
 	public double getX() {
-		return x;
+		return latitud;
 	}
 
 	public double getY() {
-		return y;
+		return longitud;
 	}
 
 	public void setX(double x) {
-		this.x = x;
+		this.latitud = x;
 	}
 
 	public void setY(double y) {
-		this.y = y;
+		this.longitud = y;
 	}
 
 	private Point2D getPunto() {
-		return new Point2D.Double(x, y);
+		return new Point2D.Double(latitud, longitud);
 	}
 
-	public static double calcularDistancia(Punto p1, Punto p2) {
+	public double calcularDistancia(Punto p2) {
 		GeodeticCalculator calc = new GeodeticCalculator();
-		calc.setStartingGeographicPoint(p1.getPunto());
+		calc.setStartingGeographicPoint(getPunto());
 		calc.setDestinationGeographicPoint(p2.getPunto());
 		return calc.getOrthodromicDistance();
 	}

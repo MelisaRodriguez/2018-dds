@@ -36,7 +36,6 @@ public class Transformador {
 
 	public Transformador(Punto lugar) {
 		this.lugar = lugar;
-		// RepoZonaGeografica.getSingletonInstance().agregarTransformador(this, lugar);
 	}
 
 	public void agregarCliente(Cliente unCliente) {

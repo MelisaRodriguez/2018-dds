@@ -41,7 +41,7 @@ public class ZonaGeografica {
 	}
 
 	private double calcularDistancia(Punto p1, Punto p2) {
-		return Punto.calcularDistancia(p1, p2);
+		return p1.calcularDistancia(p2);
 	}
 
 	public void agregarCliente(Cliente unCliente, Punto lugar) {
