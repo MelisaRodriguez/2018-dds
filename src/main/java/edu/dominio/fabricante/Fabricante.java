@@ -1,10 +1,10 @@
 package edu.dominio.fabricante;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import edu.dominio.empresa.DispositivoInteligente;
 
@@ -16,18 +16,17 @@ public class Fabricante {
 	@GeneratedValue
 	private int idFabricante;
 	private String nombre;
+	@Enumerated
+	private FabricanteAdapter fabricanteMock;
 
-	public void setFabricanteMock(FabricanteMock fabricanteMock) {
+	public void setFabricanteMock(FabricanteAdapter fabricanteMock) {
 		this.fabricanteMock = fabricanteMock;
 	}
-
-	@Transient
-	private FabricanteMock fabricanteMock;
 
 	public Fabricante() {
 	}
 
-	public Fabricante(String nombre, FabricanteMock fabricanteMock) {
+	public Fabricante(String nombre, FabricanteAdapter fabricanteMock) {
 		this.nombre = nombre;
 		this.fabricanteMock = fabricanteMock;
 	}
