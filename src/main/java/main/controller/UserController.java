@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.usuario.Cliente;
 import spark.ModelAndView;
@@ -13,10 +15,8 @@ import spark.Response;
 
 public class UserController {
 
-	public static Cliente usuario;
-
 	public static ModelAndView user(Request req, Response res) {
-
+		Cliente usuario = req.session().attribute("Cliente");
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("cliente", usuario);
 		viewModel.put("dispositivosInteligentes", usuario.getDispositivosInteligentes());
@@ -25,6 +25,7 @@ public class UserController {
 	}
 
 	public static ModelAndView consumoRecomendado(Request req, Response res) {
+		Cliente usuario = req.session().attribute("Cliente");
 		HashMap<String, Object> viewModel = new HashMap<>();
 		HashMap<String, Double> recomendaciones = new HashMap<>();
 
@@ -43,6 +44,7 @@ public class UserController {
 
 	public static ModelAndView consumoEnPeriodo(Request req, Response res) {
 
+		Cliente usuario = req.session().attribute("Cliente");
 		HashMap<String, Object> viewModel = new HashMap<>();
 		String[] fechas = req.queryParams("periodo").split(" - ");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
@@ -57,8 +59,9 @@ public class UserController {
 	}
 
 	public static ModelAndView logOut(Request req, Response res) {
-		String user = req.session().attribute("username");
 		req.session().removeAttribute("username");
+		PerThreadEntityManagers.getEntityManager().remove(req.session().attribute("Cliente"));
+		req.session().removeAttribute("Cliente");
 		res.redirect("/");
 		return null;
 	}

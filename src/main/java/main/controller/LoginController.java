@@ -2,6 +2,8 @@ package main.controller;
 
 import java.util.HashMap;
 
+import javax.persistence.NoResultException;
+
 import edu.dominio.usuario.Usuario;
 import edu.repositorios.RepoClientes;
 import edu.repositorios.RepoUsuarios;
@@ -29,19 +31,21 @@ public final class LoginController {
 		String username = req.queryParams("usuario");
 		String password = req.queryParams("contraseña");
 		password = Cifrado.Encrypt(req.queryParams("contraseña"));
-		if (!RepoUsuarios.getInstanceOfSingleton().existeUsuario(username, password)) {
-			res.status(400);
-			res.redirect("/");
-		} else {
-			Usuario usuario = RepoUsuarios.getInstanceOfSingleton().getUsuario(password, username);
+
+		try {
+			Usuario usuario = RepoUsuarios.getInstanceOfSingleton().getUsuario(username, password);
 			res.status(200);
 			req.session().attribute("username", username);
 			if (usuario.isAdmin()) {
 				res.redirect("/admin");
 			} else {
-				UserController.usuario = RepoClientes.getInstanceOfSingleton().getCliente(usuario.getId_user());
+				req.session().attribute("Cliente",
+						RepoClientes.getInstanceOfSingleton().findByID(usuario.getId_user()));
 				res.redirect("/userPanel");
 			}
+		} catch (NoResultException e) {
+			res.status(400);
+			res.redirect("/");
 		}
 		return null;
 	}
