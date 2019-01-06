@@ -56,8 +56,8 @@
         ],
         "ahorroAutomatico": false,
         "ubicacion": {
-            "x": -0.127512,
-            "y": 51.507222
+            "latitud": -0.127512,
+            "longitud": 51.507222
         }
     },
     {
@@ -107,8 +107,8 @@
         ],
         "ahorroAutomatico": false,
         "ubicacion": {
-            "x": -0.127512,
-            "y": 51.507222
+            "latitud": -0.127512,
+            "longitud": 51.507222
         }
     },
     {
@@ -158,8 +158,8 @@
         ],
         "ahorroAutomatico": false,
         "ubicacion": {
-            "x": -0.127512,
-            "y": 51.507222
+            "latitud": -0.127512,
+            "longitud": 51.507222
         }
     }
 ]

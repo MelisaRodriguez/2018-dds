@@ -4,69 +4,14 @@
         "transformadores": [
             {
                 "lugar": {
-                    "x": -0.127512,
-                    "y": 51.507222
+                    "latitud": -0.127512,
+                    "longitud": 51.507222
                 },
-                "clientes": [
-                    {
-                        "id": 0,
-                        "nombre": "Brashan",
-                        "apellido": "Ferrari",
-                        "tipoDocumento": "DNI",
-                        "nroDocumento": "36892010",
-                        "telefono": "42172304",
-                        "domicilioServicio": "Av EverViva 254",
-                        "fechaDeAltaServicio": {
-                            "year": 2018,
-                            "month": 5,
-                            "day": 18
-                        },
-                        "dispositivosInteligentes": [
-                            {
-                                "fechaDeRegistro": {
-                                    "year": 2018,
-                                    "month": 5,
-                                    "day": 18
-                                },
-                                "registrosConsumo": [],
-                                "idDispositivo": 0,
-                                "nombre": "plancha",
-                                "fabricante": {
-                                    "idFabricante": 0,
-                                    "nombre": "SONY"
-                                },
-                                "restriccionMinima": 0.0,
-                                "restriccionMaxima": 1000.0
-                            }
-                        ],
-                        "dispositivosEstandar": [
-                            {
-                                "kW": 45.0,
-                                "horasUsoxDiaSegunUsuario": 15.0,
-                                "idDispositivo": 0,
-                                "nombre": "heladera",
-                                "fabricante": {
-                                    "idFabricante": 0,
-                                    "nombre": "SONY"
-                                },
-                                "restriccionMinima": 0.0,
-                                "restriccionMaxima": 0.0
-                            }
-                        ],
-                        "puntos": 15,
-                        "ahorroAutomatico": false,
-                        "ubicacion": {
-                            "x": -0.127512,
-                            "y": 51.507222
-                        }
-                    }
-                ]
-            }
-        ],
+                "clientes": [],
         "radio": 8000.0,
         "centro": {
-            "x": -0.127512,
-            "y": 51.507222
+            "latitud": -0.127512,
+            "longitud": 51.507222
         }
     }
 ]
