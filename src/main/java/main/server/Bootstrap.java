@@ -44,7 +44,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		RepoCategorias.getSingletonInstance().agregar(categorias);
 
 		final Gson gson = new Gson();
-
+		
 		final TypeToken<List<Cliente>> clienteListType = new TypeToken<List<Cliente>>() {
 		};
 		List<Cliente> clientes = gson.fromJson(abrirJSON("Clientes.json"), clienteListType.getType());
@@ -62,14 +62,15 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			userClientes.get(i).setId_user(clientes.get(i).getId());
 		RepoUsuarios.getInstanceOfSingleton().agregar(userAdmin);
 		RepoUsuarios.getInstanceOfSingleton().agregar(userClientes);
-
-		final TypeToken<List<ZonaGeografica>> ZonaListType = new TypeToken<List<ZonaGeografica>>() {
-		};
-		List<ZonaGeografica> zonas = gson.fromJson(abrirJSON("Zonas.json"), ZonaListType.getType());
-		RepoZonaGeografica.getSingletonInstance().agregar(zonas);
-
 	}
 
+	public static List<ZonaGeografica> importadorZonas()
+	{
+		final TypeToken<List<ZonaGeografica>> ZonaListType = new TypeToken<List<ZonaGeografica>>() {
+		};
+		return new Gson().fromJson(abrirJSON("Zonas.json"), ZonaListType.getType());
+	}
+	
 	private static JsonReader abrirJSON(String nombre) {
 		InputStream stream = Bootstrap.class.getClassLoader().getResourceAsStream(nombre);
 		JsonReader br = null;

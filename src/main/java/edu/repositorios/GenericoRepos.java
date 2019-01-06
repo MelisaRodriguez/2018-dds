@@ -41,7 +41,7 @@ public class GenericoRepos<T> {
 
 	public List<T> getEntidades() {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		List<T> entidades = em.createQuery("from" + clazz.getName(), clazz).getResultList();
+		List<T> entidades = em.createQuery("from " + clazz.getName(), clazz).getResultList();
 		em.close();
 		return entidades;
 	}

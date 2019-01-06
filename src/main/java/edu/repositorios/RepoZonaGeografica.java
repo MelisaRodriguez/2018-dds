@@ -1,21 +1,26 @@
 package edu.repositorios;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
+
+import com.google.gson.reflect.TypeToken;
 
 import edu.dominio.empresa.Transformador;
 import edu.dominio.empresa.ZonaGeografica;
 import edu.dominio.posicion.Punto;
 import edu.dominio.usuario.Cliente;
 
-public class RepoZonaGeografica extends GenericoRepos<ZonaGeografica> {
+public class RepoZonaGeografica{
 	private static RepoZonaGeografica repoZona = null;
-
+	private List<ZonaGeografica> zonas = new ArrayList<>();
+	
 	private RepoZonaGeografica() {
-		super(ZonaGeografica.class);
+		zonas = main.server.Bootstrap.importadorZonas();
 	}
 
 	private ZonaGeografica conseguirZonaSegun(Predicate<ZonaGeografica> cond) {
-		return getEntidades().stream().filter(cond).findFirst().get();
+		return zonas.stream().filter(cond).findFirst().get();
 	}
 
 	public void agregarTransformador(Transformador unTransformador, Punto lugar) {
