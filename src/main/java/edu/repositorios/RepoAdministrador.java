@@ -1,10 +1,13 @@
 package edu.repositorios;
 
-import java.util.List;
-
 import edu.dominio.empresa.Administrador;
 
 public class RepoAdministrador extends GenericoRepos<Administrador> {
+
+	private RepoAdministrador() {
+		super(Administrador.class);
+	}
+
 	private static RepoAdministrador repo = null;
 
 	public static RepoAdministrador getInstanceOfSingleton() {
@@ -12,9 +15,4 @@ public class RepoAdministrador extends GenericoRepos<Administrador> {
 			repo = new RepoAdministrador();
 		return repo;
 	}
-
-	public static void cargarAdministrador(List<Administrador> administrador) {
-		repo.entidades = administrador;
-	}
-
 }

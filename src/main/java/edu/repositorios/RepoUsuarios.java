@@ -1,15 +1,17 @@
 package edu.repositorios;
 
-import java.util.Objects;
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import edu.dominio.usuario.Usuario;
 
 public class RepoUsuarios extends GenericoRepos<Usuario> {
+
+	private RepoUsuarios() {
+		super(Usuario.class);
+	}
 
 	private static RepoUsuarios repo = null;
 
@@ -19,28 +21,16 @@ public class RepoUsuarios extends GenericoRepos<Usuario> {
 		return repo;
 	}
 
-	public boolean existeUsuario(String username, String password) {
-		Optional<Usuario> usuario = entidades.stream()
-				.filter(c -> Objects.equals(c.getContraseña(), password) && Objects.equals(c.getUsuario(), username))
-				.findFirst();
-		if (!usuario.isPresent()) {
-			try {
-				EntityManager em = PerThreadEntityManagers.getEntityManager();
-				em.getTransaction().begin();
-				agregar(em.createQuery("from Usuario c where c.usuario = :u and c.contraseña = :p", Usuario.class)
-						.setParameter("u", username).setParameter("p", password).getSingleResult());
-				em.getTransaction().commit();
-				em.close();
-			} catch (Exception x) {
-				return false;
-			}
+	public Usuario getUsuario(String username, String password) throws NoResultException {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		try {
+			Usuario u = em.createQuery("from Usuario c where c.usuario = :u and c.contraseña = :p", Usuario.class)
+					.setParameter("u", username).setParameter("p", password).getSingleResult();
+			em.close();
+			return u;
+		} catch (NoResultException e) {
+			em.close();
+			throw new NoResultException();
 		}
-		return true;
-	}
-
-	public Usuario getUsuario(String password, String username) {
-		return this.entidades.stream()
-				.filter(c -> Objects.equals(c.getContraseña(), password) && Objects.equals(c.getUsuario(), username))
-				.findFirst().get();
 	}
 }
