@@ -43,12 +43,6 @@ public class RegistroMedicion {
 		return kwConsumidos;
 	}
 
-	@Override
-	public String toString() {
-		return "RegistroMedicion [idRegistro=" + idRegistro + ", fecha=" + fecha + ", kwConsumidos=" + kwConsumidos
-				+ ", horasEncendido=" + horasEncendido + "]";
-	}
-
 	public int getIdRegistro() {
 		return idRegistro;
 	}

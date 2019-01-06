@@ -73,8 +73,7 @@ public class Cliente {
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.recategorizar();
 		this.ahorroAutomatico = ahorroAutomatico;
-		this.ubicacion = ubicacion;
-		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
+		this.setUbicacion(ubicacion);
 		this.usuario = usuario;
 	}
 
@@ -174,6 +173,7 @@ public class Cliente {
 
 	public void setUbicacion(Punto ubicacion) {
 		this.ubicacion = ubicacion;
+		RepoZonaGeografica.getSingletonInstance().SolicitarTransformador(this, ubicacion);
 	}
 
 	public List<DispositivoInteligente> getDispositivosInteligentes() {

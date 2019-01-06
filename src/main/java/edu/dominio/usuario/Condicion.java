@@ -1,7 +1,5 @@
 package edu.dominio.usuario;
 
-import java.util.function.Function;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Condicion {
@@ -25,7 +22,6 @@ public class Condicion {
 	private Operador operador;
 //	operador: >, <, >=, <=
 	private double valor;
-
 
 	public Condicion() {
 	}

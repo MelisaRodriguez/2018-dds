@@ -10,10 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-
 import edu.dominio.fabricante.Fabricante;
 
 @Entity
@@ -42,7 +38,7 @@ public class DispositivoInteligente extends Dispositivo {
 	public double getConsumo() {
 		return this.getCalcularConsumo();
 	}
-	
+
 	public void agregarNuevoRegistroDeConsumo() {
 		registrosConsumo
 				.add(new RegistroMedicion(LocalDate.now(), this.getCalcularConsumo(), this.getHorasEncendido()));

@@ -6,22 +6,25 @@ public enum Operador {
 		public boolean ejecutarCondLogica(double val1, double val2) {
 			return val1 > val2;
 		}
-	}, MENOR {
+	},
+	MENOR {
 		@Override
 		public boolean ejecutarCondLogica(double val1, double val2) {
 			return val1 < val2;
 		}
-	}, MAYOR_IGUAL {
+	},
+	MAYOR_IGUAL {
 		@Override
 		public boolean ejecutarCondLogica(double val1, double val2) {
 			return val1 >= val2;
 		}
-	}, MENOR_IGUAL {
+	},
+	MENOR_IGUAL {
 		@Override
 		public boolean ejecutarCondLogica(double val1, double val2) {
 			return val1 <= val2;
 		}
 	};
-	
+
 	public abstract boolean ejecutarCondLogica(double val1, double val2);
 }
