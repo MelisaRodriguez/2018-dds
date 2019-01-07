@@ -31,6 +31,22 @@ public class GenericoRepos<T> {
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	public void actualizar(T entidad) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		em.getTransaction().begin();
+		em.merge(entidad);
+		em.getTransaction().commit();
+		em.close();
+	}
+
+	public void actualizar(List<T> entidades) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		em.getTransaction().begin();
+		entidades.stream().forEach(e -> em.merge(e));
+		em.getTransaction().commit();
+		em.close();
+	}
 
 	public T findByID(int id) {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();

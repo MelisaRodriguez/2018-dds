@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
 import edu.dominio.empresa.Dispositivo;
 import edu.dominio.usuario.Cliente;
 import spark.ModelAndView;
@@ -60,7 +58,6 @@ public class UserController {
 
 	public static ModelAndView logOut(Request req, Response res) {
 		req.session().removeAttribute("username");
-		PerThreadEntityManagers.getEntityManager().remove(req.session().attribute("Cliente"));
 		req.session().removeAttribute("Cliente");
 		res.redirect("/");
 		return null;

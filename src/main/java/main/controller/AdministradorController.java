@@ -69,7 +69,7 @@ public class AdministradorController {
 					Double.parseDouble(req.queryParams("maxima")));
 			clienteSeleccionado.agregarDispositivo(d);
 		}
-		RepoClientes.getInstanceOfSingleton().agregar(clienteSeleccionado);
+		RepoClientes.getInstanceOfSingleton().actualizar(clienteSeleccionado);
 		res.redirect("/admin/Clientes/" + id + "");
 		return null;
 	}
